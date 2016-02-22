@@ -13,6 +13,5 @@ namespace DataAccessAPI
         IEnumerable<TEntity> GetAll();
         void Update(TEntity entity);
         void Delete(TKey key);
-        void X();
     }
 }
