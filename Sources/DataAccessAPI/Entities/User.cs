@@ -16,5 +16,13 @@ namespace DataAccessAPI.Entities
         public string PasswordHash { get; set; }
 
         public IEnumerable<TodoList> TodoLists { get; set; }
+
+        public IEnumerable<Role> Roles { get; set; }
+
+        public User()
+        {
+            TodoLists = new List<TodoList>();
+            Roles = new List<Role>();
+        }
     }
 }

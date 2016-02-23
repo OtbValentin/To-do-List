@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessAPI.Entities
+namespace DataAccess.EntityFramework
 {
-    public class TodoList : IUnique<int>
+    internal class TodoList
     {
         public int Id { get; set; }
 
@@ -14,11 +14,6 @@ namespace DataAccessAPI.Entities
 
         public DateTime? DueDate { get; set; }
 
-        public IEnumerable<Todo> Todos;
-
-        public TodoList()
-        {
-            Todos = new List<Todo>();
-        }
+        public ICollection<Todo> Todos { get; set; }
     }
 }
