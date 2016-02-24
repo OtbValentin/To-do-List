@@ -13,8 +13,6 @@ namespace BusinessLogic
     {
         void Do()
         {
-            IRepository<User, int> repository;
-            Gene
         }
     }
 }
