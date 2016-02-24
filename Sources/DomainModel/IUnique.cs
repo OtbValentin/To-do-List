@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessAPI
+namespace DomainModel
 {
     public interface IUnique<TKey>
     {
-         TKey Id { get; set; }
+         TKey Id { get; }
     }
 }

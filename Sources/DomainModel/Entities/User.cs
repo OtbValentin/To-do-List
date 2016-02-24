@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccessAPI;
+using DomainModel;
 
-namespace DataAccessAPI.Entities
+namespace DomainModel.Entities
 {
     public class User : IUnique<int>
     {
-        public int Id { get; set; }
+        public int Id { get; private set; }
         
         public string Email { get; set; }
 
