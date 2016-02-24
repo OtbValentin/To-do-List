@@ -8,7 +8,7 @@ using DomainModel;
 using System.Data.Entity;
 using DataAccess.EntityFramework;
 
-namespace DataAccess
+namespace DataAccess.Repositories
 {
     public class EFIntKeyGenericRepository<TModel, TEFModel> : IRepository<TModel, int>
         where TModel : IUnique<int>

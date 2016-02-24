@@ -8,7 +8,7 @@ using DomainModel;
 using DomainModel.Entities;
 using System.Data.Entity;
 
-namespace DataAccess
+namespace DataAccess.Repositories
 {
     public class EFTodoListRepository : EFIntKeyGenericRepository<TodoList, EntityFramework.TodoList>, IRepository<TodoList, int>
     {

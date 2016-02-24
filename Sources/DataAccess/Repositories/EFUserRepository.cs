@@ -8,7 +8,7 @@ using DomainModel;
 using DomainModel.Entities;
 using System.Data.Entity;
 
-namespace DataAccess
+namespace DataAccess.Repositories
 {
     public class EFUserRepository : EFIntKeyGenericRepository<User, EntityFramework.User>
     {
@@ -18,3 +18,4 @@ namespace DataAccess
 
         }
     }
+}

@@ -9,7 +9,7 @@ using DomainModel;
 using EF = DataAccess.EntityFramework;
 using System.Data.Entity;
 
-namespace DataAccess
+namespace DataAccess.Repositories
 {
     public class EFRoleRepisotory : EFIntKeyGenericRepository<Role, EF.Role>, IRepository<Role, int>
     {

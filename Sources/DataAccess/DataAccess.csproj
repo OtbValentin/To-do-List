@@ -49,10 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EFGenericRepository.cs" />
-    <Compile Include="EFRoleRepisotory.cs" />
-    <Compile Include="EFTodoListRepository.cs" />
-    <Compile Include="EFUserRepository.cs" />
+    <Compile Include="Repositories\EFGenericRepository.cs" />
+    <Compile Include="Repositories\EFRoleRepisotory.cs" />
+    <Compile Include="Repositories\EFTodoListRepository.cs" />
+    <Compile Include="Repositories\EFUserRepository.cs" />
     <Compile Include="EntityFramework\ApplicationDbContext.cs" />
     <Compile Include="EntityFramework\IEntity.cs" />
     <Compile Include="EntityFramework\Role.cs" />
