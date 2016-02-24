@@ -7,13 +7,13 @@ using System.Linq;
 using System.Web;
 using WebApi.OAuth;
 
-namespace WebApi.App_Start
+namespace WebApi
 {
     public static class AuthConfig
     {
         public static void Configure(IAppBuilder app)
         {
-            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
+            var authServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
@@ -22,7 +22,7 @@ namespace WebApi.App_Start
             };
 
             // Token Generation
-            app.UseOAuthAuthorizationServer(OAuthServerOptions);
+            app.UseOAuthAuthorizationServer(authServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
     }

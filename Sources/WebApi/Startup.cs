@@ -12,6 +12,7 @@ namespace WebApi
         public void Configuration(IAppBuilder app)
         {
             IdentityConfig.Configure(app);
+            AuthConfig.Configure(app);
 
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
