@@ -3,37 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccessAPI;
-using DataAccessAPI.Entities;
 using DataAccessAPI.Repositories;
+using DomainModel;
+using DomainModel.Entities;
+using System.Data.Entity;
 
 namespace DataAccess
 {
-    public class EFTodoListRepository : ITodoListRepository
+    public class EFTodoListRepository : EFIntKeyGenericRepository<TodoList, EntityFramework.TodoList>, IRepository<TodoList, int>
     {
-        public void Create(TodoList entity)
+        public EFTodoListRepository(DbContext context, IMapper<TodoList, EntityFramework.TodoList> mapper)
+            :base(context, mapper)
         {
-            throw new NotImplementedException();
-        }
 
-        public void Delete(int key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TodoList> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public TodoList GetByKey(int key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(TodoList entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }

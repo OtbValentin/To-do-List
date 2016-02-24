@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EFGenericRepository.cs" />
     <Compile Include="EFRoleRepisotory.cs" />
     <Compile Include="EFTodoListRepository.cs" />
     <Compile Include="EFUserRepository.cs" />
@@ -57,12 +58,18 @@
     <Compile Include="EntityFramework\Todo.cs" />
     <Compile Include="EntityFramework\TodoList.cs" />
     <Compile Include="EntityFramework\User.cs" />
+    <Compile Include="IMapper.cs" />
+    <Compile Include="Mappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessAPI\DataAccessAPI.csproj">
       <Project>{5b273abf-b87c-4129-a5ff-17dcad9ca2d5}</Project>
       <Name>DataAccessAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
+      <Project>{1d251136-df3a-4a9e-8e38-9a6e592a19e4}</Project>
+      <Name>DomainModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

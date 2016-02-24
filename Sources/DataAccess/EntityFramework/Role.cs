@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DomainModel;
 
 namespace DataAccess.EntityFramework
 {
-    internal class Role
+    public class Role : IUnique<int>
     {
         public int Id { get; set; }
 

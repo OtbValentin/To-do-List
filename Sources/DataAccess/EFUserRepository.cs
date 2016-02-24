@@ -3,42 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccessAPI.Entities;
 using DataAccessAPI.Repositories;
-using DataAccessAPI;
+using DomainModel;
+using DomainModel.Entities;
+using System.Data.Entity;
 
 namespace DataAccess
 {
-    public class EFUserRepository : IUserRepository
+    public class EFUserRepository : EFIntKeyGenericRepository<User, EntityFramework.User>
     {
-        public void Create(User entity)
+        public EFUserRepository(DbContext context, IMapper<User, EntityFramework.User> mapper)
+            : base(context, mapper)
         {
-            throw new NotImplementedException();
-        }
 
-        public void Delete(int key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<User> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public User GetByKey(int key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TodoList> GetTodoLists(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(User entity)
-        {
-            throw new NotImplementedException();
         }
     }
-}

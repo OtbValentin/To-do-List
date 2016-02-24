@@ -14,5 +14,10 @@ namespace DomainModel.Entities
         public string Text { get; set; }
 
         public bool IsCompleted { get; set; }
+
+        public Todo(int id)
+        {
+            Id = id;
+        }
     }
 }

@@ -17,8 +17,9 @@ namespace DomainModel.Entities
 
         public IEnumerable<Todo> Todos { get; set; }
 
-        public TodoList()
+        public TodoList(int id)
         {
+            Id = id;
             Todos = new List<Todo>();
         }
     }

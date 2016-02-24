@@ -19,8 +19,9 @@ namespace DomainModel.Entities
 
         public IEnumerable<Role> Roles { get; set; }
 
-        public User()
+        public User(int id)
         {
+            Id = id;
             TodoLists = new List<TodoList>();
             Roles = new List<Role>();
         }
