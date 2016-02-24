@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DomainModel;
 
 namespace DataAccess.EntityFramework
 {
-    public class Todo : IUnique<int>
+    public class Todo : IEntity<int>
     {
         public int Id { get; set; }
 

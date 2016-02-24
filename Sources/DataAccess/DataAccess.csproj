@@ -54,6 +54,7 @@
     <Compile Include="EFTodoListRepository.cs" />
     <Compile Include="EFUserRepository.cs" />
     <Compile Include="EntityFramework\ApplicationDbContext.cs" />
+    <Compile Include="EntityFramework\IEntity.cs" />
     <Compile Include="EntityFramework\Role.cs" />
     <Compile Include="EntityFramework\Todo.cs" />
     <Compile Include="EntityFramework\TodoList.cs" />

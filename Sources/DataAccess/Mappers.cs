@@ -8,7 +8,7 @@ using EF = DataAccess.EntityFramework;
 
 namespace DataAccess
 {
-    internal class Mapper : IMapper<EF.User, User>
+    public class Mapper : IMapper<EF.User, User>
     {
         public User Map(EF.User entity)
         {
