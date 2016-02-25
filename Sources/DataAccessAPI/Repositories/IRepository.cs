@@ -10,7 +10,7 @@ namespace DataAccessAPI.Repositories
     public interface IRepository<TEntity, TKey> where TEntity : IUnique<TKey>
     {
         void Create(TEntity entity);
-        TEntity GetByKey(TKey key);
+        TEntity Find(TKey key);
         IEnumerable<TEntity> GetAll();
         void Update(TEntity entity);
         void Delete(TKey key);

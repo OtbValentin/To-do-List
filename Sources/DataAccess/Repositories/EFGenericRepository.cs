@@ -19,12 +19,27 @@ namespace DataAccess.Repositories
 
         public EFIntKeyGenericRepository(DbContext context, IMapper<TModel, TEFModel> mapper)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            if (mapper == null)
+            {
+                throw new ArgumentNullException(nameof(mapper));
+            }
+
             this.mapper = mapper;
             this.context = context;
         }
 
         public void Create(TModel entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
             TEFModel efEntity = mapper.Map(entity);
 
             context.Set<TEFModel>().Add(efEntity);
@@ -32,7 +47,6 @@ namespace DataAccess.Repositories
 
         public void Delete(int key)
         {
-            //boxing issue
             TEFModel efEntity = context.Set<TEFModel>().Find(key);
 
             if (efEntity != default(TEFModel))
@@ -47,14 +61,24 @@ namespace DataAccess.Repositories
             return context.Set<TEFModel>().Select(efModel => mapper.ReverseMap(efModel));
         }
 
-        public TModel GetByKey(int key)
+        public TModel Find(int key)
         {
-            return mapper.ReverseMap(context.Set<TEFModel>().Find(key));
+            TEFModel entity = context.Set<TEFModel>().Find(key);
+
+            if (entity == null)
+            {
+                return default(TModel);
+            }
+
+            return mapper.ReverseMap(entity);
         }
 
         public void Update(TModel entity)
         {
-            context.Entry(mapper.Map(entity)).State = EntityState.Modified;
+            if (entity != null)
+            {
+                context.Entry(mapper.Map(entity)).State = EntityState.Modified;
+            }
         }
     }
 }

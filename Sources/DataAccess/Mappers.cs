@@ -78,6 +78,7 @@ namespace DataAccess
         {
             return new TodoList(entity.Id)
             {
+                UserId = entity.UserId,
                 Title = entity.Title,
                 DueDate = entity.DueDate,
                 Todos = entity.Todos.Select(efTodo => todoMapper.Map(efTodo))
@@ -89,8 +90,9 @@ namespace DataAccess
             return new EF.TodoList()
             {
                 Id = entity.Id,
-                DueDate = entity.DueDate,
+                UserId = entity.UserId,
                 Title = entity.Title,
+                DueDate = entity.DueDate,
                 Todos = entity.Todos.Select(todo => todoMapper.ReverseMap(todo)).ToList()
             };
         }
@@ -102,6 +104,7 @@ namespace DataAccess
         {
             return new Todo(entity.Id)
             {
+                ListId = entity.ListId,
                 IsCompleted = entity.IsCompleted,
                 Text = entity.Text
             };
@@ -112,6 +115,7 @@ namespace DataAccess
             return new EF.Todo()
             {
                 Id = entity.Id,
+                ListId = entity.ListId,
                 IsCompleted = entity.IsCompleted,
                 Text = entity.Text
             };

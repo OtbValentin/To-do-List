@@ -14,7 +14,7 @@ namespace DataAccess.EntityFramework
 
         public bool IsCompleted { get; set; }
 
-        public TodoList ListId { get; set; }
+        public int ListId { get; set; }
 
         public TodoList List { get; set; }
     }

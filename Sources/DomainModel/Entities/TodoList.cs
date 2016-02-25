@@ -11,6 +11,8 @@ namespace DomainModel.Entities
     {
         public int Id { get; private set; }
 
+        public int UserId { get; set; }
+
         public string Title { get; set; }
 
         public DateTime? DueDate { get; set; }
