@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace WebApi.Controllers
+namespace Epam.ToDoList.WebApi.Controllers
 {
     public class DemoController : ApiController
     {

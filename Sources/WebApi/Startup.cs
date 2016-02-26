@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 
-namespace WebApi
+namespace Epam.ToDoList.WebApi
 {
     public class Startup
     {

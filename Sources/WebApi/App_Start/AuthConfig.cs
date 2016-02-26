@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WebApi.OAuth;
+using Epam.ToDoList.WebApi.OAuth;
 
-namespace WebApi
+namespace Epam.ToDoList.WebApi
 {
     public static class AuthConfig
     {
