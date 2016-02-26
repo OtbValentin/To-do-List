@@ -123,6 +123,7 @@
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Identity\ApplicationUser.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\ApplicationUserStore.cs" />
@@ -141,7 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace WebApi.Identity
 {
     //TODO: implement additional interfaces (IXxxStore) if necessary
-    public class ApplicationUserStore : IUserStore<ApplicationUser, int>
+    public class ApplicationUserStore : IUserStore<ApplicationUser, int>, IUserPasswordStore<ApplicationUser, int>
     {
         public Task CreateAsync(ApplicationUser user)
         {
@@ -22,7 +22,8 @@ namespace WebApi.Identity
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            return;
+            //throw new NotImplementedException();
         }
 
         public Task<ApplicationUser> FindByIdAsync(int userId)
@@ -31,6 +32,21 @@ namespace WebApi.Identity
         }
 
         public Task<ApplicationUser> FindByNameAsync(string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> GetPasswordHashAsync(ApplicationUser user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> HasPasswordAsync(ApplicationUser user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetPasswordHashAsync(ApplicationUser user, string passwordHash)
         {
             throw new NotImplementedException();
         }
