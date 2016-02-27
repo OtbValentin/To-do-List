@@ -43,10 +43,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Epam.TodoManager.BusinessLogic.Interface\Epam.TodoManager.BusinessLogic.Interface.csproj">
-      <Project>{79daf622-d6dd-4ddf-a12f-1c9d85de414d}</Project>
-      <Name>Epam.TodoManager.BusinessLogic.Interface</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Epam.TodoManager.DomainModel\Epam.TodoManager.DomainModel.csproj">
       <Project>{1d251136-df3a-4a9e-8e38-9a6e592a19e4}</Project>
       <Name>Epam.TodoManager.DomainModel</Name>
