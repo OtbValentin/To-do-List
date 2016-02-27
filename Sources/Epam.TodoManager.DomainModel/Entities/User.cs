@@ -10,15 +10,10 @@ namespace Epam.TodoManager.DomainModel.Entities
 
         public string PasswordHash { get; set; }
 
-        public IEnumerable<TodoList> TodoLists { get; set; }
-
-        public IEnumerable<Role> Roles { get; set; }
 
         public User(int id)
         {
             Id = id;
-            TodoLists = new List<TodoList>();
-            Roles = new List<Role>();
         }
     }
 }
