@@ -1,51 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainModel.Entities;
-using EF = DataAccess.EntityFramework;
+﻿using System.Linq;
+using Epam.TodoManager.DomainModel.Entities;
+using DB = Epam.TodoManager.DataAccess.EF.Model;
 
-namespace DataAccess
+namespace Epam.TodoManager.DataAccess.EF
 {
-    public class UserMapper : IMapper<EF.User, User>
+    public class UserMapper : IMapper<User, DB.User>
     {
-        private readonly IMapper<EF.Role, Role> roleMapper;
-        private readonly IMapper<EF.TodoList, TodoList> listMapper;
+        private readonly IMapper<Role, DB.Role> roleMapper;
+        private readonly IMapper<TodoList, DB.TodoList> listMapper;
 
-        public UserMapper(IMapper<EF.Role, Role> roleMapper, IMapper<EF.TodoList, TodoList> listMapper)
+        public UserMapper(IMapper<Role, DB.Role> roleMapper, IMapper<TodoList, DB.TodoList> listMapper)
         {
             this.roleMapper = roleMapper;
             this.listMapper = listMapper;
         }
 
-        public User Map(EF.User entity)
+        public User ReverseMap(DB.User entity)
         {
             return new User(entity.Id)
             {
                 Email = entity.Email,
                 PasswordHash = entity.PasswordHash,
-                Roles = entity.Roles.Select(efRole => roleMapper.Map(efRole)),
-                TodoLists = entity.Lists.Select(efList => listMapper.Map(efList))
+                Roles = entity.Roles.Select(efRole => roleMapper.ReverseMap(efRole)),
+                TodoLists = entity.Lists.Select(efList => listMapper.ReverseMap(efList))
             };
         }
 
-        public EF.User ReverseMap(User entity)
+        public DB.User Map(User entity)
         {
-            return new EF.User()
+            return new DB.User()
             {
                 Id = entity.Id,
                 Email = entity.Email,
                 PasswordHash = entity.PasswordHash,
-                Roles = entity.Roles.Select(role => roleMapper.ReverseMap(role)).ToList(),
-                Lists = entity.TodoLists.Select(list => listMapper.ReverseMap(list)).ToList()
+                Roles = entity.Roles.Select(role => roleMapper.Map(role)).ToList(),
+                Lists = entity.TodoLists.Select(list => listMapper.Map(list)).ToList()
             };
         }
     }
 
-    public class RoleMapper : IMapper<EF.Role, Role>
+    public class RoleMapper : IMapper<Role, DB.Role>
     {
-        public Role Map(EF.Role entity)
+        public Role ReverseMap(DB.Role entity)
         {
             return new Role(entity.Id)
             {
@@ -54,9 +50,9 @@ namespace DataAccess
             };
         }
 
-        public EF.Role ReverseMap(Role entity)
+        public DB.Role Map(Role entity)
         {
-            return new EF.Role()
+            return new DB.Role()
             {
                 Id = entity.Id,
                 Name = entity.Name,
@@ -65,42 +61,42 @@ namespace DataAccess
         }
     }
 
-    public class TodoListMapper : IMapper<EF.TodoList, TodoList>
+    public class TodoListMapper : IMapper<TodoList, DB.TodoList>
     {
-        private readonly IMapper<EF.Todo, Todo> todoMapper;
+        private readonly IMapper<Todo, DB.Todo> todoMapper;
 
-        public TodoListMapper(IMapper<EF.Todo, Todo> todoMapper)
+        public TodoListMapper(IMapper<Todo, DB.Todo> todoMapper)
         {
             this.todoMapper = todoMapper;
         }
 
-        public TodoList Map(EF.TodoList entity)
+        public TodoList ReverseMap(DB.TodoList entity)
         {
             return new TodoList(entity.Id)
             {
                 UserId = entity.UserId,
                 Title = entity.Title,
                 DueDate = entity.DueDate,
-                Todos = entity.Todos.Select(efTodo => todoMapper.Map(efTodo))
+                Todos = entity.Todos.Select(efTodo => todoMapper.ReverseMap(efTodo))
             };
         }
 
-        public EF.TodoList ReverseMap(TodoList entity)
+        public DB.TodoList Map(TodoList entity)
         {
-            return new EF.TodoList()
+            return new DB.TodoList()
             {
                 Id = entity.Id,
                 UserId = entity.UserId,
                 Title = entity.Title,
                 DueDate = entity.DueDate,
-                Todos = entity.Todos.Select(todo => todoMapper.ReverseMap(todo)).ToList()
+                Todos = entity.Todos.Select(todo => todoMapper.Map(todo)).ToList()
             };
         }
     }
 
-    public class TodoMapper : IMapper<EF.Todo, Todo>
+    public class TodoMapper : IMapper<Todo, DB.Todo>
     {
-        public Todo Map(EF.Todo entity)
+        public Todo ReverseMap(DB.Todo entity)
         {
             return new Todo(entity.Id)
             {
@@ -110,9 +106,9 @@ namespace DataAccess
             };
         }
 
-        public EF.Todo ReverseMap(Todo entity)
+        public DB.Todo Map(Todo entity)
         {
-            return new EF.Todo()
+            return new DB.Todo()
             {
                 Id = entity.Id,
                 ListId = entity.ListId,

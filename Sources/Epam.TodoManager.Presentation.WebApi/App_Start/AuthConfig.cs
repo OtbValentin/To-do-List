@@ -2,12 +2,9 @@
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Epam.ToDoList.WebApi.OAuth;
+using Epam.TodoManager.Presentation.WebApi.OAuth;
 
-namespace Epam.ToDoList.WebApi
+namespace Epam.TodoManager.Presentation.WebApi
 {
     public static class AuthConfig
     {

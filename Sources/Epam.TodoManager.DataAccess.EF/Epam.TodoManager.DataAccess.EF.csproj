@@ -53,29 +53,29 @@
     <Compile Include="Repositories\EFRoleRepisotory.cs" />
     <Compile Include="Repositories\EFTodoListRepository.cs" />
     <Compile Include="Repositories\EFUserRepository.cs" />
-    <Compile Include="EntityFramework\ApplicationDbContext.cs" />
-    <Compile Include="EntityFramework\IEntity.cs" />
-    <Compile Include="EntityFramework\Role.cs" />
-    <Compile Include="EntityFramework\Todo.cs" />
-    <Compile Include="EntityFramework\TodoList.cs" />
-    <Compile Include="EntityFramework\User.cs" />
+    <Compile Include="Model\ApplicationDbContext.cs" />
+    <Compile Include="Model\IEntity.cs" />
+    <Compile Include="Model\Role.cs" />
+    <Compile Include="Model\Todo.cs" />
+    <Compile Include="Model\TodoList.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="IMapper.cs" />
     <Compile Include="Mappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessAPI\Epam.TodoManager.DataAccess.Interface.csproj">
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Epam.TodoManager.DataAccess.Interface\Epam.TodoManager.DataAccess.Interface.csproj">
       <Project>{5b273abf-b87c-4129-a5ff-17dcad9ca2d5}</Project>
       <Name>Epam.TodoManager.DataAccess.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DomainModel\Epam.TodoManager.DomainModel.csproj">
+    <ProjectReference Include="..\Epam.TodoManager.DomainModel\Epam.TodoManager.DomainModel.csproj">
       <Project>{1d251136-df3a-4a9e-8e38-9a6e592a19e4}</Project>
       <Name>Epam.TodoManager.DomainModel</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

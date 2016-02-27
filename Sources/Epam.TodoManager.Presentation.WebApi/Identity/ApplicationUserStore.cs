@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
 
-namespace Epam.ToDoList.WebApi.Identity
+namespace Epam.TodoManager.Presentation.WebApi.Identity
 {
     //TODO: implement additional interfaces (IXxxStore) if necessary
     public class ApplicationUserStore : IUserStore<ApplicationUser, int>, IUserPasswordStore<ApplicationUser, int>

@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccessAPI.Repositories;
-using DomainModel;
-using DomainModel.Entities;
+﻿using Epam.TodoManager.DomainModel.Entities;
 using System.Data.Entity;
 
-namespace DataAccess.Repositories
+namespace Epam.TodoManager.DataAccess.EF.Repositories
 {
-    public class EFUserRepository : EFIntKeyGenericRepository<User, EntityFramework.User>
+    public class EFUserRepository : EFIntKeyGenericRepository<User, Model.User>
     {
-        public EFUserRepository(DbContext context, IMapper<User, EntityFramework.User> mapper)
+        public EFUserRepository(DbContext context, IMapper<User, Model.User> mapper)
             : base(context, mapper)
         {
 

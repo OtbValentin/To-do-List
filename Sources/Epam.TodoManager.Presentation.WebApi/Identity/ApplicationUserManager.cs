@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Epam.ToDoList.WebApi.Identity
+namespace Epam.TodoManager.Presentation.WebApi.Identity
 {
     public class ApplicationUserManager : UserManager<ApplicationUser, int>
     {

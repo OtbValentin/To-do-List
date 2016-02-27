@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccessAPI.Repositories;
-using DomainModel;
-using DomainModel.Entities;
+﻿using Epam.TodoManager.DomainModel.Entities;
 using System.Data.Entity;
+using Epam.TodoManager.DataAccess.Interface.Repositories;
 
-namespace DataAccess.Repositories
+namespace Epam.TodoManager.DataAccess.EF.Repositories
 {
-    public class EFTodoListRepository : EFIntKeyGenericRepository<TodoList, EntityFramework.TodoList>, IRepository<TodoList, int>
+    public class EFTodoListRepository : EFIntKeyGenericRepository<TodoList, Model.TodoList>, IRepository<TodoList, int>
     {
-        public EFTodoListRepository(DbContext context, IMapper<TodoList, EntityFramework.TodoList> mapper)
+        public EFTodoListRepository(DbContext context, IMapper<TodoList, Model.TodoList> mapper)
             :base(context, mapper)
         {
 

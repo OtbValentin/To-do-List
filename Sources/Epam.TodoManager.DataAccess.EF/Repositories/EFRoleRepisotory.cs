@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccessAPI.Repositories;
-using DomainModel.Entities;
-using DomainModel;
-using EF = DataAccess.EntityFramework;
+﻿using Epam.TodoManager.DomainModel.Entities;
 using System.Data.Entity;
+using Epam.TodoManager.DataAccess.Interface.Repositories;
+using DB = Epam.TodoManager.DataAccess.EF.Model;
 
-namespace DataAccess.Repositories
+namespace Epam.TodoManager.DataAccess.EF.Repositories
 {
-    public class EFRoleRepisotory : EFIntKeyGenericRepository<Role, EF.Role>, IRepository<Role, int>
+    public class EFRoleRepisotory : EFIntKeyGenericRepository<Role, DB.Role>, IRepository<Role, int>
     {
-        public EFRoleRepisotory(DbContext context, IMapper<Role, EF.Role> mapper)
+        public EFRoleRepisotory(DbContext context, IMapper<Role, DB.Role> mapper)
             :base(context, mapper)
         {
 

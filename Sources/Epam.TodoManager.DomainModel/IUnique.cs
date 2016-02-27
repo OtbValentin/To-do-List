@@ -1,4 +1,4 @@
-﻿namespace DomainModel
+﻿namespace Epam.TodoManager.DomainModel
 {
     public interface IUnique<TKey>
     {

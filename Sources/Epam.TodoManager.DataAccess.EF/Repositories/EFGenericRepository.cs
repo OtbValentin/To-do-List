@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccessAPI.Repositories;
-using DomainModel;
 using System.Data.Entity;
-using DataAccess.EntityFramework;
+using Epam.TodoManager.DataAccess.EF.Model;
+using Epam.TodoManager.DataAccess.Interface.Repositories;
+using Epam.TodoManager.DomainModel;
 
-namespace DataAccess.Repositories
+namespace Epam.TodoManager.DataAccess.EF.Repositories
 {
     public class EFIntKeyGenericRepository<TModel, TEFModel> : IRepository<TModel, int>
         where TModel : IUnique<int>

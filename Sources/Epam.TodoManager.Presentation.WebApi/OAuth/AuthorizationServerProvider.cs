@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using Epam.ToDoList.WebApi.Identity;
+using Epam.TodoManager.Presentation.WebApi.Identity;
 
-namespace Epam.ToDoList.WebApi.OAuth
+namespace Epam.TodoManager.Presentation.WebApi.OAuth
 {
     public class AuthorizationServerProvider : OAuthAuthorizationServerProvider
     {

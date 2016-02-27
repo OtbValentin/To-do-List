@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainModel;
 
-namespace DomainModel.Entities
+namespace Epam.TodoManager.DomainModel.Entities
 {
     public class TodoList : IUnique<int>
     {

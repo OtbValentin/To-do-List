@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Epam.ToDoList.WebApi.Identity;
+using Epam.TodoManager.Presentation.WebApi.Identity;
 
-namespace Epam.ToDoList.WebApi
+namespace Epam.TodoManager.Presentation.WebApi
 {
     public static class IdentityConfig
     {
