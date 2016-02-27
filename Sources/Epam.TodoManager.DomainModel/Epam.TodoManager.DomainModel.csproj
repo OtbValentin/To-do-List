@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5B273ABF-B87C-4129-A5FF-17DCAD9CA2D5}</ProjectGuid>
+    <ProjectGuid>{1D251136-DF3A-4A9E-8E38-9A6E592A19E4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataAccessAPI</RootNamespace>
-    <AssemblyName>DataAccessAPI</AssemblyName>
+    <RootNamespace>Epam.TodoManager.DomainModel</RootNamespace>
+    <AssemblyName>Epam.TodoManager.DomainModel</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,15 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Todo.cs" />
+    <Compile Include="Entities\TodoList.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="IUnique.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
-      <Project>{1d251136-df3a-4a9e-8e38-9a6e592a19e4}</Project>
-      <Name>DomainModel</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

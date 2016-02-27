@@ -7,8 +7,8 @@
     <ProjectGuid>{3F852A70-B221-4BC2-A90F-B6CB91CBC84B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLogic</RootNamespace>
-    <AssemblyName>BusinessLogic</AssemblyName>
+    <RootNamespace>Epam.TodoManager.BusinessLogic</RootNamespace>
+    <AssemblyName>Epam.TodoManager.BusinessLogic</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,13 +44,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessAPI\DataAccessAPI.csproj">
+    <ProjectReference Include="..\DataAccessAPI\Epam.TodoManager.DataAccess.Interface.csproj">
       <Project>{5b273abf-b87c-4129-a5ff-17dcad9ca2d5}</Project>
-      <Name>DataAccessAPI</Name>
+      <Name>Epam.TodoManager.DataAccess.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
+    <ProjectReference Include="..\DomainModel\Epam.TodoManager.DomainModel.csproj">
       <Project>{1d251136-df3a-4a9e-8e38-9a6e592a19e4}</Project>
-      <Name>DomainModel</Name>
+      <Name>Epam.TodoManager.DomainModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
