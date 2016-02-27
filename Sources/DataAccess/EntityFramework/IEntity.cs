@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessAPI
+namespace DataAccess.EntityFramework
 {
-    public interface IUnique<TKey>
+    public interface IEntity<TKey>
     {
-         TKey Id { get; set; }
+        TKey Id { get; }
     }
 }

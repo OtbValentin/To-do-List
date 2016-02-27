@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessAPI.Entities
+namespace DataAccess.EntityFramework
 {
-    public class Role : IUnique<int>
+    public class Role : IEntity<int>
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public ICollection<User> Users { get; set; }
     }
 }

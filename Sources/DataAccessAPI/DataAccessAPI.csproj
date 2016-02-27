@@ -40,16 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Role.cs" />
-    <Compile Include="Entities\Todo.cs" />
-    <Compile Include="Entities\TodoList.cs" />
-    <Compile Include="Entities\User.cs" />
     <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="IUnique.cs" />
-    <Compile Include="Repositories\IRoleRepository.cs" />
-    <Compile Include="Repositories\ITodoListRepository.cs" />
-    <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
+      <Project>{1d251136-df3a-4a9e-8e38-9a6e592a19e4}</Project>
+      <Name>DomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccessAPI;
 
-namespace DataAccessAPI.Entities
+namespace DataAccess.EntityFramework
 {
-    public class User : IUnique<int>
+    public class User : IEntity<int>
     {
         public int Id { get; set; }
-        
+
         public string Email { get; set; }
 
         public string PasswordHash { get; set; }
 
-        public IEnumerable<TodoList> TodoLists { get; set; }
+        public DateTime RegisterDate { get; set; }
+
+        public ICollection<Role> Roles { get; set; }
+
+        public ICollection<TodoList> Lists { get; set; }
     }
 }

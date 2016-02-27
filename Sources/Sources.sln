@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyResolver", "Depen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationWeb", "PresentationWeb\PresentationWeb.csproj", "{348A1CB9-069D-4E69-8B16-BF6028106E20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\DomainModel.csproj", "{1D251136-DF3A-4A9E-8E38-9A6E592A19E4}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{00C255F8-C403-4997-A511-42E2CEB62500}"
 EndProject
 Global
@@ -47,6 +49,10 @@ Global
 		{348A1CB9-069D-4E69-8B16-BF6028106E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{348A1CB9-069D-4E69-8B16-BF6028106E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{348A1CB9-069D-4E69-8B16-BF6028106E20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D251136-DF3A-4A9E-8E38-9A6E592A19E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D251136-DF3A-4A9E-8E38-9A6E592A19E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D251136-DF3A-4A9E-8E38-9A6E592A19E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D251136-DF3A-4A9E-8E38-9A6E592A19E4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00C255F8-C403-4997-A511-42E2CEB62500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00C255F8-C403-4997-A511-42E2CEB62500}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00C255F8-C403-4997-A511-42E2CEB62500}.Release|Any CPU.ActiveCfg = Release|Any CPU
