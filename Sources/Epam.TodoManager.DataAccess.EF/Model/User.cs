@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Epam.TodoManager.DataAccess.EF.Model
 {
@@ -7,11 +9,11 @@ namespace Epam.TodoManager.DataAccess.EF.Model
     {
         public int Id { get; set; }
 
+        public UserProfile Profile { get; set; }
+
         public string Email { get; set; }
 
         public string PasswordHash { get; set; }
-
-        public DateTime RegisterDate { get; set; }
 
         public ICollection<Role> Roles { get; set; }
 
