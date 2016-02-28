@@ -7,7 +7,9 @@ namespace Epam.TodoManager.BusinessLogic.TodoListService
         void CreateList(int userId, string title);
         void AddTodo(int listId, string todoText);
         TodoList Find(int id);
-        void SwapListItems(int listId, int firstItemId, int secondItemId);
-        void Delete(int id);
+        void Reorder(int listId, int todoId, int index);
+        void MoveTodoToAnotherList(int todoId, int newListId);
+        void Delete(int listId);
+        void Rename(int listId, string newName);
     }
 }

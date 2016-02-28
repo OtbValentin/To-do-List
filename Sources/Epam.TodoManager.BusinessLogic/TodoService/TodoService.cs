@@ -8,7 +8,8 @@ namespace Epam.TodoManager.BusinessLogic.TodoService
 {
     public class TodoService : ITodoService
     {
-        public void AddNote(int id, string note)
+
+        public void EditNote(int id, string note)
         {
             throw new NotImplementedException();
         }

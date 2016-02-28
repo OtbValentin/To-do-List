@@ -11,10 +11,10 @@ namespace Epam.TodoManager.BusinessLogic.UserService
 {
     public class UserService : IUserService
     {
-        private IRepository<User, int> userRepository;
+        private IUserRepository userRepository;
         private IRepository<Role, int> roleRepository;
 
-        public UserService(IRepository<User, int> userRepository)
+        public UserService(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
         }
@@ -37,8 +37,7 @@ namespace Epam.TodoManager.BusinessLogic.UserService
 
         public IEnumerable<User> Find(Expression<Func<User, bool>> predicate)
         {
-            //User repository needs a find method with a predicate
-            return null;
+            return userRepository.Find(predicate);
         }
 
         public User Find(int userId)
@@ -48,18 +47,28 @@ namespace Epam.TodoManager.BusinessLogic.UserService
 
         public User Find(string email)
         {
-            throw new NotImplementedException();
+            return userRepository.Find(user => user.Email == email).FirstOrDefault();
         }
 
         public IEnumerable<Role> GetUserRoles(int userId)
         {
-            return null;
+            return userRepository.GetUserRoles(userId);
         }
 
         public void ChangeName(int userId, string newName)
         {
+            if (newName == null)
+            {
+                throw new ArgumentNullException(nameof(newName));
+            }
+
+            if (newName == string.Empty)
+            {
+                throw new ArgumentOutOfRangeException(nameof(newName), "Name shouldn't be an empty string");
+            }
+
             User user = userRepository.Find(userId);
-            user.Pro
+            user.Profile.Name = newName;
         }
     }
 }

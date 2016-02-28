@@ -4,14 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Epam.TodoManager.DomainModel.Entities;
+using Epam.TodoManager.DataAccess.Interface.Repositories;
 
 namespace Epam.TodoManager.BusinessLogic.TodoListService
 {
     public class TodoListService : ITodoListService
     {
+        private IRepository<TodoList, int> todoListRepository;
+
+        public TodoListService(IRepository<TodoList, int> todoListRepository)
+        {
+            this.todoListRepository = todoListRepository;
+        }
+
         public void AddTodo(int listId, string todoText)
         {
-            throw new NotImplementedException();
+            Todo todoItem = new Todo(0) { ListId = listId, Text = todoText };
+            TodoList list = todoListRepository.Find(listId);
+
         }
 
         public void CreateList(int userId, string title)
@@ -19,7 +29,7 @@ namespace Epam.TodoManager.BusinessLogic.TodoListService
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public void Delete(int listId)
         {
             throw new NotImplementedException();
         }
@@ -29,7 +39,17 @@ namespace Epam.TodoManager.BusinessLogic.TodoListService
             throw new NotImplementedException();
         }
 
-        public void SwapListItems(int listId, int firstItemId, int secondItemId)
+        public void MoveTodoToAnotherList(int todoId, int newListId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Rename(int listId, string newName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Reorder(int listId, int todoId, int index)
         {
             throw new NotImplementedException();
         }
