@@ -8,11 +8,15 @@ namespace Epam.TodoManager.DomainModel.Entities
 {
     public class UserProfile : IUnique<int>
     {
-        public int Id { get; }
+        public int Id { get; private set; }
 
-        public UserProfile()
+        public string Name { get; set; }
+
+        public DateTime RegisterDate { get; set; }
+
+        public UserProfile(int id)
         {
-
+            Id = id;
         }
     }
 }

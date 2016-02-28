@@ -55,5 +55,11 @@ namespace Epam.TodoManager.BusinessLogic.UserService
         {
             return null;
         }
+
+        public void ChangeName(int userId, string newName)
+        {
+            User user = userRepository.Find(userId);
+            user.Pro
+        }
     }
 }

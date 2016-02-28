@@ -12,6 +12,7 @@ namespace Epam.TodoManager.BusinessLogic.UserService
         User Find(string email);
         IEnumerable<User> Find(Expression<Func<User, bool>> predicate);
         void Delete(int userId);
+        void ChangeName(int userId, string newName);
         IEnumerable<Role> GetUserRoles(int userId);
     }
 }
