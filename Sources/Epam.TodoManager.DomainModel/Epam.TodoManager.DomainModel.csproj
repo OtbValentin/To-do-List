@@ -44,6 +44,7 @@
     <Compile Include="Entities\Todo.cs" />
     <Compile Include="Entities\TodoList.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserProfile.cs" />
     <Compile Include="IUnique.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

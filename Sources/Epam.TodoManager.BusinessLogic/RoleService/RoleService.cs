@@ -7,12 +7,7 @@ using Epam.TodoManager.DomainModel.Entities;
 
 namespace Epam.TodoManager.BusinessLogic.RoleService
 {
-    public interface IRoleService
+    public class RoleService : IRoleService
     {
-        void Create(string name, string description);
-        Role Find(int id);
-        IEnumerable<Role> GetAll();
-        void Rename(string newName, int roleId);
-        void Delete(int id);
     }
 }

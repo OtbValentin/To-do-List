@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Epam.TodoManager.DomainModel.Entities;
 
 namespace Epam.TodoManager.BusinessLogic.TodoListService
 {
     public interface ITodoListService
     {
+        void CreateList(int userId, string title);
+        void AddTodo(int listId, string todoText);
+        TodoList Find(int id);
+        void SwapListItems(int listId, int firstItemId, int secondItemId);
+        void Delete(int id);
     }
 }
