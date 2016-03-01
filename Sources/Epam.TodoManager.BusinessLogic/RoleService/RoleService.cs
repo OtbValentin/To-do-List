@@ -14,9 +14,9 @@ namespace Epam.TodoManager.BusinessLogic.RoleService
             this.roleRepository = roleRepository;
         }
 
-        public void Create(string name, string description)
+        public void Create(string name)
         {
-            roleRepository.Create(new Role(0) { Name = name, Description = description });
+            roleRepository.Create(new Role(0, name));
         }
 
         public void Delete(int id)
@@ -29,21 +29,18 @@ namespace Epam.TodoManager.BusinessLogic.RoleService
             return roleRepository.Find(id);
         }
 
-        public IEnumerable<Role> GetAll()
-        {
-            return roleRepository.GetAll();
-        }
-
         public void Rename(string newName, int roleId)
         {
             Role role = roleRepository.Find(roleId);
 
             if (role == null)
             {
-                throw new ArgumentException(nameof(roleId), "The role with this id doesn't exist");
+                throw new ArgumentException("A role with a specified id doesn't exist");
             }
 
-            role.Name = newName;
+            role = new Role(role.Id, newName);
+
+            roleRepository.Update(role);
         }
     }
 }

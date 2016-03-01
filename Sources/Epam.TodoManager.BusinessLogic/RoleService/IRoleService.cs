@@ -9,7 +9,7 @@ namespace Epam.TodoManager.BusinessLogic.RoleService
 {
     public interface IRoleService
     {
-        void Create(string name, string description);
+        void Create(string name);
         Role Find(int id);
         void Rename(string newName, int roleId);
         void Delete(int id);
