@@ -6,30 +6,33 @@ namespace Epam.TodoManager.DomainModel.Entities
 {
     public class TodoList : IUnique<int>
     {
-        private List<Todo> todoItems;
-
         public int Id { get; private set; }
 
-        public int UserId { get; set;  }
+        public User User { get; private set; }
 
-        public string Title { get; set; }
+        public string Title { get; private set; }
 
-        public DateTime? DueDate { get; set; }
+        public DateTime? DueDate { get; private set; }
 
-        public IEnumerable<Todo> TodoItems
+        public IEnumerable<Todo> TodoItems { get; private set; }
+
+        public TodoList(int id, User user, string title, DateTime? dueDate, IEnumerable<Todo> items)
         {
-            get { return todoItems; }
-        }
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
 
-        public TodoList(int id, IEnumerable<Todo> items)
-        {
             if (items == null)
             {
                 throw new ArgumentNullException(nameof(items));
             }
 
             Id = id;
-            todoItems = items.ToList();
+            User = user;
+            Title = title;
+            DueDate = dueDate;
+            TodoItems = items;
         }
     }
 }

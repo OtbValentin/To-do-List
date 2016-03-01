@@ -4,12 +4,11 @@ namespace Epam.TodoManager.BusinessLogic.TodoListService
 {
     public interface ITodoListService
     {
-        void CreateList(int userId, string title);
-        void AddTodo(int listId, string todoText);
         TodoList Find(int id);
+        void AddTodo(int listId, string todoText);
         void Reorder(int listId, int todoId, int index);
-        void MoveTodoToAnotherList(int todoId, int newListId);
+        void MoveTodoToAnotherList(int listId, int newListId, int todoId);
         void Delete(int listId);
-        void Rename(int listId, string newName);
+        void Rename(int listId, string newTitle);
     }
 }

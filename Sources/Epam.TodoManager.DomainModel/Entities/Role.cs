@@ -1,16 +1,17 @@
-﻿namespace Epam.TodoManager.DomainModel.Entities
+﻿using System;
+
+namespace Epam.TodoManager.DomainModel.Entities
 {
     public class Role : IUnique<int>
     {
         public int Id { get; private set; }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public string Description { get; set; }
-
-        public Role(int id)
+        public Role(int id, string name)
         {
             Id = id;
+            Name = name;
         }
     }
 }

@@ -19,39 +19,103 @@ namespace Epam.TodoManager.BusinessLogic.TodoListService
 
         public void AddTodo(int listId, string todoText)
         {
-            Todo todoItem = new Todo(0) { ListId = listId, Text = todoText };
             TodoList list = todoListRepository.Find(listId);
 
-        }
+            if (list == null)
+            {
+                throw new ArgumentException("The list with this id doesn't exist");
+            }
 
-        public void CreateList(int userId, string title)
-        {
-            throw new NotImplementedException();
+            List<Todo> items = new List<Todo>(list.TodoItems);
+            items.Add(new Todo(0, list, todoText, false));
+
+            list = new TodoList(list.Id, list.User, list.Title, list.DueDate, items);
+
+            todoListRepository.Update(list);
         }
 
         public void Delete(int listId)
         {
-            throw new NotImplementedException();
+            todoListRepository.Delete(listId);
         }
 
-        public TodoList Find(int id)
+        public TodoList Find(int listId)
         {
-            throw new NotImplementedException();
+            return todoListRepository.Find(listId);
         }
 
-        public void MoveTodoToAnotherList(int todoId, int newListId)
+        public void MoveTodoToAnotherList(int listId, int newListId, int todoId)
         {
-            throw new NotImplementedException();
+            TodoList oldList = todoListRepository.Find(listId);
+
+            if (oldList == null)
+            {
+                throw new ArgumentException("The list with this id doesn't exist", nameof(listId));
+            }
+
+            TodoList newList = todoListRepository.Find(newListId);
+
+            if (newList == null)
+            {
+                throw new ArgumentException("The list with this id doesn't exist", nameof(newListId));
+            }
+
+            Todo todoItem = oldList.TodoItems.FirstOrDefault(item => item.Id == todoId);
+
+            if (todoItem == null)
+            {
+                throw new ArgumentException("A specified list doesn't contain todo item with a specified id", nameof(listId));
+            }
+
+            oldList = new TodoList(oldList.Id, oldList.User, oldList.Title, oldList.DueDate,
+                oldList.TodoItems.Where(item => item.Id != todoId));
+
+            todoListRepository.Update(oldList);
+
+            List<Todo> items = new List<Todo>(newList.TodoItems);
+            items.Add(todoItem);
+
+            newList = new TodoList(newList.Id, newList.User, newList.Title, newList.DueDate, items);
+            todoListRepository.Update(newList);
         }
 
-        public void Rename(int listId, string newName)
+        public void Rename(int listId, string newTitle)
         {
-            throw new NotImplementedException();
+            TodoList list = todoListRepository.Find(listId);
+
+            if (list == null)
+            {
+                throw new ArgumentException("The list with this id doesn't exist", nameof(list));
+            }
+
+            list = new TodoList(list.Id, list.User, newTitle, list.DueDate, list.TodoItems);
         }
 
         public void Reorder(int listId, int todoId, int index)
         {
-            throw new NotImplementedException();
+            TodoList list = todoListRepository.Find(listId);
+
+            if (list == null)
+            {
+                throw new ArgumentException("The list with this id doesn't exist", nameof(list));
+            }
+
+            Todo todoItem = list.TodoItems.FirstOrDefault(item => item.Id == todoId);
+
+            if (todoItem == null)
+            {
+                throw new ArgumentException("A specified list doesn't contain todo item with a specified id", nameof(listId));
+            }
+
+            List<Todo> reorderedItems = new List<Todo>(list.TodoItems);
+
+            int currentIndex = reorderedItems.IndexOf(todoItem);
+            reorderedItems.RemoveAt(currentIndex);
+            reorderedItems.Insert(index, todoItem);
+
+            list = new TodoList(list.Id, list.User, list.Title, list.DueDate, reorderedItems);
+
+            todoListRepository.Update(list);
         }
     }
 }

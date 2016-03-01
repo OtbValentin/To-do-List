@@ -13,6 +13,7 @@ namespace Epam.TodoManager.BusinessLogic.UserService
     {
         private IUserRepository userRepository;
         private IRepository<Role, int> roleRepository;
+        private IRepository<TodoList, int> todoListRepository;
 
         public UserService(IUserRepository userRepository)
         {
@@ -21,23 +22,8 @@ namespace Epam.TodoManager.BusinessLogic.UserService
 
         public void Create(string email, string passwordHash)
         {
-            User user = new User(0, new List<TodoList>())
-            {
-                Email = email,
-                PasswordHash = passwordHash
-            };
-
-            userRepository.Create(user);
-        }
-
-        public void Delete(int userId)
-        {
-            userRepository.Delete(userId);
-        }
-
-        public IEnumerable<User> Find(Expression<Func<User, bool>> predicate)
-        {
-            return userRepository.Find(predicate);
+            userRepository.Create(new User(0, email, passwordHash,
+                new UserProfile(0, null, DateTime.Now), new List<TodoList>()));
         }
 
         public User Find(int userId)
@@ -50,25 +36,44 @@ namespace Epam.TodoManager.BusinessLogic.UserService
             return userRepository.Find(user => user.Email == email).FirstOrDefault();
         }
 
+        public IEnumerable<User> Find(Expression<Func<User, bool>> predicate)
+        {
+            return userRepository.Find(predicate);
+        }
+
+        public void Delete(int userId)
+        {
+            userRepository.Delete(userId);
+        }
+
+        public void ChangeName(int userId, string newName)
+        {
+            User user = userRepository.Find(userId);
+
+            if (user == null)
+            {
+                throw new ArgumentException("The user with this id doesn't exist");
+            }
+
+            userRepository.Update(new User(user.Id, user.Email, user.PasswordHash,
+                new UserProfile(user.Profile.Id, newName, user.Profile.RegisterDate), user.TodoLists));
+        }
+
         public IEnumerable<Role> GetUserRoles(int userId)
         {
             return userRepository.GetUserRoles(userId);
         }
 
-        public void ChangeName(int userId, string newName)
+        public void AddTodoList(int userId, string listTitle)
         {
-            if (newName == null)
-            {
-                throw new ArgumentNullException(nameof(newName));
-            }
-
-            if (newName == string.Empty)
-            {
-                throw new ArgumentOutOfRangeException(nameof(newName), "Name shouldn't be an empty string");
-            }
-
             User user = userRepository.Find(userId);
-            user.Profile.Name = newName;
+
+            if (user == null)
+            {
+                throw new ArgumentException("The user with this id doesn't exist");
+            }
+
+            todoListRepository.Create(new TodoList(0, user, listTitle, null, new List<Todo>()));
         }
     }
 }

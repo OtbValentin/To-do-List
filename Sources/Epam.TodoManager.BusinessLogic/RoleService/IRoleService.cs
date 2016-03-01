@@ -11,7 +11,6 @@ namespace Epam.TodoManager.BusinessLogic.RoleService
     {
         void Create(string name, string description);
         Role Find(int id);
-        IEnumerable<Role> GetAll();
         void Rename(string newName, int roleId);
         void Delete(int id);
     }
