@@ -159,6 +159,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+<<<<<<< 25d26073c03959620685502a7d626f2a7614dd08
+=======
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+>>>>>>> Add mock BL services
     <ProjectReference Include="..\Epam.TodoManager.BusinessLogic.Mock\Epam.TodoManager.BusinessLogic.Mock.csproj">
       <Project>{4b9448cd-300b-43ac-b412-cad833a76ba3}</Project>
       <Name>Epam.TodoManager.BusinessLogic.Mock</Name>
