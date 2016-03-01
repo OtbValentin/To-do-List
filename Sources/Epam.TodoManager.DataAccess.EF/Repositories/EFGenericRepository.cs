@@ -5,6 +5,8 @@ using System.Data.Entity;
 using Epam.TodoManager.DataAccess.EF.Model;
 using Epam.TodoManager.DataAccess.Interface.Repositories;
 using Epam.TodoManager.DomainModel;
+using AutoMapper.Mappers;
+using AutoMapper;
 
 namespace Epam.TodoManager.DataAccess.EF.Repositories
 {
@@ -13,21 +15,14 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
         where TEFModel : class, IEntity<int>
     {
         protected readonly DbContext context;
-        protected readonly IMapper<TModel, TEFModel> mapper;
 
-        public EFIntKeyGenericRepository(DbContext context, IMapper<TModel, TEFModel> mapper)
+        public EFIntKeyGenericRepository(DbContext context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (mapper == null)
-            {
-                throw new ArgumentNullException(nameof(mapper));
-            }
-
-            this.mapper = mapper;
             this.context = context;
         }
 
@@ -38,7 +33,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
                 throw new ArgumentNullException("entity");
             }
 
-            TEFModel efEntity = mapper.Map(entity);
+            TEFModel efEntity = Mapper.Map<TEFModel>(entity);
 
             context.Set<TEFModel>().Add(efEntity);
         }
@@ -56,7 +51,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
         public IEnumerable<TModel> GetAll()
         {
             //deferred execution issue when exception arise
-            return context.Set<TEFModel>().Select(efModel => mapper.ReverseMap(efModel));
+            return context.Set<TEFModel>().Select(efModel => Mapper.Map<TModel>(efModel));
         }
 
         public TModel Find(int key)
@@ -68,14 +63,15 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
                 return default(TModel);
             }
 
-            return mapper.ReverseMap(entity);
+            return Mapper.Map<TModel>(entity);
         }
 
         public void Update(TModel entity)
         {
             if (entity != null)
             {
-                context.Entry(mapper.Map(entity)).State = EntityState.Modified;
+                context.Entry(Mapper.Map<TEFModel>(entity)).State = EntityState.Modified;
+                //context.Entry(mapper.Map(entity)).State = EntityState.Modified;
             }
         }
     }

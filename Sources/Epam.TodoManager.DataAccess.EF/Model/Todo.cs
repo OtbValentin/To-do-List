@@ -8,6 +8,8 @@
 
         public bool IsCompleted { get; set; }
 
+        public string Note { get; set; }
+
         public int ListId { get; set; }
 
         public TodoList List { get; set; }
