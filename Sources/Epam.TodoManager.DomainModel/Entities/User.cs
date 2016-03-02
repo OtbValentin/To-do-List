@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Epam.TodoManager.DomainModel.Entities
 {
@@ -13,7 +14,12 @@ namespace Epam.TodoManager.DomainModel.Entities
 
         public string PasswordHash { get; private set; }
 
-        public IEnumerable<TodoList> TodoLists { get; private set; }
+        public IEnumerable<TodoList> TodoLists
+        {
+            get { return todoLists; }
+        }
+
+        private List<TodoList> todoLists;
 
         public User(int id, string email, string passwordHash, UserProfile profile, IEnumerable<TodoList> todoLists)
         {
@@ -31,7 +37,29 @@ namespace Epam.TodoManager.DomainModel.Entities
             Email = email;
             PasswordHash = passwordHash;
             Profile = profile;
-            TodoLists = todoLists;
+            this.todoLists = todoLists.ToList();
+        }
+
+        public void AddTodoList(string title)
+        {
+            todoLists.Add(new TodoList(Id, this, title, null, new List<Todo>()));
+        }
+
+        public void RemoveTodoList(int listId)
+        {
+            TodoList list = todoLists.FirstOrDefault(item => item.Id == listId);
+
+            if (list == null)
+            {
+                throw new ArgumentException("A list doesn't contain a todo item with the specified id", nameof(listId));
+            }
+
+            todoLists.Remove(list);
+        }
+
+        public void Rename(string newName)
+        {
+            Profile.ChangeName(newName);
         }
     }
 }

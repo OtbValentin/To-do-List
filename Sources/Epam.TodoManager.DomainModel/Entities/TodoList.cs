@@ -14,25 +14,105 @@ namespace Epam.TodoManager.DomainModel.Entities
 
         public DateTime? DueDate { get; private set; }
 
-        public IEnumerable<Todo> TodoItems { get; private set; }
+        private List<Todo> todoItems;
 
-        public TodoList(int id, User user, string title, DateTime? dueDate, IEnumerable<Todo> items)
+        public IEnumerable<Todo> TodoItems
+        {
+            get { return todoItems; }
+        }
+
+        public TodoList(int id, User user, string title, DateTime? dueDate, IEnumerable<Todo> todoItems)
         {
             if (user == null)
             {
                 throw new ArgumentNullException(nameof(user));
             }
 
-            if (items == null)
+            if (todoItems == null)
             {
-                throw new ArgumentNullException(nameof(items));
+                throw new ArgumentNullException(nameof(todoItems));
             }
 
             Id = id;
             User = user;
             Title = title;
             DueDate = dueDate;
-            TodoItems = items;
+            this.todoItems = todoItems.ToList();
+        }
+
+        public void SetDueDate(DateTime? dueDate)
+        {
+            DueDate = dueDate;
+        }
+
+        public void ChangeTitle(string title)
+        {
+            Title = title;
+        }
+
+        public void AddTodo(string todoText)
+        {
+            todoItems.Add(new Todo(0, this, todoText, false, string.Empty));
+        }
+
+        public void RemoveTodo(int todoId)
+        {
+            Todo todo = todoItems.FirstOrDefault(item => item.Id == todoId);
+
+            if (todo == null)
+            {
+                throw new ArgumentException("A list doesn't contain a todo item with the specified id", nameof(todoId));
+            }
+
+            todoItems.Remove(todo);
+        }
+
+        public void CompleteTodo(int todoId)
+        {
+            Todo todo = todoItems.FirstOrDefault(item => item.Id == todoId);
+
+            if (todo == null)
+            {
+                throw new ArgumentException("A list doesn't contain a todo item with the specified id", nameof(todoId));
+            }
+
+            todo.Complete();
+        }
+
+        public void SetAsUncomplited(int todoId)
+        {
+            Todo todo = todoItems.FirstOrDefault(item => item.Id == todoId);
+
+            if (todo == null)
+            {
+                throw new ArgumentException("A list doesn't contain a todo item with the specified id", nameof(todoId));
+            }
+
+            todo.SetUncomplitedState();
+        }
+
+        public void ChangeTodoText(int todoId, string text)
+        {
+            Todo todo = todoItems.FirstOrDefault(item => item.Id == todoId);
+
+            if (todo == null)
+            {
+                throw new ArgumentException("A list doesn't contain a todo item with the specified id", nameof(todoId));
+            }
+
+            todo.ChangeText(text);
+        }
+
+        public void EditTodoNote(int todoId, string note)
+        {
+            Todo todo = todoItems.FirstOrDefault(item => item.Id == todoId);
+
+            if (todo == null)
+            {
+                throw new ArgumentException("A list doesn't contain a todo item with the specified id", nameof(todoId));
+            }
+
+            todo.EditNote(note);
         }
     }
 }

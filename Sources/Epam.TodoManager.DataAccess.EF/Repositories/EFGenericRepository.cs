@@ -26,7 +26,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             this.context = context;
         }
 
-        public void Create(TModel entity)
+        public virtual void Create(TModel entity)
         {
             if (entity == null)
             {
@@ -38,7 +38,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             context.Set<TEFModel>().Add(efEntity);
         }
 
-        public void Delete(int key)
+        public virtual void Delete(int key)
         {
             TEFModel efEntity = context.Set<TEFModel>().Find(key);
 
@@ -48,13 +48,13 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             }
         }
 
-        public IEnumerable<TModel> GetAll()
+        public virtual IEnumerable<TModel> GetAll()
         {
             //deferred execution issue when exception arise
             return context.Set<TEFModel>().Select(efModel => Mapper.Map<TModel>(efModel));
         }
 
-        public TModel Find(int key)
+        public virtual TModel Find(int key)
         {
             TEFModel entity = context.Set<TEFModel>().Find(key);
 
@@ -66,7 +66,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             return Mapper.Map<TModel>(entity);
         }
 
-        public void Update(TModel entity)
+        public virtual void Update(TModel entity)
         {
             if (entity != null)
             {

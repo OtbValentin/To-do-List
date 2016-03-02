@@ -58,7 +58,6 @@
     <Compile Include="Repositories\EFUserRepository.cs" />
     <Compile Include="Model\ApplicationDbContext.cs" />
     <Compile Include="Model\IEntity.cs" />
-    <Compile Include="Model\Role.cs" />
     <Compile Include="Model\Todo.cs" />
     <Compile Include="Model\TodoList.cs" />
     <Compile Include="Model\User.cs" />

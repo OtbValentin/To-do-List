@@ -20,10 +20,10 @@ namespace Epam.TodoManager.BusinessLogic.UserService
             this.userRepository = userRepository;
         }
 
-        public void Create(string email, string passwordHash)
+        public void Create(string email, string name, string passwordHash)
         {
             userRepository.Create(new User(0, email, passwordHash,
-                new UserProfile(0, null, DateTime.Now), new List<TodoList>()));
+                new UserProfile(0, name, DateTime.Now), new List<TodoList>()));
         }
 
         public User Find(int userId)
@@ -55,13 +55,8 @@ namespace Epam.TodoManager.BusinessLogic.UserService
                 throw new ArgumentException("The user with this id doesn't exist");
             }
 
-            userRepository.Update(new User(user.Id, user.Email, user.PasswordHash,
-                new UserProfile(user.Profile.Id, newName, user.Profile.RegisterDate), user.TodoLists));
-        }
-
-        public IEnumerable<Role> GetUserRoles(int userId)
-        {
-            return userRepository.GetUserRoles(userId);
+            user.Rename(newName);
+            userRepository.Update(user);
         }
 
         public void AddTodoList(int userId, string listTitle)
@@ -73,7 +68,42 @@ namespace Epam.TodoManager.BusinessLogic.UserService
                 throw new ArgumentException("The user with this id doesn't exist");
             }
 
-            todoListRepository.Create(new TodoList(0, user, listTitle, null, new List<Todo>()));
+            user.AddTodoList(listTitle);
+
+            userRepository.Update(user);
         }
+
+        public void RemoveTodoList(int userId, int listId)
+        {
+            User user = userRepository.Find(userId);
+
+            if (user == null)
+            {
+                throw new ArgumentException("The user with this id doesn't exist");
+            }
+
+            user.RemoveTodoList(listId);
+
+            userRepository.Update(user);
+        }
+
+        public IEnumerable<Role> GetUserRoles(int userId)
+        {
+            return userRepository.GetUserRoles(userId);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

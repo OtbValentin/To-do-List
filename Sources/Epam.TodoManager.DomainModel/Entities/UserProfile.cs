@@ -20,5 +20,10 @@ namespace Epam.TodoManager.DomainModel.Entities
             Name = name;
             RegisterDate = registerDate;
         }
+
+        internal void ChangeName(string newName)
+        {
+            Name = newName;
+        }
     }
 }

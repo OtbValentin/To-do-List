@@ -20,5 +20,25 @@
             IsCompleted = isCompleted;
             Note = note;
         }
+
+        internal void Complete()
+        {
+            IsCompleted = true;
+        }
+
+        internal void SetUncomplitedState()
+        {
+            IsCompleted = false;
+        }
+
+        internal void EditNote(string newNote)
+        {
+            Note = newNote;
+        }
+
+        internal void ChangeText(string newText)
+        {
+            Text = newText;
+        }
     }
 }
