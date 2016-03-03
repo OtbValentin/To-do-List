@@ -7,14 +7,16 @@ namespace Epam.TodoManager.DomainModel.Entities
     public class User : IUnique<int>
     {
         public int Id { get; private set; }
-        
+
         public UserProfile Profile { get; private set; }
+
+        public int ListCollectionId { get; private set; }
 
         public string Email { get; private set; }
 
         public string PasswordHash { get; private set; }
 
-        public User(int id, string email, string passwordHash, UserProfile profile)
+        public User(int id, int listCollectionId, string email, string passwordHash, UserProfile profile)
         {
             if (profile == null)
             {
@@ -32,6 +34,7 @@ namespace Epam.TodoManager.DomainModel.Entities
             }
 
             Id = id;
+            ListCollectionId = listCollectionId;
             Email = email;
             PasswordHash = passwordHash;
             Profile = profile;

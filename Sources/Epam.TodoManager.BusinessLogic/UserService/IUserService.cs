@@ -10,11 +10,6 @@ namespace Epam.TodoManager.BusinessLogic.UserService
         void Create(string email, string name, string passwordHash);
         User Find(int userId);
         User Find(string email);
-        IEnumerable<User> Find(Expression<Func<User, bool>> predicate);
-        void Delete(int userId);
         void ChangeName(int userId, string newName);
-        void AddTodoList(int userId, string listTitle);
-        void RemoveTodoList(int userId, int listId);
-        IEnumerable<Role> GetUserRoles(int userId);
     }
 }
