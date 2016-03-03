@@ -1,32 +1,29 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Epam.TodoManager.DomainModel.Entities
 {
-    public class TodoList : IUnique<int>
+    public class TodoList : IUnique<int>, IEnumerable<Todo>
     {
-        public int Id { get; private set; }
-
-        public User User { get; private set; }
-
-        public string Title { get; private set; }
-
-        public DateTime? DueDate { get; private set; }
-
+        private readonly bool isReadonly;
         private List<Todo> todoItems;
 
-        public IEnumerable<Todo> TodoItems
+        public int Id { get; private set; }
+        public TodoListCollection ListCollection { get; private set; }
+        public string Title { get; private set; }
+        public int Count
         {
-            get { return todoItems; }
+            get
+            {
+                return todoItems.Count;
+            }
         }
 
-        public TodoList(int id, User user, string title, DateTime? dueDate, IEnumerable<Todo> todoItems)
+        public TodoList(int id, TodoListCollection listCollection, string title, IEnumerable<Todo> todoItems)
         {
-            if (user == null)
-            {
-                throw new ArgumentNullException(nameof(user));
-            }
+            isReadonly = false;
 
             if (todoItems == null)
             {
@@ -34,85 +31,34 @@ namespace Epam.TodoManager.DomainModel.Entities
             }
 
             Id = id;
-            User = user;
+            ListCollection = listCollection;
             Title = title;
-            DueDate = dueDate;
             this.todoItems = todoItems.ToList();
         }
 
-        public void SetDueDate(DateTime? dueDate)
+        public void AddTodo(string task)
         {
-            DueDate = dueDate;
-        }
-
-        public void ChangeTitle(string title)
-        {
-            Title = title;
-        }
-
-        public void AddTodo(string todoText)
-        {
-            todoItems.Add(new Todo(0, this, todoText, false, string.Empty));
+            todoItems.Add(new Todo(0, this, task, false, string.Empty));
         }
 
         public void RemoveTodo(int todoId)
         {
-            Todo todo = todoItems.FirstOrDefault(item => item.Id == todoId);
-
-            if (todo == null)
-            {
-                throw new ArgumentException("A list doesn't contain a todo item with the specified id", nameof(todoId));
-            }
-
-            todoItems.Remove(todo);
+            todoItems.Remove(todoItems.FirstOrDefault(item => item.Id == todoId));
         }
 
-        public void CompleteTodo(int todoId)
+        public void ChangeTitle(string newTitle)
         {
-            Todo todo = todoItems.FirstOrDefault(item => item.Id == todoId);
-
-            if (todo == null)
-            {
-                throw new ArgumentException("A list doesn't contain a todo item with the specified id", nameof(todoId));
-            }
-
-            todo.Complete();
+            Title = newTitle;
         }
 
-        public void SetAsUncomplited(int todoId)
+        public IEnumerator<Todo> GetEnumerator()
         {
-            Todo todo = todoItems.FirstOrDefault(item => item.Id == todoId);
-
-            if (todo == null)
-            {
-                throw new ArgumentException("A list doesn't contain a todo item with the specified id", nameof(todoId));
-            }
-
-            todo.SetUncomplitedState();
+            return todoItems.GetEnumerator();
         }
 
-        public void ChangeTodoText(int todoId, string text)
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            Todo todo = todoItems.FirstOrDefault(item => item.Id == todoId);
-
-            if (todo == null)
-            {
-                throw new ArgumentException("A list doesn't contain a todo item with the specified id", nameof(todoId));
-            }
-
-            todo.ChangeText(text);
-        }
-
-        public void EditTodoNote(int todoId, string note)
-        {
-            Todo todo = todoItems.FirstOrDefault(item => item.Id == todoId);
-
-            if (todo == null)
-            {
-                throw new ArgumentException("A list doesn't contain a todo item with the specified id", nameof(todoId));
-            }
-
-            todo.EditNote(note);
+            return GetEnumerator();
         }
     }
 }

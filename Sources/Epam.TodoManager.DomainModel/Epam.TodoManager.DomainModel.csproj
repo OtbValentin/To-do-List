@@ -40,9 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Todo.cs" />
     <Compile Include="Entities\TodoList.cs" />
+    <Compile Include="Entities\TodoListCollection.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserProfile.cs" />
     <Compile Include="IUnique.cs" />
