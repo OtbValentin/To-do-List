@@ -53,8 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EFUnitOfWork.cs" />
+    <Compile Include="Model\TodoListCollection.cs" />
     <Compile Include="Model\UserProfile.cs" />
     <Compile Include="Repositories\EFGenericRepository.cs" />
+    <Compile Include="Repositories\EFTodoListCollectionRepository.cs" />
     <Compile Include="Repositories\EFUserRepository.cs" />
     <Compile Include="Model\ApplicationDbContext.cs" />
     <Compile Include="Model\IEntity.cs" />

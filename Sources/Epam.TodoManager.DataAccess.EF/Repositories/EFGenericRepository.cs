@@ -30,7 +30,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
         {
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
 
             TEFModel efEntity = Mapper.Map<TEFModel>(entity);
@@ -50,7 +50,6 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
 
         public virtual IEnumerable<TModel> GetAll()
         {
-            //deferred execution issue when exception arise
             return context.Set<TEFModel>().Select(efModel => Mapper.Map<TModel>(efModel));
         }
 
@@ -71,7 +70,6 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             if (entity != null)
             {
                 context.Entry(Mapper.Map<TEFModel>(entity)).State = EntityState.Modified;
-                //context.Entry(mapper.Map(entity)).State = EntityState.Modified;
             }
         }
     }

@@ -9,11 +9,10 @@ namespace Epam.TodoManager.DomainModel.Entities
 {
     public class TodoListCollection : IUnique<int>, IEnumerable<TodoList>
     {
-        private readonly bool isReadonly;
         private List<TodoList> todoLists;
 
         public int Id { get; private set; }
-        public int UserId { get; set; }
+
         public int Count
         {
             get
@@ -22,10 +21,8 @@ namespace Epam.TodoManager.DomainModel.Entities
             }
         }
 
-        public TodoListCollection(int userId, IEnumerable<TodoList> lists)
+        public TodoListCollection(IEnumerable<TodoList> lists)
         {
-            isReadonly = false;
-            UserId = userId;
             todoLists = lists.ToList();
         }
 
@@ -37,7 +34,8 @@ namespace Epam.TodoManager.DomainModel.Entities
         public void RemoveTodoList(int listId)
         {
             // Fix removing with id
-            todoLists.Remove(new TodoList(listId, this, string.Empty, new List<Todo>()));
+            TodoList list = todoLists.FirstOrDefault(item => item.Id == listId);
+            todoLists.Remove(list);
         }
 
         public IEnumerator<TodoList> GetEnumerator()

@@ -15,6 +15,8 @@ namespace Epam.TodoManager.DataAccess.EF.Model
 
         public string PasswordHash { get; set; }
 
-        public ICollection<TodoList> Lists { get; set; }
+        public int ListCollectionId { get; set; }
+
+        public TodoListCollection ListCollection { get; set; }
     }
 }

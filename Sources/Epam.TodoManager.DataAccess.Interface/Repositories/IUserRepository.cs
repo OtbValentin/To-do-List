@@ -8,7 +8,6 @@ namespace Epam.TodoManager.DataAccess.Interface.Repositories
 {
     public interface IUserRepository : IRepository<User, int>
     {
-        IEnumerable<User> Find(Expression<Func<User, bool>> predicate);
-        IEnumerable<Role> GetUserRoles(int userId);
+        User Find(string email);
     }
 }

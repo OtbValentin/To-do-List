@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ITodoListCollectionRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

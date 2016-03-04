@@ -9,11 +9,9 @@ namespace Epam.TodoManager.DataAccess.EF.Model
 
         public string Title { get; set; }
 
-        public DateTime? DueDate { get; set; }
+        public int ListCollectionId { get; set; }
 
-        public int UserId { get; set; }
-
-        public User User { get; set; }
+        public TodoListCollection ListCollection { get; set; }
 
         public ICollection<Todo> Todos { get; set; }
     }

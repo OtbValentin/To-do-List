@@ -7,12 +7,14 @@ namespace Epam.TodoManager.DomainModel.Entities
 {
     public class TodoList : IUnique<int>, IEnumerable<Todo>
     {
-        private readonly bool isReadonly;
         private List<Todo> todoItems;
 
         public int Id { get; private set; }
+
         public TodoListCollection ListCollection { get; private set; }
+
         public string Title { get; private set; }
+
         public int Count
         {
             get
@@ -23,8 +25,6 @@ namespace Epam.TodoManager.DomainModel.Entities
 
         public TodoList(int id, TodoListCollection listCollection, string title, IEnumerable<Todo> todoItems)
         {
-            isReadonly = false;
-
             if (todoItems == null)
             {
                 throw new ArgumentNullException(nameof(todoItems));
@@ -49,6 +49,24 @@ namespace Epam.TodoManager.DomainModel.Entities
         public void ChangeTitle(string newTitle)
         {
             Title = newTitle;
+        }
+
+        public void ShiftTodo(int todoId, int index)
+        {
+            Todo todo = todoItems.FirstOrDefault(item => item.Id == todoId);
+
+            if (todo == null)
+            {
+                throw new ArgumentException("The list doesn't contain a todo with the specified id");
+            }
+
+            if (index < 0 || index >= Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+
+            todoItems.Remove(todo);
+            todoItems.Insert(index, todo);
         }
 
         public IEnumerator<Todo> GetEnumerator()

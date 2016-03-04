@@ -10,12 +10,11 @@ namespace Epam.TodoManager.BusinessLogic.TodoListService
     public interface ITodoListService
     {
         IEnumerable<TodoList> GetTodoLists(int userId);
-        void AddTodo(int listCollectionId, int listId, string task);
-        void RemoveTodo(int listCollectionId, int listId, int todoId);
-        void RenameList(int listCollectionId, int listId, string newName);
-        void ShiftTodo(int listCollectionId, int listId, int todoId, int index);
-
-        void AddTodoList(int listCollectionId);
-        void RemoveTodoList(int listCollectionId, int listId);
+        void AddTodo(int userId, int listId, string task);
+        void RemoveTodo(int userId, int listId, int todoId);
+        void RenameList(int userId, int listId, string newName);
+        void ShiftTodo(int userId, int listId, int todoId, int index);
+        void AddTodoList(int userId, string title);
+        void RemoveTodoList(int userId, int listId);
     }
 }

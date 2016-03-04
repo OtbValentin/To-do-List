@@ -1,4 +1,6 @@
-﻿namespace Epam.TodoManager.DataAccess.EF.Model
+﻿using System;
+
+namespace Epam.TodoManager.DataAccess.EF.Model
 {
     public class Todo : IEntity<int>
     {
@@ -13,5 +15,7 @@
         public int ListId { get; set; }
 
         public TodoList List { get; set; }
+
+        public DateTime? DueDate { get; set; }
     }
 }

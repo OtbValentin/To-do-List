@@ -8,11 +8,11 @@ namespace Epam.TodoManager.BusinessLogic.TodoService
 {
     public interface ITodoService
     {
-        void CompleteTodo(int listCollectionId, int listId, int todoId);
-        void MarkTodoAsUncompleted(int listCollectionId, int listId, int todoId);
-        void MoveTodoToAnotherList(int listCollectionId, int sourceListId, int todoId, int destinationListId);
-        void RenameTodo(int listCollectionId, int listId, int todoId, int newName);
-        void SetTodoDueDate(int listCollectionId, int listId, int todoId, DateTime? dueDate);
-        void EditTodoNote(int listColectionId, int listId, int todoId, int newNote);
+        void CompleteTodo(int userId, int listId, int todoId);
+        void MarkTodoAsUncompleted(int userId, int listId, int todoId);
+        void MoveTodoToAnotherList(int userId, int sourceListId, int todoId, int destinationListId);
+        void RenameTodo(int userId, int listId, int todoId, string newName);
+        void SetTodoDueDate(int userId, int listId, int todoId, DateTime? dueDate);
+        void EditTodoNote(int userId, int listId, int todoId, string newNote);
     }
 }
