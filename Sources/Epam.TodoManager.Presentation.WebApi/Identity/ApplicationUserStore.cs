@@ -5,8 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
 using Epam.TodoManager.BusinessLogic.UserService;
-using Epam.TodoManager.BusinessLogic.RoleService;
-using Mock = Epam.TodoManager.BusinessLogic.Mock;
 using Epam.TodoManager.DomainModel.Entities;
 
 namespace Epam.TodoManager.Presentation.WebApi.Identity
@@ -16,23 +14,22 @@ namespace Epam.TodoManager.Presentation.WebApi.Identity
     public class ApplicationUserStore : IUserStore<ApplicationUser, int>, IUserPasswordStore<ApplicationUser, int>
     {
         private IUserService userService;
-        private IRoleService roleService;
 
         public ApplicationUserStore()
         {
-            userService = new Mock.UserService();
-            roleService = new Mock.RoleService();
         }
 
         public Task CreateAsync(ApplicationUser user)
         {
-            userService.Create(user.UserName, user.PasswordHash);
+            userService.Create(user.UserName, user.Name, user.PasswordHash);
             return Task.CompletedTask;
         }
 
         public Task DeleteAsync(ApplicationUser user)
         {
-            userService.Delete(user.Id);
+            //consider implementing in BL?
+            //userService.Delete(user.Id);
+
             return Task.CompletedTask;
         }
 
@@ -76,14 +73,6 @@ namespace Epam.TodoManager.Presentation.WebApi.Identity
             throw new NotImplementedException();
         }
 
-        private static User ToDomainUser(ApplicationUser appUser)
-        {
-            if (appUser == null)
-                return null;
-
-            return new User(appUser.Id, appUser.UserName, appUser.PasswordHash, null, null);
-        }
-
         private static ApplicationUser ToApplicationUser(User domainUser)
         {
             if (domainUser == null)
@@ -93,7 +82,8 @@ namespace Epam.TodoManager.Presentation.WebApi.Identity
             {
                 Id = domainUser.Id,
                 UserName = domainUser.Email,
-                PasswordHash = domainUser.PasswordHash
+                PasswordHash = domainUser.PasswordHash,
+                Name = domainUser.Profile?.Name
             };
         }
     }
