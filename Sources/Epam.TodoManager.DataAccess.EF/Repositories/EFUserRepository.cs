@@ -18,7 +18,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
 
         }
 
-        public IEnumerable<User> Find(Expression<Func<User, bool>> predicate)
+        public User Find(string email)
         {
             throw new NotImplementedException();
         }

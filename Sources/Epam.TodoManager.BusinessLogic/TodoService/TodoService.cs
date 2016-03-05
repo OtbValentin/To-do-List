@@ -25,7 +25,7 @@ namespace Epam.TodoManager.BusinessLogic.TodoService
 
             if (listCollection == null)
             {
-                throw new ArgumentException("A specifiend user doesn't exist", nameof(userId));
+                throw new ArgumentException("A specified user doesn't exist", nameof(userId));
             }
 
             TodoList todoList = listCollection.FirstOrDefault(list => list.Id == listId);
@@ -55,7 +55,7 @@ namespace Epam.TodoManager.BusinessLogic.TodoService
 
             if (listCollection == null)
             {
-                throw new ArgumentException("A specifiend user doesn't exist", nameof(userId));
+                throw new ArgumentException("A specified user doesn't exist", nameof(userId));
             }
 
             TodoList todoList = listCollection.FirstOrDefault(list => list.Id == listId);
@@ -85,7 +85,7 @@ namespace Epam.TodoManager.BusinessLogic.TodoService
 
             if (listCollection == null)
             {
-                throw new ArgumentException("A specifiend user doesn't exist", nameof(userId));
+                throw new ArgumentException("A specified user doesn't exist", nameof(userId));
             }
 
             TodoList todoList = listCollection.FirstOrDefault(list => list.Id == listId);
@@ -115,7 +115,7 @@ namespace Epam.TodoManager.BusinessLogic.TodoService
 
             if (listCollection == null)
             {
-                throw new ArgumentException("A specifiend user doesn't exist", nameof(userId));
+                throw new ArgumentException("A specified user doesn't exist", nameof(userId));
             }
 
             TodoList sourceList = listCollection.FirstOrDefault(list => list.Id == sourceListId);
@@ -159,7 +159,7 @@ namespace Epam.TodoManager.BusinessLogic.TodoService
 
             if (listCollection == null)
             {
-                throw new ArgumentException("A specifiend user doesn't exist", nameof(userId));
+                throw new ArgumentException("A specified user doesn't exist", nameof(userId));
             }
 
             TodoList todoList = listCollection.FirstOrDefault(list => list.Id == listId);
@@ -189,7 +189,7 @@ namespace Epam.TodoManager.BusinessLogic.TodoService
 
             if (listCollection == null)
             {
-                throw new ArgumentException("A specifiend user doesn't exist", nameof(userId));
+                throw new ArgumentException("A specified user doesn't exist", nameof(userId));
             }
 
             TodoList todoList = listCollection.FirstOrDefault(list => list.Id == listId);

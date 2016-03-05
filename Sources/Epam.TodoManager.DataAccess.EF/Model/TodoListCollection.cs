@@ -10,6 +10,10 @@ namespace Epam.TodoManager.DataAccess.EF.Model
     {
         public int Id { get; private set; }
 
+        public int UserId { get; set; }
+
+        public User User { get; set; }
+
         public ICollection<TodoList> Lists { get; set; }
     }
 }
