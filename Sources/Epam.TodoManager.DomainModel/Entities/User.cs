@@ -40,9 +40,19 @@ namespace Epam.TodoManager.DomainModel.Entities
             Profile = profile;
         }
 
-        public void Rename(string newName)
+        public void Rename(string name)
         {
-            Profile.ChangeName(newName);
+            Profile.ChangeName(name);
+        }
+
+        public void ChangePassword(string passwordHash)
+        {
+            PasswordHash = passwordHash;
+        }
+
+        public void ChangeEmail(string email)
+        {
+            Email = email;
         }
     }
 }
