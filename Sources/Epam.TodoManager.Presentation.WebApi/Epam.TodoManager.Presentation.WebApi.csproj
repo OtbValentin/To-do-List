@@ -139,8 +139,12 @@
     <Compile Include="Identity\ApplicationUser.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\ApplicationUserStore.cs" />
+<<<<<<< 36b42bac3ffd04bff8b73796101398984ea5c47f
 <<<<<<< b4f349dd01f5127797f48f23c95fa4e59d312b18
     <Compile Include="Infrastructure\DependencyResolver.cs" />
+=======
+    <Compile Include="Models\DemoModels.cs" />
+>>>>>>> Add demo actions, tweak user store
 =======
     <Compile Include="Models\DemoModels.cs" />
 >>>>>>> Add demo actions, tweak user store
@@ -158,11 +162,14 @@
     </None>
   </ItemGroup>
   <ItemGroup />
+<<<<<<< 36b42bac3ffd04bff8b73796101398984ea5c47f
   <ItemGroup>
 <<<<<<< 25d26073c03959620685502a7d626f2a7614dd08
 =======
     <Folder Include="Models\" />
   </ItemGroup>
+=======
+>>>>>>> Add demo actions, tweak user store
   <ItemGroup>
 >>>>>>> Add mock BL services
     <ProjectReference Include="..\Epam.TodoManager.BusinessLogic.Mock\Epam.TodoManager.BusinessLogic.Mock.csproj">
