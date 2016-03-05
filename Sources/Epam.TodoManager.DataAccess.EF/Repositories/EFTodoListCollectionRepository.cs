@@ -5,6 +5,8 @@ using System.Data.Entity;
 using System;
 using System.Linq;
 using AutoMapper;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Epam.TodoManager.DataAccess.EF.Repositories
 {
@@ -27,14 +29,37 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
 
         public override void Update(TodoListCollection entity)
         {
+            DB.TodoListCollection updatedListCollection = Mapper.Map<DB.TodoListCollection>(entity);
             DB.TodoListCollection dbListCollection = context.Set<DB.TodoListCollection>().Find(entity.Id);
 
-            context.Entry(dbListCollection).State = EntityState.Modified;
+            context.Entry(dbListCollection).State = EntityState.Detached;
+            context.Entry(updatedListCollection).State = EntityState.Modified;
 
-            foreach (DB.TodoList list in dbListCollection.Lists)
+            IntKeyEntityEqualityComparer<DB.TodoList> comparer = new IntKeyEntityEqualityComparer<Model.TodoList>();
+            IEnumerable<DB.TodoList> deletedLists = dbListCollection.Lists.Except(updatedListCollection.Lists, comparer);
+            IEnumerable<DB.TodoList> addedLists = updatedListCollection.Lists.Except(dbListCollection.Lists, comparer);
+            IEnumerable<DB.TodoList> modifiedLists = updatedListCollection.Lists.Except(deletedLists).Except(addedLists, comparer);
+
+            // Todo items should be cascade deleted
+            foreach (var list in deletedLists)
+            {
+                context.Entry(list).State = EntityState.Deleted;
+            }
+
+            foreach (var list in addedLists)
+            {
+                context.Entry(list).State = EntityState.Added;
+            }
+
+            foreach (var list in modifiedLists)
             {
                 context.Entry(list).State = EntityState.Modified;
+
+                foreach (var todo in list.Todos)
+                {
+                    context.Entry(todo).State = EntityState.Modified;
+                }
             }
-        }
+        }   
     }
 }

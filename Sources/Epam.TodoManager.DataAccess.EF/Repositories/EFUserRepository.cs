@@ -20,7 +20,22 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
 
         public User Find(string email)
         {
-            throw new NotImplementedException();
+            DB.User user = context.Set<DB.User>().FirstOrDefault(u => u.Email == email);
+
+            if (user == null)
+            {
+                throw new ArgumentException("A user with this email doesn't exist", nameof(email));
+            }
+            
+            return Mapper.Map<User>(user);
+        }
+
+        public override void Update(User entity)
+        {
+            DB.User user = Mapper.Map<DB.User>(entity);
+
+            context.Entry(user).State = EntityState.Modified;
+            context.Entry(user.Profile).State = EntityState.Modified;
         }
     }
 }
