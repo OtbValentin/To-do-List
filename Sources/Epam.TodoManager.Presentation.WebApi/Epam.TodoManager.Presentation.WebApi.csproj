@@ -155,10 +155,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Epam.TodoManager.BusinessLogic.Mock\Epam.TodoManager.BusinessLogic.Mock.csproj">
-      <Project>{4b9448cd-300b-43ac-b412-cad833a76ba3}</Project>
-      <Name>Epam.TodoManager.BusinessLogic.Mock</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Epam.TodoManager.BusinessLogic\Epam.TodoManager.BusinessLogic.csproj">
       <Project>{3f852a70-b221-4bc2-a90f-b6cb91cbc84b}</Project>
       <Name>Epam.TodoManager.BusinessLogic</Name>
