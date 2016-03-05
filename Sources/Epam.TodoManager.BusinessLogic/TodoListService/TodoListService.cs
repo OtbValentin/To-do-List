@@ -21,13 +21,29 @@ namespace Epam.TodoManager.BusinessLogic.TodoListService
         }
         public void AddTodo(int userId, int listId, string task)
         {
-            throw new NotImplementedException();
+            TodoListCollection listCollection = listRepository.GetUserLists(userId);
+
+            if (listCollection == null)
+            {
+                throw new ArgumentException("A specified user doesn't exist", nameof(userId));
+            }
+
+            TodoList todoList = listCollection.FirstOrDefault(list => list.Id == listId);
+
+            if (todoList == null)
+            {
+                throw new ArgumentException("A specified user doesn't have a list with the specified id", nameof(listId));
+            }
+
+            todoList.AddTodo(task);
+
+            listRepository.Update(listCollection);
+
+            unitOfWork.Commit();
         }
 
         public void AddTodoList(int userId, string title)
         {
-            User user = userRepository.Find(userId);
-
             TodoListCollection listCollection = listRepository.GetUserLists(userId);
 
             if (listCollection == null)

@@ -11,5 +11,7 @@ namespace Epam.TodoManager.BusinessLogic.UserService
         User Find(int userId);
         User Find(string email);
         void ChangeName(int userId, string newName);
+        void ChangeEmail(int userId, string newEmail);
+        void ChangePassword(int userId, string passwordHash);
     }
 }

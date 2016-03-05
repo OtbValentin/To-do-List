@@ -17,6 +17,22 @@ namespace Epam.TodoManager.BusinessLogic.UserService
             userRepository = this.unitOfWork.UserRepository;
         }
 
+        public void ChangeEmail(int userId, string newEmail)
+        {
+            User user = userRepository.Find(userId);
+
+            if (user == null)
+            {
+                throw new ArgumentException("There is no user with this ID", nameof(userId));
+            }
+
+            user.ChangeEmail(newEmail);
+
+            userRepository.Update(user);
+
+            unitOfWork.Commit();
+        }
+
         public void ChangeName(int userId, string newName)
         {
             User user = userRepository.Find(userId);
@@ -27,6 +43,22 @@ namespace Epam.TodoManager.BusinessLogic.UserService
             }
 
             user.Rename(newName);
+
+            userRepository.Update(user);
+
+            unitOfWork.Commit();
+        }
+
+        public void ChangePassword(int userId, string passwordHash)
+        {
+            User user = userRepository.Find(userId);
+
+            if (user == null)
+            {
+                throw new ArgumentException("There is no user with this ID", nameof(userId));
+            }
+
+            user.ChangePassword(passwordHash);
 
             userRepository.Update(user);
 
