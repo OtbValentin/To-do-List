@@ -6,6 +6,8 @@ using System.Web;
 using System.Threading.Tasks;
 using Epam.TodoManager.BusinessLogic.UserService;
 using Epam.TodoManager.DomainModel.Entities;
+using System.Net.Http;
+using Epam.TodoManager.Presentation.WebApi.Infrastructure;
 
 namespace Epam.TodoManager.Presentation.WebApi.Identity
 {
@@ -17,6 +19,10 @@ namespace Epam.TodoManager.Presentation.WebApi.Identity
 
         public ApplicationUserStore()
         {
+            using (var resolver = new DependencyResolver())
+            {
+                userService = resolver.GetService(typeof(IUserService)) as IUserService;
+            }
         }
 
         public Task CreateAsync(ApplicationUser user)

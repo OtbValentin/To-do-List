@@ -125,10 +125,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\MockDB.mdf" />
-    <Content Include="App_Data\MockDB_log.ldf">
-      <DependentUpon>MockDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -139,15 +135,8 @@
     <Compile Include="Identity\ApplicationUser.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\ApplicationUserStore.cs" />
-<<<<<<< 36b42bac3ffd04bff8b73796101398984ea5c47f
-<<<<<<< b4f349dd01f5127797f48f23c95fa4e59d312b18
     <Compile Include="Infrastructure\DependencyResolver.cs" />
-=======
     <Compile Include="Models\DemoModels.cs" />
->>>>>>> Add demo actions, tweak user store
-=======
-    <Compile Include="Models\DemoModels.cs" />
->>>>>>> Add demo actions, tweak user store
     <Compile Include="OAuth\AuthorizationServerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -161,24 +150,11 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
-<<<<<<< 36b42bac3ffd04bff8b73796101398984ea5c47f
   <ItemGroup>
-<<<<<<< 25d26073c03959620685502a7d626f2a7614dd08
-=======
-    <Folder Include="Models\" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
-=======
->>>>>>> Add demo actions, tweak user store
+  <ItemGroup />
   <ItemGroup>
-<<<<<<< 4be2c6cf02fc048124499c16cdcdbc36e0c1a288
->>>>>>> Add mock BL services
-    <ProjectReference Include="..\Epam.TodoManager.BusinessLogic.Mock\Epam.TodoManager.BusinessLogic.Mock.csproj">
-      <Project>{4b9448cd-300b-43ac-b412-cad833a76ba3}</Project>
-      <Name>Epam.TodoManager.BusinessLogic.Mock</Name>
-    </ProjectReference>
-=======
->>>>>>> Remove mock BL services
     <ProjectReference Include="..\Epam.TodoManager.BusinessLogic\Epam.TodoManager.BusinessLogic.csproj">
       <Project>{3f852a70-b221-4bc2-a90f-b6cb91cbc84b}</Project>
       <Name>Epam.TodoManager.BusinessLogic</Name>
