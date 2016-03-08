@@ -2,7 +2,7 @@
 
 namespace Epam.TodoManager.DataAccess.EF.Model
 {
-    internal class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext()
             : base("DefaultConnection")

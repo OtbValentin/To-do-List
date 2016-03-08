@@ -127,6 +127,7 @@
     <Compile Include="Identity\ApplicationUser.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\ApplicationUserStore.cs" />
+    <Compile Include="Infrastructure\DependencyResolver.cs" />
     <Compile Include="OAuth\AuthorizationServerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -152,6 +153,10 @@
     <ProjectReference Include="..\Epam.TodoManager.DomainModel\Epam.TodoManager.DomainModel.csproj">
       <Project>{1d251136-df3a-4a9e-8e38-9a6e592a19e4}</Project>
       <Name>Epam.TodoManager.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Epam.TodoManager.Infrastructure\Epam.TodoManager.Infrastructure.csproj">
+      <Project>{e7f6a552-7039-4f9b-9f6c-175939b97879}</Project>
+      <Name>Epam.TodoManager.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
