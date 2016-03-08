@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TodoManager.DomainMode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TodoManager.Presentation.WebApi", "Epam.TodoManager.Presentation.WebApi\Epam.TodoManager.Presentation.WebApi.csproj", "{00C255F8-C403-4997-A511-42E2CEB62500}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TodoManager.Infrastructure", "Epam.TodoManager.Infrastructure\Epam.TodoManager.Infrastructure.csproj", "{E7F6A552-7039-4F9B-9F6C-175939B97879}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{00C255F8-C403-4997-A511-42E2CEB62500}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00C255F8-C403-4997-A511-42E2CEB62500}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00C255F8-C403-4997-A511-42E2CEB62500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7F6A552-7039-4F9B-9F6C-175939B97879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7F6A552-7039-4F9B-9F6C-175939B97879}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7F6A552-7039-4F9B-9F6C-175939B97879}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7F6A552-7039-4F9B-9F6C-175939B97879}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
