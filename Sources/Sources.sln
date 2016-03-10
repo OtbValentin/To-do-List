@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TodoManager.Presentati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TodoManager.Infrastructure", "Epam.TodoManager.Infrastructure\Epam.TodoManager.Infrastructure.csproj", "{E7F6A552-7039-4F9B-9F6C-175939B97879}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TodoManager.Presentation.WebMvc", "Epam.TodoManager.Presentation.WebMvc\Epam.TodoManager.Presentation.WebMvc.csproj", "{0714DD4C-849C-4E63-A2BD-FD529E330C9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{E7F6A552-7039-4F9B-9F6C-175939B97879}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7F6A552-7039-4F9B-9F6C-175939B97879}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7F6A552-7039-4F9B-9F6C-175939B97879}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0714DD4C-849C-4E63-A2BD-FD529E330C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0714DD4C-849C-4E63-A2BD-FD529E330C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0714DD4C-849C-4E63-A2BD-FD529E330C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0714DD4C-849C-4E63-A2BD-FD529E330C9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
