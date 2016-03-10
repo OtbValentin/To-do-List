@@ -21,8 +21,9 @@ namespace Epam.TodoManager.DomainModel.Entities
             }
         }
 
-        public TodoListCollection(IEnumerable<TodoList> lists)
+        public TodoListCollection(int id, IEnumerable<TodoList> lists)
         {
+            Id = id;
             todoLists = lists.ToList();
         }
 
