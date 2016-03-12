@@ -76,7 +76,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Identity
 
         public Task UpdateAsync(ApplicationUser user)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         private static ApplicationUser ToApplicationUser(User domainUser)
