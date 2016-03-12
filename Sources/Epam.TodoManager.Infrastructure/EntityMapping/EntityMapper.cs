@@ -15,20 +15,70 @@ namespace Epam.TodoManager.Infrastructure.EntityMapping
 
         static EntityMapper()
         {
+
             var config = new MapperConfiguration(configuration =>
             {
-                configuration.CreateMap<DB.Todo, Domain.Todo>().ConstructUsing((DB.Todo source) =>
-                    new Domain.Todo(source.Id, null, source.Text, source.IsCompleted, source.Note));
+                // EF -> Domain
+                configuration.CreateMap<DB.User, Domain.User>().ConstructUsing((DB.User dbUser) =>
+                    new Domain.User(dbUser.Id, dbUser.ListCollectionId, dbUser.Email, dbUser.PasswordHash,
+                    new Domain.UserProfile(dbUser.Profile.Id, dbUser.Profile.Name, dbUser.Profile.RegisterDate)));
 
-                //configuration.CreateMap<DB.TodoList, Domain.TodoList>().ConstructUsing((DB.TodoList sourceList) =>
-                //    new Domain.TodoList(sourceList.Id, )
+                configuration.CreateMap<DB.TodoListCollection, Domain.TodoListCollection>().ConstructUsing((DB.TodoListCollection dbCollection) =>
+                {
+                    return new Domain.TodoListCollection(dbCollection.Id, dbCollection.UserId, dbCollection.Lists.Select(dbList =>
+                    {
+                        return new Domain.TodoList(dbList.Id, dbList.Title, dbList.Todos.Select(dbTodo =>
+                            new Domain.Todo(dbTodo.Id, dbTodo.Text, dbTodo.IsCompleted, dbTodo.Note, dbTodo.DueDate)));
+                    }));
+                });
 
-                configuration.CreateMap<DB.TodoListCollection, Domain.TodoListCollection>().ConstructUsing((DB.TodoListCollection source) =>
-                    new Domain.TodoListCollection(source.L))
+                // Domain -> EF
+                configuration.CreateMap<Domain.User, DB.User>().ConvertUsing((Domain.User domainUser) =>
+                    new DB.User()
+                    {
+                        Id = domainUser.Id,
+                        PasswordHash = domainUser.PasswordHash,
+                        Email = domainUser.Email,
+                        ProfileId = domainUser.Profile.Id,
+                        Profile = new DB.UserProfile() { Id = domainUser.Profile.Id, Name = domainUser.Profile.Name, RegisterDate = domainUser.Profile.RegisterDate },
+                        ListCollectionId = domainUser.Id
+                    });
 
+                configuration.CreateMap<Domain.TodoListCollection, DB.TodoListCollection>().ConvertUsing((Domain.TodoListCollection collection) =>
+                {
+                    DB.TodoListCollection dbCollection = new DB.TodoListCollection()
+                    {
+                        Id = collection.Id,
+                        UserId = collection.UserId
+                    };
+
+                    dbCollection.Lists = collection.Select(list =>
+                    {
+                        DB.TodoList dbList = new DB.TodoList()
+                        {
+                            Id = list.Id,
+                            Title = list.Title,
+                            ListCollectionId = dbCollection.Id,
+                            ListCollection = dbCollection
+                        };
+
+                        dbList.Todos = list.Select(todo => new DB.Todo()
+                        {
+                            Id = todo.Id,
+                            DueDate = todo.DueDate,
+                            IsCompleted = todo.IsCompleted,
+                            List = dbList,
+                            ListId = dbList.Id,
+                            Note = todo.Note,
+                            Text = todo.Text
+                        }).ToList();
+
+                    return dbList;
+                    }).ToList();
+
+                    return dbCollection;
+                });
             });
-
-            Mapper = config.CreateMapper();
         }
     }
 }
