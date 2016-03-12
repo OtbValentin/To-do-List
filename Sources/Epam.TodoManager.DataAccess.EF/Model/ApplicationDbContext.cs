@@ -13,6 +13,7 @@ namespace Epam.TodoManager.DataAccess.EF.Model
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasOptional<UserProfile>(user => user.Profile).WithOptionalDependent().WillCascadeOnDelete(true);
+            modelBuilder.Entity<User>().HasOptional(user => user.ListCollection).WithRequired(collection => collection.User);
 
             base.OnModelCreating(modelBuilder);
         }
