@@ -18,5 +18,12 @@ namespace Epam.TodoManager.DataAccess.EF.Model
         public string PasswordHash { get; set; }
 
         public int ListCollectionId { get; set; }
+
+        public User()
+        {
+            Profile = new UserProfile();
+            Email = string.Empty;
+            PasswordHash = string.Empty;
+        }
     }
 }

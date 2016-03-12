@@ -13,6 +13,56 @@ namespace Epam.TodoManager.Tests
     public class EntityMapperTest
     {
         [TestMethod]
+        public void DomainTodoListCollectionToDbTodoListCollectionIdMap()
+        {
+            IMapper mapper = EntityMapper.Mapper;
+
+            int id = 10;
+            Domain.TodoListCollection domain = new Domain.TodoListCollection(id, default(int));
+
+            DB.TodoListCollection db = mapper.Map<DB.TodoListCollection>(domain);
+
+            Assert.AreEqual(true, AreCollectionsEqual(db, domain));
+        }
+
+        [TestMethod]
+        public void DomainTodoListCollectionToDbTodoListCollectionUserIdMap()
+        {
+            IMapper mapper = EntityMapper.Mapper;
+
+            int userId = 8;
+            Domain.TodoListCollection domain = new Domain.TodoListCollection(default(int), userId);
+
+            DB.TodoListCollection db = mapper.Map<DB.TodoListCollection>(domain);
+
+            Assert.AreEqual(true, AreCollectionsEqual(db, domain));
+        }
+
+        [TestMethod]
+        public void DomainTodoListCollectionToDbTodoListCollectionListsMap()
+        {
+            IMapper mapper = EntityMapper.Mapper;
+
+            Domain.TodoListCollection domain = new Domain.TodoListCollection(default(int), default(int));
+            domain.AddTodoList("Weekly");
+            domain.AddTodoList("March");
+            domain.AddTodoList("2016");
+
+            Domain.TodoList list = domain.Where(l => l.Title == "March").Single();
+            list.AddTodo("Finish the project");
+            Domain.Todo todo = list.Single(item => item.Text == "Finish the project");
+            todo.SetDueDate(DateTime.Now);
+            todo.Complete();
+            todo.EditNote("weeeeeouuu");
+  
+            list.AddTodo("Pass 5 labs");
+
+            DB.TodoListCollection db = mapper.Map<DB.TodoListCollection>(domain);
+
+            Assert.AreEqual(true, AreCollectionsEqual(db, domain));
+        }
+
+        [TestMethod]
         public void DbTodoListCollectionToDomainTodoListCollectionIdMap()
         {
             IMapper mapper = EntityMapper.Mapper;
