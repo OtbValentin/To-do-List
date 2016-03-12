@@ -13,5 +13,10 @@ namespace Epam.TodoManager.DataAccess.EF.Model
         public int UserId { get; set; }
 
         public ICollection<TodoList> Lists { get; set; }
+
+        public TodoListCollection()
+        {
+            Lists = new List<TodoList>();
+        }
     }
 }
