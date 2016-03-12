@@ -6,7 +6,9 @@ using Epam.TodoManager.DataAccess.EF.Model;
 using Epam.TodoManager.DataAccess.EF.Repositories;
 using Epam.TodoManager.DataAccess.Interface;
 using Epam.TodoManager.DataAccess.Interface.Repositories;
+using Epam.TodoManager.Infrastructure.EntityMapping;
 using System.Data.Entity;
+using AutoMapper;
 
 namespace Epam.TodoManager.Infrastructure.DependencyInjection
 {
@@ -24,6 +26,9 @@ namespace Epam.TodoManager.Infrastructure.DependencyInjection
             Bind<ITodoListCollectionRepository>().To<EFTodoListCollectionRepository>();
             Bind<IUnitOfWork>().To<EFUnitOfWork>();
             Bind<DbContext>().To<ApplicationDbContext>();
+
+            //Utils
+            Bind<IMapper>().ToConstant(EntityMapper.Mapper);
         }
     }
 }

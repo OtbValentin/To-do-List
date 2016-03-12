@@ -9,9 +9,17 @@ namespace Epam.TodoManager.DomainModel.Entities
     {
         private List<Todo> todoItems;
 
-        public int Id { get; private set; }
+        public IEnumerable<Todo> TodoItems
+        {
+            get
+            {
+                return todoItems;
+            }
 
-        public TodoListCollection ListCollection { get; private set; }
+            private set { }
+        }
+
+        public int Id { get; private set; }
 
         public string Title { get; private set; }
 
@@ -23,7 +31,7 @@ namespace Epam.TodoManager.DomainModel.Entities
             }
         }
 
-        public TodoList(int id, TodoListCollection listCollection, string title, IEnumerable<Todo> todoItems)
+        public TodoList(int id, string title, IEnumerable<Todo> todoItems)
         {
             if (todoItems == null)
             {
@@ -31,14 +39,13 @@ namespace Epam.TodoManager.DomainModel.Entities
             }
 
             Id = id;
-            ListCollection = listCollection;
             Title = title;
             this.todoItems = todoItems.ToList();
         }
 
         public void AddTodo(string task)
         {
-            todoItems.Add(new Todo(0, this, task, false, string.Empty));
+            todoItems.Add(new Todo(0, task, false, string.Empty, DateTime.Now));
         }
 
         public void RemoveTodo(int todoId)
@@ -71,7 +78,7 @@ namespace Epam.TodoManager.DomainModel.Entities
 
         public IEnumerator<Todo> GetEnumerator()
         {
-            return todoItems.GetEnumerator();
+            return TodoItems.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

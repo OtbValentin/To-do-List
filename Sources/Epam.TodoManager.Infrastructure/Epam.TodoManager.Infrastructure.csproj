@@ -65,6 +65,7 @@
     <Compile Include="DependencyInjection\IDependencyResolver.cs" />
     <Compile Include="DependencyInjection\NinjectResolver.cs" />
     <Compile Include="DependencyInjection\NinjectModule.cs" />
+    <Compile Include="EntityMapping\EntityMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,7 +85,12 @@
       <Project>{5b273abf-b87c-4129-a5ff-17dcad9ca2d5}</Project>
       <Name>Epam.TodoManager.DataAccess.Interface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Epam.TodoManager.DomainModel\Epam.TodoManager.DomainModel.csproj">
+      <Project>{1d251136-df3a-4a9e-8e38-9a6e592a19e4}</Project>
+      <Name>Epam.TodoManager.DomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
