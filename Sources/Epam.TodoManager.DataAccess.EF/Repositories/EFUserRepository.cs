@@ -12,8 +12,8 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
 {
     public class EFUserRepository : EFIntKeyGenericRepository<User, DB.User>, IUserRepository
     {
-        public EFUserRepository(DbContext context)
-            : base(context)
+        public EFUserRepository(DbContext context, IMapper mapper)
+            : base(context, mapper)
         {
 
         }
@@ -27,12 +27,12 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             //    throw new ArgumentException("A user with this email doesn't exist", nameof(email));
             //}
             
-            return Mapper.Map<User>(user);
+            return mapper.Map<User>(user);
         }
 
         public override void Update(User entity)
         {
-            DB.User user = Mapper.Map<DB.User>(entity);
+            DB.User user = mapper.Map<DB.User>(entity);
 
             context.Entry(user).State = EntityState.Modified;
             context.Entry(user.Profile).State = EntityState.Modified;

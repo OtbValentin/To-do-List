@@ -13,8 +13,8 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
     public class EFTodoListCollectionRepository : EFIntKeyGenericRepository<TodoListCollection, DB.TodoListCollection>,
         ITodoListCollectionRepository
     {
-        public EFTodoListCollectionRepository(DbContext context)
-            : base(context)
+        public EFTodoListCollectionRepository(DbContext context, IMapper mapper)
+            : base(context, mapper)
         {
 
         }
@@ -29,7 +29,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
 
         public override void Update(TodoListCollection entity)
         {
-            DB.TodoListCollection updatedListCollection = Mapper.Map<DB.TodoListCollection>(entity);
+            DB.TodoListCollection updatedListCollection = mapper.Map<DB.TodoListCollection>(entity);
             DB.TodoListCollection dbListCollection = context.Set<DB.TodoListCollection>().Find(entity.Id);
 
             context.Entry(dbListCollection).State = EntityState.Detached;
