@@ -22,11 +22,11 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
         {
             DB.User user = context.Set<DB.User>().FirstOrDefault(u => u.Email == email);
 
-            //if (user == null)
-            //{
-            //    throw new ArgumentException("A user with this email doesn't exist", nameof(email));
-            //}
-            
+            if (user == null)
+            {
+                return null;
+            }
+
             return mapper.Map<User>(user);
         }
 
