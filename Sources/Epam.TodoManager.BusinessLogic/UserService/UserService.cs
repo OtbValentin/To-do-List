@@ -76,7 +76,7 @@ namespace Epam.TodoManager.BusinessLogic.UserService
             var newUser = new User(0, 0, email, passwordHash, new UserProfile(0, name, DateTime.Now));
             newUser.Rename(name);
 
-            userRepository.Create(existingUser);
+            userRepository.Create(newUser);
 
             unitOfWork.Commit();
         }
