@@ -19,11 +19,11 @@ namespace Epam.TodoManager.Infrastructure.EntityMapping
             var config = new MapperConfiguration(configuration =>
             {
                 // EF -> Domain
-                configuration.CreateMap<DB.User, Domain.User>().ConstructUsing((DB.User dbUser) =>
+                configuration.CreateMap<DB.User, Domain.User>().ConvertUsing((DB.User dbUser) =>
                     new Domain.User(dbUser.Id, dbUser.Id, dbUser.Email, dbUser.PasswordHash,
                     new Domain.UserProfile(dbUser.Profile.Id, dbUser.Profile.Name, dbUser.Profile.RegisterDate)));
 
-                configuration.CreateMap<DB.TodoListCollection, Domain.TodoListCollection>().ConstructUsing((DB.TodoListCollection dbCollection) =>
+                configuration.CreateMap<DB.TodoListCollection, Domain.TodoListCollection>().ConvertUsing((DB.TodoListCollection dbCollection) =>
                 {
                     return new Domain.TodoListCollection(dbCollection.Id, dbCollection.Id, dbCollection.Lists.Select(dbList =>
                     {
