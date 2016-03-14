@@ -18,6 +18,6 @@ namespace Epam.TodoManager.DataAccess.EF.Model
 
         public DateTime RegisterDate { get; set; }
 
-        public virtual User User { get; set; } 
+        public User User { get; set; } 
     }
 }

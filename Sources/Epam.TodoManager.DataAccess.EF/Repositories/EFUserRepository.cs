@@ -20,7 +20,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
 
         public User Find(string email)
         {
-            DB.User user = context.Set<DB.User>().FirstOrDefault(u => u.Email == email);
+            DB.User user = context.Set<DB.User>().Include(u => u.Profile).FirstOrDefault(u => u.Email == email);
 
             if (user == null)
             {
