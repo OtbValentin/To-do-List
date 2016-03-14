@@ -22,7 +22,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
         // Single or FirstOrDefault with custom exception
         public TodoListCollection GetUserLists(int userId)
         {
-            DB.TodoListCollection dbListColection = context.Set<DB.TodoListCollection>().Single(list => list.UserId == userId);
+            DB.TodoListCollection dbListColection = context.Set<DB.TodoListCollection>().Single(list => list.Id == userId);
 
             return Mapper.Map<TodoListCollection>(dbListColection);
         }
