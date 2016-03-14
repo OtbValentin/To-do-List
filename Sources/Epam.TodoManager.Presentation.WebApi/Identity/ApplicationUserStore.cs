@@ -8,20 +8,22 @@ using Epam.TodoManager.BusinessLogic.UserService;
 using Epam.TodoManager.DomainModel.Entities;
 using System.Net.Http;
 using Epam.TodoManager.Presentation.WebApi.Infrastructure;
+using AutoMapper;
 
 namespace Epam.TodoManager.Presentation.WebApi.Identity
 {
     //TODO: implement additional interfaces (IXxxStore) if necessary
-    //      reimplement mapping
     public class ApplicationUserStore : IUserStore<ApplicationUser, int>, IUserPasswordStore<ApplicationUser, int>
     {
         private IUserService userService;
+        private IMapper mapper;
 
         public ApplicationUserStore()
         {
             using (var resolver = new DependencyResolver())
             {
                 userService = resolver.GetService(typeof(IUserService)) as IUserService;
+                mapper = resolver.GetService(typeof(IMapper)) as IMapper;
             }
         }
 
@@ -46,12 +48,14 @@ namespace Epam.TodoManager.Presentation.WebApi.Identity
 
         public Task<ApplicationUser> FindByIdAsync(int userId)
         {
-            return Task.FromResult(ToApplicationUser(userService.Find(userId)));
+            var user = userService.Find(userId);
+            return Task.FromResult(mapper.Map<ApplicationUser>(user));
         }
 
         public Task<ApplicationUser> FindByNameAsync(string userName)
         {
-            return Task.FromResult(ToApplicationUser(userService.Find(userName)));
+            var user = userService.Find(userName);
+            return Task.FromResult(mapper.Map<ApplicationUser>(user));
         }
 
         public Task<string> GetPasswordHashAsync(ApplicationUser user)
@@ -70,6 +74,9 @@ namespace Epam.TodoManager.Presentation.WebApi.Identity
 
         public Task SetPasswordHashAsync(ApplicationUser user, string passwordHash)
         {
+            if (user.Id != 0)
+                userService.ChangePassword(user.Id, passwordHash);
+
             user.PasswordHash = passwordHash;
             return Task.CompletedTask;
         }
@@ -77,20 +84,6 @@ namespace Epam.TodoManager.Presentation.WebApi.Identity
         public Task UpdateAsync(ApplicationUser user)
         {
             throw new NotSupportedException();
-        }
-
-        private static ApplicationUser ToApplicationUser(User domainUser)
-        {
-            if (domainUser == null)
-                return null;
-
-            return new ApplicationUser()
-            {
-                Id = domainUser.Id,
-                UserName = domainUser.Email,
-                PasswordHash = domainUser.PasswordHash,
-                Name = domainUser.Profile?.Name
-            };
         }
     }
 }
