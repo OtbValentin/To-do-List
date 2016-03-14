@@ -12,8 +12,8 @@ namespace Epam.TodoManager.DataAccess.EF.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasOptional<UserProfile>(user => user.Profile).WithOptionalDependent().WillCascadeOnDelete(true);
-            //modelBuilder.Entity<User>().HasOptional(user => user.ListCollection).WithRequired(collection => collection.User);
+            modelBuilder.Entity<User>().HasOptional<UserProfile>(user => user.Profile).WithRequired(profile => profile.User).WillCascadeOnDelete(true);
+            modelBuilder.Entity<User>().HasOptional<TodoListCollection>(user => user.ListCollection).WithRequired(collection => collection.User).WillCascadeOnDelete(true);
 
             base.OnModelCreating(modelBuilder);
         }
