@@ -81,6 +81,13 @@ namespace Epam.TodoManager.BusinessLogic.UserService
             unitOfWork.Commit();
         }
 
+        public void Delete(int userId)
+        {
+            userRepository.Delete(userId);
+
+            unitOfWork.Commit();
+        }
+
         public User Find(string email)
         {
             return userRepository.Find(email);
