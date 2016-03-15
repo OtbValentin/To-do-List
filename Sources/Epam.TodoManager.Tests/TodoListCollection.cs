@@ -81,7 +81,7 @@ namespace Epam.TodoManager.Tests
             IMapper mapper = EntityMapper.Mapper;
 
             int userId = 130;
-            DB.TodoListCollection db = new DB.TodoListCollection() { UserId = userId };
+            DB.TodoListCollection db = new DB.TodoListCollection() { Id = userId };
 
             Domain.TodoListCollection domain = mapper.Map<Domain.TodoListCollection>(db);
 
@@ -116,7 +116,7 @@ namespace Epam.TodoManager.Tests
 
         private bool AreCollectionsEqual(DB.TodoListCollection db, Domain.TodoListCollection domain)
         {
-            if ((db.Id != domain.Id) || (db.UserId != domain.UserId))
+            if ((db.Id != domain.Id) || (db.Id != domain.Id))
             {
                 return false;
             }
