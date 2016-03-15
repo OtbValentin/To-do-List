@@ -9,14 +9,12 @@ namespace Epam.TodoManager.DataAccess.EF.Model
     {
         public int Id { get; set; }
 
-        public int ProfileId { get; set; }
-
         public UserProfile Profile { get; set; }
 
         public string Email { get; set; }
 
         public string PasswordHash { get; set; }
 
-        public int ListCollectionId { get; set; }
+        public TodoListCollection ListCollection { get; set; }
     }
 }

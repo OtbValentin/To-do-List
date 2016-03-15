@@ -14,5 +14,10 @@ namespace Epam.TodoManager.DataAccess.EF.Model
         public TodoListCollection ListCollection { get; set; }
 
         public ICollection<Todo> Todos { get; set; }
+
+        public TodoList()
+        {
+            Todos = new List<Todo>();
+        }
     }
 }
