@@ -156,6 +156,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Trash\06.jpg" />
     <Content Include="Views\Trash\inbox.html" />
+    <Content Include="Views\Trash\jquery-2.2.1.min.js" />
     <Content Include="Views\Trash\style.css" />
     <Content Include="Views\Trash\user-icon.png" />
     <Content Include="Web.config" />
