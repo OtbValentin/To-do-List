@@ -33,9 +33,7 @@ namespace Epam.TodoManager.Presentation.WebApi.OAuth
                 return;
             }
 
-            //TODO: verify that CreateIdentityAsync is the correct way to obtain a ClaimsIdentity object for the token
             var identityClaims = await manager.CreateIdentityAsync(user, context.Options.AuthenticationType);
-
             context.Validated(identityClaims);
         }
     }

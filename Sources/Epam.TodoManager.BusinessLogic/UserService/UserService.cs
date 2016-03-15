@@ -67,14 +67,16 @@ namespace Epam.TodoManager.BusinessLogic.UserService
 
         public void Create(string email, string name, string passwordHash)
         {
-            User user = userRepository.Find(email);
-
-            if (user == null)
+            User existingUser = userRepository.Find(email);
+            if (existingUser != null)
             {
                 throw new ArgumentException("User with this email already exists", nameof(email));
             }
 
-            userRepository.Create(user);
+            var newUser = new User(0, 0, email, passwordHash, null);
+            newUser.Rename(name);
+
+            userRepository.Create(existingUser);
 
             unitOfWork.Commit();
         }
