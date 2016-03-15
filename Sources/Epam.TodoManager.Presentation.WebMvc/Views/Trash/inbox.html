@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body id="wunderlist-base">
+    <div class="main-interface">
+        <div id="lists" class="">
+            <div tabindex="0" class="lists-inner">
+                <div id="search-toolbar">
+                    <a onclick="collapse()" id="list-toggle-item" class="toggle-icon">
+                        <svg class="list-toggle" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"> <g> <path d="M0.5,3.5l19,0" style="fill:none;stroke-width:1px;stroke:white;"></path> <path d="M0.5,9.53l19,0" style="fill:none;stroke-width:1px;stroke:white;"></path> <path d="M0.5,15.5l19,0" style="fill:none;stroke-width:1px;stroke:white;"></path> </g> </svg>
+                    </a>
+                    <div class="search-input-wrapper">
+                        <input class="chromeless search-input" type="text">
+                    </div>
+                </div>
+                <div id="user-toolbar">
+                    <a class="user" data-path="me" role="button" tabindex="0" aria-label="Valentin Меню пользователя." aria-expanded="false" aria-haspopup="true">
+                        <div class="user-avatar">
+                            <div class="avatar medium" title="Valentin">
+                                <img src="user-icon.png">
+                            </div>
+                        </div>
+                        <span class="user-name">Valentin</span>
+                        <span class="user-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+                                <g>
+                                    <path d="M10.502,13c-0.132,0 -0.26,-0.053 -0.354,-0.146l-4.002,-4c-0.195,-0.195 -0.195,-0.512 0,-0.708c0.195,-0.195 0.512,-0.195 0.707,0l3.649,3.647l3.644,-3.647c0.195,-0.195 0.512,-0.195 0.707,0c0.195,0.195 0.195,0.512 0,0.708l-3.997,4c-0.094,0.093 -0.221,0.146 -0.354,0.146">
+                                    </path> 
+                                </g> 
+                            </svg>
+                        </span>
+                        <!-- sync -->
+                    </a>
+                    <!-- Stream counts -->
+                </div>
+            </div>
+        </div>
+        <div id="tasks">
+            <div id="list-toolbar">
+                <h1 class="title">Todo list title</h1>
+                <div class="action-bar">
+                    <a class="tab-item">First</a>
+                    <a class="tab-item">Second</a>
+                    <a class="tab-item">3d</a>
+                </div>
+            </div>
+
+            <div id="task-items">
+                <!--<div id="task-items-placeholder">-->
+                <ul id="task-list">
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                    <li class="task-item">
+                        Task
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function collapse() {
+            var element = document.getElementById('lists');
+
+            if (element.className == 'collapsed') {
+                element.className = '';
+            }
+            else {
+                element.className = 'collapsed';
+            }
+        }
+    </script>
+</body>
+</html>
