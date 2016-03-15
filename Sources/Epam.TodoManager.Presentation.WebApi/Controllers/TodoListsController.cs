@@ -77,7 +77,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
             return Ok();
         }
 
-        [HttpPost, Route("/api/TodoLists/{listId}/Shift")]
+        [HttpPost, Route("api/TodoLists/{listId}/Shift")]
         public async Task<IHttpActionResult> ShiftTodoItem(int listId, [FromUri] int itemId, [FromUri] int index)
         {
             var user = await Manager.FindByNameAsync(User.Identity.Name);

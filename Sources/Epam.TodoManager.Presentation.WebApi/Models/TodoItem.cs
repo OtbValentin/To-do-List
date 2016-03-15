@@ -23,4 +23,14 @@ namespace Epam.TodoManager.Presentation.WebApi.Models
         [Required]
         public string Text { get; set; }
     }
+
+    public class UpdatedTodoItem
+    {
+        [Required]
+        public int List { get; private set; }
+        public string Text { get; private set; }
+        public string Note { get; private set; }
+        public bool? IsCompleted { get; private set; }
+        public DateTime? DueDate { get; private set; }
+    }
 }

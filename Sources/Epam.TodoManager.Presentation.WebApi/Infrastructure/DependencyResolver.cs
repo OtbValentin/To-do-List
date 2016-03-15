@@ -9,12 +9,8 @@ namespace Epam.TodoManager.Presentation.WebApi.Infrastructure
 {
     public class DependencyResolver : IDependencyResolver
     {
-        private DependencyInjection.IDependencyResolver resolver;
-
-        public DependencyResolver()
-        {
-            resolver = new DependencyInjection.NinjectResolver();
-        }
+        private static DependencyInjection.IDependencyResolver resolver
+            = new DependencyInjection.NinjectResolver();
 
         public IDependencyScope BeginScope()
         {
@@ -23,7 +19,6 @@ namespace Epam.TodoManager.Presentation.WebApi.Infrastructure
 
         public void Dispose()
         {
-            resolver.Dispose();
         }
 
         public object GetService(Type serviceType)

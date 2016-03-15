@@ -45,7 +45,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
             var result = await Manager.CreateAsync(newUser, value.Password);
 
             if (!result.Succeeded)
-                return BadRequest(AggregateErrors(result.Errors);
+                return BadRequest(AggregateErrors(result.Errors));
             else
                 return Ok();
         }

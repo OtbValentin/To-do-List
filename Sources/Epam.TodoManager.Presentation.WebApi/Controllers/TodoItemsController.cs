@@ -96,12 +96,61 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
             return Ok();
         }
 
-        // possibly split into individual actions for each property change
-        // PUT: api/TodoItems/5
-        //public void Put(int id, [FromBody] TodoItem value)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        [HttpPost, Route("api/TodoItems/{id}/Move")]
+        public async Task<IHttpActionResult> MoveToList(int id, 
+            [FromUri(Name = "fromList")] int fromListId, [FromUri(Name = "toList")] int toListId)
+        {
+            var user = await Manager.FindByNameAsync(User.Identity.Name);
+            if (user == null)
+                return InternalServerError();
+
+            try
+            {
+                itemService.MoveTodoToAnotherList(user.Id, fromListId, id, toListId);
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+
+            return Ok();
+        }
+
+        public async Task<IHttpActionResult> Put(int id, [FromBody] UpdatedTodoItem item)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = await Manager.FindByNameAsync(User.Identity.Name);
+            if (user == null)
+                return InternalServerError();
+
+            try
+            {
+                if (item.Text != null)
+                    itemService.RenameTodo(user.Id, item.List, id, item.Text);
+
+                if (item.Note != null)
+                    itemService.EditTodoNote(user.Id, item.List, id, item.Note);
+
+                if (item.IsCompleted.HasValue)
+                {
+                    if (item.IsCompleted.Value)
+                        itemService.CompleteTodo(user.Id, item.List, id);
+                    else
+                        itemService.MarkTodoAsUncompleted(user.Id, item.List, id);
+                }
+
+                if (item.DueDate.HasValue)
+                    itemService.SetTodoDueDate(user.Id, item.List, id, item.DueDate.Value);
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+
+            return Ok();
+        }
 
         // DELETE: api/TodoItems/5
         public async Task<IHttpActionResult> Delete(int id, [FromUri] int listId)
