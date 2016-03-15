@@ -15,7 +15,6 @@ namespace Epam.TodoManager.Infrastructure.EntityMapping
 
         static EntityMapper()
         {
-
             var config = new MapperConfiguration(configuration =>
             {
                 // EF -> Domain
@@ -70,12 +69,14 @@ namespace Epam.TodoManager.Infrastructure.EntityMapping
                             Text = todo.Text
                         }).ToList();
 
-                    return dbList;
+                        return dbList;
                     }).ToList();
 
                     return dbCollection;
                 });
             });
+
+            Mapper = config.CreateMapper();
         }
     }
 }
