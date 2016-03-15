@@ -20,46 +20,94 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
         }
 
         // Single or FirstOrDefault with custom exception
+        // Include todos when loading lists
         public TodoListCollection GetUserLists(int userId)
         {
-            DB.TodoListCollection dbListColection = context.Set<DB.TodoListCollection>().Single(list => list.Id == userId);
+            //DB.TodoListCollection dbListColection = context.Set<DB.TodoListCollection>().Include(collection => collection.Lists).Single(list => list.Id == userId);
 
-            return Mapper.Map<TodoListCollection>(dbListColection);
+            //return mapper.Map<TodoListCollection>(dbListColection);
+
+            return Find(userId);
         }
 
+        public override TodoListCollection Find(int key)
+        {
+            var listCollection = context.Set<DB.TodoListCollection>().Include(collection => collection.Lists).FirstOrDefault(collection => collection.Id == key);
+
+            if (listCollection == null)
+            {
+                return null;
+            }
+
+            return mapper.Map<TodoListCollection>(listCollection);
+        }
+
+        // Handle nonexisting users
         public override void Update(TodoListCollection entity)
         {
             DB.TodoListCollection updatedListCollection = mapper.Map<DB.TodoListCollection>(entity);
-            DB.TodoListCollection dbListCollection = context.Set<DB.TodoListCollection>().Find(entity.Id);
-
-            context.Entry(dbListCollection).State = EntityState.Detached;
-            context.Entry(updatedListCollection).State = EntityState.Modified;
+            DB.TodoListCollection dbListCollection = context.Set<DB.TodoListCollection>().Include(listCollection => listCollection.Lists).FirstOrDefault();
 
             IntKeyEntityEqualityComparer<DB.TodoList> comparer = new IntKeyEntityEqualityComparer<Model.TodoList>();
-            IEnumerable<DB.TodoList> deletedLists = dbListCollection.Lists.Except(updatedListCollection.Lists, comparer);
-            IEnumerable<DB.TodoList> addedLists = updatedListCollection.Lists.Except(dbListCollection.Lists, comparer);
-            IEnumerable<DB.TodoList> modifiedLists = updatedListCollection.Lists.Except(deletedLists).Except(addedLists, comparer);
+            IEnumerable<DB.TodoList> deletedLists = dbListCollection.Lists.Except(updatedListCollection.Lists, comparer).ToList();
+            IEnumerable<DB.TodoList> addedLists = updatedListCollection.Lists.Except(dbListCollection.Lists, comparer).ToList();
+            IEnumerable<DB.TodoList> modifiedLists = dbListCollection.Lists.Except(deletedLists, comparer).ToList();
 
-            // Todo items should be cascade deleted
             foreach (var list in deletedLists)
             {
-                context.Entry(list).State = EntityState.Deleted;
+                dbListCollection.Lists.Remove(list);
             }
 
             foreach (var list in addedLists)
             {
-                context.Entry(list).State = EntityState.Added;
+                list.ListCollection = null;
+                dbListCollection.Lists.Add(list);
             }
 
             foreach (var list in modifiedLists)
             {
+                var updatedList = updatedListCollection.Lists.Single(l => l.Id == list.Id);
                 context.Entry(list).State = EntityState.Modified;
 
-                foreach (var todo in list.Todos)
-                {
-                    context.Entry(todo).State = EntityState.Modified;
-                }
+                list.Title = updatedList.Title;
+
+                UpdateDbList(list, updatedList);
             }
-        }   
+        }
+
+        private void UpdateDbList(DB.TodoList dbList, DB.TodoList updatedList)
+        {
+            dbList.Title = updatedList.Title;
+
+            IntKeyEntityEqualityComparer<DB.Todo> todoComparer = new IntKeyEntityEqualityComparer<DB.Todo>();
+            IEnumerable<DB.Todo> deletedTodos = dbList.Todos.Except(updatedList.Todos, todoComparer);
+            IEnumerable<DB.Todo> addedTodos = updatedList.Todos.Except(dbList.Todos, todoComparer).ToList();
+            IEnumerable<DB.Todo> modifiedTodos = dbList.Todos.Except(deletedTodos, todoComparer).ToList();
+
+            foreach (var item in deletedTodos)
+            {
+                dbList.Todos.Remove(item);
+            }
+
+            foreach (var item in addedTodos)
+            {
+                item.List = null;
+                dbList.Todos.Add(item);
+            }
+
+            foreach (var item in modifiedTodos)
+            {
+                var updatedItem = updatedList.Todos.Single(todo => todo.Id == item.Id);
+
+                item.DueDate = updatedItem.DueDate;
+                item.IsCompleted = updatedItem.IsCompleted;
+                item.Note = updatedItem.Note;
+                item.Text = updatedItem.Text;
+                //item.List = null;
+                //item.ListId = updatedItem.ListId;
+
+                context.Entry(item).State = EntityState.Modified;
+            }
+        }
     }
 }
