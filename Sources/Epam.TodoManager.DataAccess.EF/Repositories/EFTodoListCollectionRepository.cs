@@ -107,6 +107,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             {
                 var updatedItem = updatedList.Todos.Single(todo => todo.Id == item.Id);
 
+                item.Index = updatedItem.Index;
                 item.DueDate = updatedItem.DueDate;
                 item.IsCompleted = updatedItem.IsCompleted;
                 item.Note = updatedItem.Note;
