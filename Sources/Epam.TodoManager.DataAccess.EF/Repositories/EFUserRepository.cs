@@ -52,6 +52,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             DB.User efEntity = mapper.Map<DB.User>(entity);
             efEntity.ListCollection = new DB.TodoListCollection();
             context.Set<DB.User>().Add(efEntity);
+            //context.SaveChanges();
         }
 
         public override void Update(User entity)

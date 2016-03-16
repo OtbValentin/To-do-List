@@ -25,7 +25,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Models
 
     public class UpdatedUser
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [EmailAddress]
         public string Email { get; set; }
         public string Name { get; set; }

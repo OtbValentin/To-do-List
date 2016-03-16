@@ -9,6 +9,7 @@ using Epam.TodoManager.DomainModel.Entities;
 using System.Net.Http;
 using Epam.TodoManager.Presentation.WebApi.Infrastructure;
 using AutoMapper;
+using Epam.TodoManager.Presentation.WebApi.Models;
 
 namespace Epam.TodoManager.Presentation.WebApi.Identity
 {
@@ -16,20 +17,26 @@ namespace Epam.TodoManager.Presentation.WebApi.Identity
     public class ApplicationUserStore : IUserStore<ApplicationUser, int>, IUserPasswordStore<ApplicationUser, int>
     {
         private IUserService userService;
-        private IMapper mapper;
 
         public ApplicationUserStore()
         {
             using (var resolver = new DependencyResolver())
             {
                 userService = resolver.GetService(typeof(IUserService)) as IUserService;
-                mapper = resolver.GetService(typeof(IMapper)) as IMapper;
             }
         }
 
         public Task CreateAsync(ApplicationUser user)
         {
-            userService.Create(user.UserName, user.Name, user.PasswordHash);
+            try
+            {
+                userService.Create(user.Name, user.UserName, user.PasswordHash);
+            }
+            catch (ArgumentException exception)
+            {
+                return Task.FromException(exception);
+            }
+
             return Task.CompletedTask;
         }
 
@@ -49,13 +56,13 @@ namespace Epam.TodoManager.Presentation.WebApi.Identity
         public Task<ApplicationUser> FindByIdAsync(int userId)
         {
             var user = userService.Find(userId);
-            return Task.FromResult(mapper.Map<ApplicationUser>(user));
+            return Task.FromResult(user.ToAppUser());
         }
 
         public Task<ApplicationUser> FindByNameAsync(string userName)
         {
             var user = userService.Find(userName);
-            return Task.FromResult(mapper.Map<ApplicationUser>(user));
+            return Task.FromResult(user.ToAppUser());
         }
 
         public Task<string> GetPasswordHashAsync(ApplicationUser user)

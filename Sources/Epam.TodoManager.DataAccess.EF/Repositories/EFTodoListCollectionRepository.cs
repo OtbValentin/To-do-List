@@ -33,10 +33,13 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
         public override TodoListCollection Find(int key)
         {
             var listCollection = context.Set<DB.TodoListCollection>().Include(collection => collection.Lists).FirstOrDefault(collection => collection.Id == key);
-
             if (listCollection == null)
-            {
                 return null;
+
+            foreach (var list in listCollection.Lists)
+            {
+                var populatedList = context.Set<DB.TodoList>().Include(dbList => dbList.Todos).FirstOrDefault(dbList => dbList.Id == list.Id);
+                list.Todos = populatedList.Todos;
             }
 
             return mapper.Map<TodoListCollection>(listCollection);

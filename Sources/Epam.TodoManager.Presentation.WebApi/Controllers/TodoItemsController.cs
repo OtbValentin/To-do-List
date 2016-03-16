@@ -3,6 +3,7 @@ using Epam.TodoManager.BusinessLogic.TodoListService;
 using Epam.TodoManager.BusinessLogic.TodoService;
 using Epam.TodoManager.Presentation.WebApi.Identity;
 using Epam.TodoManager.Presentation.WebApi.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -19,48 +20,36 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
     {
         private ITodoListService listService;
         private ITodoService itemService;
-        private IMapper mapper;
-        private ApplicationUserManager Manager =>
-            Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         public TodoItemsController(ITodoListService listService, ITodoService itemService, IMapper mapper)
         {
             this.listService = listService;
             this.itemService = itemService;
-            this.mapper = mapper;
         }
 
         // GET: api/TodoItems
-        public async Task<IHttpActionResult> Get([FromUri] int listId)
+        public IHttpActionResult Get([FromUri] int listId)
         {
-            var user = await Manager.FindByNameAsync(User.Identity.Name);
-            if (user == null)
-                return InternalServerError();
-
             IEnumerable<DomainModel.Entities.Todo> items;
             try
             {
-                items = listService.GetTodoList(user.Id, listId);
+                items = listService.GetTodoList(User.Identity.GetUserId<int>(), listId);
             }
             catch (ArgumentException exception)
             {
                 return BadRequest(exception.Message);
             }
 
-            return Json(items.Select(item => mapper.Map<TodoItem>(item)));
+            return Json(items.Select(item => item.ToApiModel()));
         }
 
         // GET: api/TodoItems/5
-        public async Task<IHttpActionResult> Get(int id, [FromUri] int listId)
+        public IHttpActionResult Get(int id, [FromUri] int listId)
         {
-            var user = await Manager.FindByNameAsync(User.Identity.Name);
-            if (user == null)
-                return InternalServerError();
-
             IEnumerable<DomainModel.Entities.Todo> items;
             try
             {
-                items = listService.GetTodoList(user.Id, listId);
+                items = listService.GetTodoList(User.Identity.GetUserId<int>(), listId);
             }
             catch (ArgumentException exception)
             {
@@ -75,18 +64,14 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
         }
 
         // POST: api/TodoItems
-        public async Task<IHttpActionResult> Post([FromBody] NewTodoItem newItem)
+        public IHttpActionResult Post([FromBody] NewTodoItem newItem)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = await Manager.FindByNameAsync(User.Identity.Name);
-            if (user == null)
-                return InternalServerError();
-
             try
             {
-                listService.AddTodo(user.Id, newItem.List, newItem.Text);
+                listService.AddTodo(User.Identity.GetUserId<int>(), newItem.List, newItem.Text);
             }
             catch (ArgumentException exception)
             {
@@ -97,16 +82,12 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
         }
 
         [HttpPost, Route("api/TodoItems/{id}/Move")]
-        public async Task<IHttpActionResult> MoveToList(int id, 
+        public IHttpActionResult MoveToList(int id, 
             [FromUri(Name = "fromList")] int fromListId, [FromUri(Name = "toList")] int toListId)
         {
-            var user = await Manager.FindByNameAsync(User.Identity.Name);
-            if (user == null)
-                return InternalServerError();
-
             try
             {
-                itemService.MoveTodoToAnotherList(user.Id, fromListId, id, toListId);
+                itemService.MoveTodoToAnotherList(User.Identity.GetUserId<int>(), fromListId, id, toListId);
             }
             catch (ArgumentException exception)
             {
@@ -116,33 +97,31 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
             return Ok();
         }
 
-        public async Task<IHttpActionResult> Put(int id, [FromBody] UpdatedTodoItem item)
+        public IHttpActionResult Put(int id, [FromBody] UpdatedTodoItem item)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = await Manager.FindByNameAsync(User.Identity.Name);
-            if (user == null)
-                return InternalServerError();
+            var userId = User.Identity.GetUserId<int>();
 
             try
             {
                 if (item.Text != null)
-                    itemService.RenameTodo(user.Id, item.List, id, item.Text);
+                    itemService.RenameTodo(userId, item.List, id, item.Text);
 
                 if (item.Note != null)
-                    itemService.EditTodoNote(user.Id, item.List, id, item.Note);
+                    itemService.EditTodoNote(userId, item.List, id, item.Note);
 
                 if (item.IsCompleted.HasValue)
                 {
                     if (item.IsCompleted.Value)
-                        itemService.CompleteTodo(user.Id, item.List, id);
+                        itemService.CompleteTodo(userId, item.List, id);
                     else
-                        itemService.MarkTodoAsUncompleted(user.Id, item.List, id);
+                        itemService.MarkTodoAsUncompleted(userId, item.List, id);
                 }
 
                 if (item.DueDate.HasValue)
-                    itemService.SetTodoDueDate(user.Id, item.List, id, item.DueDate.Value);
+                    itemService.SetTodoDueDate(userId, item.List, id, item.DueDate.Value);
             }
             catch (ArgumentException exception)
             {
@@ -153,15 +132,11 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
         }
 
         // DELETE: api/TodoItems/5
-        public async Task<IHttpActionResult> Delete(int id, [FromUri] int listId)
+        public IHttpActionResult Delete(int id, [FromUri] int listId)
         {
-            var user = await Manager.FindByNameAsync(User.Identity.Name);
-            if (user == null)
-                return InternalServerError();
-
             try
             {
-                listService.RemoveTodo(user.Id, listId, id);
+                listService.RemoveTodo(User.Identity.GetUserId<int>(), listId, id);
             }
             catch (ArgumentException exception)
             {

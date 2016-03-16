@@ -9,6 +9,7 @@ using Epam.TodoManager.DataAccess.Interface.Repositories;
 using Epam.TodoManager.Infrastructure.EntityMapping;
 using System.Data.Entity;
 using AutoMapper;
+using Ninject.Web.Common;
 
 namespace Epam.TodoManager.Infrastructure.DependencyInjection
 {
@@ -17,15 +18,15 @@ namespace Epam.TodoManager.Infrastructure.DependencyInjection
         public override void Load()
         {
             //BL
-            Bind<IUserService>().To<UserService>();
-            Bind<ITodoService>().To<TodoService>();
-            Bind<ITodoListService>().To<TodoListService>();
+            Bind<IUserService>().To<UserService>().InRequestScope();
+            Bind<ITodoService>().To<TodoService>().InRequestScope();
+            Bind<ITodoListService>().To<TodoListService>().InRequestScope();
 
             //DA
-            Bind<IUserRepository>().To<EFUserRepository>();
-            Bind<ITodoListCollectionRepository>().To<EFTodoListCollectionRepository>();
-            Bind<IUnitOfWork>().To<EFUnitOfWork>();
-            Bind<DbContext>().To<ApplicationDbContext>();
+            Bind<IUserRepository>().To<EFUserRepository>().InRequestScope();
+            Bind<ITodoListCollectionRepository>().To<EFTodoListCollectionRepository>().InRequestScope();
+            Bind<IUnitOfWork>().To<EFUnitOfWork>().InRequestScope();
+            Bind<DbContext>().To<ApplicationDbContext>().InSingletonScope();
 
             //Utils
             Bind<IMapper>().ToConstant(EntityMapper.Mapper);

@@ -45,7 +45,7 @@ namespace Epam.TodoManager.DomainModel.Entities
 
         public void AddTodo(string task)
         {
-            todoItems.Add(new Todo(0, task, false, string.Empty, DateTime.Now));
+            todoItems.Add(new Todo(0, task, false, string.Empty, null));
         }
 
         public void RemoveTodo(int todoId)
