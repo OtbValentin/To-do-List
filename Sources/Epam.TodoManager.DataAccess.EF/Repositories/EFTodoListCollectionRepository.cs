@@ -32,7 +32,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
 
         public override TodoListCollection Find(int key)
         {
-            var listCollection = context.Set<DB.TodoListCollection>().Include(collection => collection.Lists).FirstOrDefault(collection => collection.Id == key);
+            var listCollection = context.Set<DB.TodoListCollection>().Include(collection => collection.Lists).Include("Lists.Todos").FirstOrDefault(collection => collection.Id == key);
 
             if (listCollection == null)
             {
