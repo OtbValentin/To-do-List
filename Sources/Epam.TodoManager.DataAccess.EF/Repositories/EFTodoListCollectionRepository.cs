@@ -53,15 +53,19 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             IEnumerable<DB.TodoList> addedLists = updatedListCollection.Lists.Except(dbListCollection.Lists, comparer).ToList();
             IEnumerable<DB.TodoList> modifiedLists = dbListCollection.Lists.Except(deletedLists, comparer).ToList();
 
-            foreach (var list in deletedLists)
+            if (deletedLists.Count() > 0)
             {
-                dbListCollection.Lists.Remove(list);
+                context.Set<DB.TodoList>().RemoveRange(deletedLists);
             }
 
             foreach (var list in addedLists)
             {
                 list.ListCollection = null;
-                dbListCollection.Lists.Add(list);
+            }
+
+            if (addedLists.Count() > 0)
+            {
+                context.Set<DB.TodoList>().AddRange(addedLists);
             }
 
             foreach (var list in modifiedLists)
@@ -84,15 +88,19 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             IEnumerable<DB.Todo> addedTodos = updatedList.Todos.Except(dbList.Todos, todoComparer).ToList();
             IEnumerable<DB.Todo> modifiedTodos = dbList.Todos.Except(deletedTodos, todoComparer).ToList();
 
-            foreach (var item in deletedTodos)
+            if (deletedTodos.Count() > 0)
             {
-                dbList.Todos.Remove(item);
+                context.Set<DB.Todo>().RemoveRange(deletedTodos);
             }
 
             foreach (var item in addedTodos)
             {
                 item.List = null;
-                dbList.Todos.Add(item);
+            }
+
+            if (addedTodos.Count() > 0)
+            {
+                context.Set<DB.Todo>().AddRange(addedTodos);
             }
 
             foreach (var item in modifiedTodos)
@@ -103,8 +111,6 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
                 item.IsCompleted = updatedItem.IsCompleted;
                 item.Note = updatedItem.Note;
                 item.Text = updatedItem.Text;
-                //item.List = null;
-                //item.ListId = updatedItem.ListId;
 
                 context.Entry(item).State = EntityState.Modified;
             }
