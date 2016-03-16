@@ -33,13 +33,17 @@ namespace Epam.TodoManager.Infrastructure.EntityMapping
 
                 // Domain -> EF
                 configuration.CreateMap<Domain.User, DB.User>().ConvertUsing((Domain.User domainUser) =>
-                    new DB.User()
+                {
+                    var newUser = new DB.User()
                     {
                         Id = domainUser.Id,
                         PasswordHash = domainUser.PasswordHash,
                         Email = domainUser.Email,
                         Profile = new DB.UserProfile() { Id = domainUser.Profile.Id, Name = domainUser.Profile.Name, RegisterDate = domainUser.Profile.RegisterDate }
-                    });
+                    };
+                    newUser.Profile.User = newUser;
+                    return newUser;
+                });
 
                 configuration.CreateMap<Domain.TodoListCollection, DB.TodoListCollection>().ConvertUsing((Domain.TodoListCollection collection) =>
                 {

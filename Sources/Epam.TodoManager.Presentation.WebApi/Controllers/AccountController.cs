@@ -2,6 +2,7 @@
 using Epam.TodoManager.BusinessLogic.UserService;
 using Epam.TodoManager.Presentation.WebApi.Identity;
 using Epam.TodoManager.Presentation.WebApi.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -16,22 +17,20 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
     [Authorize]
     public class AccountController : ApiController
     {
-        private IMapper mapper;
         private ApplicationUserManager Manager =>
             Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
         private IUserService userService;
 
-        public AccountController(IUserService service, IMapper mapper)
+        public AccountController(IUserService service)
         {
             this.userService = service;
-            this.mapper = mapper;
         }
 
         // GET: api/Account
-        public User Get()
+        public async Task<User> Get()
         {
-            var user = Manager.FindByNameAsync(User.Identity.Name);
-            return mapper.Map<User>(user);
+            var user = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
+            return user.ToApiModel();
         }
 
         // POST: api/Account
@@ -41,7 +40,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var newUser = mapper.Map<ApplicationUser>(value);
+            var newUser = value.ToAppUser();
             var result = await Manager.CreateAsync(newUser, value.Password);
 
             if (!result.Succeeded)
@@ -53,24 +52,33 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
         // PUT: api/Account/5
         public async Task<IHttpActionResult> Put(int id, [FromBody] UpdatedUser value)
         {
-            var existingUser = await Manager.FindByNameAsync(User.Identity.Name);
+            var existingUser = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
             if (existingUser == null)
                 return InternalServerError();
 
-            if (value.Id != existingUser.Id || id != existingUser.Id)
-                return Unauthorized();
+            if (value.Id.HasValue)
+                if (value.Id != existingUser.Id || id != existingUser.Id)
+                    return Unauthorized();
 
-            if (value.Name != existingUser.UserName)
-                userService.ChangeName(id, value.Name);
-            if (value.Email != existingUser.Name)
-                userService.ChangeEmail(id, value.Email);
-            if (value.Password != null)
+            try
             {
-                var validationResult = await Manager.PasswordValidator.ValidateAsync(value.Password);
-                if (!validationResult.Succeeded)
-                    return BadRequest(AggregateErrors(validationResult.Errors));
+                if (value.Name != null && value.Name != existingUser.UserName)
+                    userService.ChangeName(id, value.Name);
+                if (value.Email != null && value.Email != existingUser.Name)
+                    userService.ChangeEmail(id, value.Email);
+                if (value.Password != null)
+                {
+                    var validationResult = await Manager.PasswordValidator.ValidateAsync(value.Password);
+                    if (!validationResult.Succeeded)
+                        return BadRequest(AggregateErrors(validationResult.Errors));
 
-                userService.ChangePassword(id, value.Password);
+                    var passwordHash = Manager.PasswordHasher.HashPassword(value.Password);
+                    userService.ChangePassword(id, passwordHash);
+                }
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
             }
 
             return Ok();

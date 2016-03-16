@@ -142,6 +142,7 @@
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\ApplicationUserStore.cs" />
     <Compile Include="Infrastructure\DependencyResolver.cs" />
+    <Compile Include="Models\Mappers.cs" />
     <Compile Include="Models\TodoItem.cs" />
     <Compile Include="Models\TodoList.cs" />
     <Compile Include="Models\User.cs" />
