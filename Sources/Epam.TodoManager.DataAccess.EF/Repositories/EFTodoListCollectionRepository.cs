@@ -80,7 +80,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             dbList.Title = updatedList.Title;
 
             IntKeyEntityEqualityComparer<DB.Todo> todoComparer = new IntKeyEntityEqualityComparer<DB.Todo>();
-            IEnumerable<DB.Todo> deletedTodos = dbList.Todos.Except(updatedList.Todos, todoComparer);
+            IEnumerable<DB.Todo> deletedTodos = dbList.Todos.Except(updatedList.Todos, todoComparer).ToList();
             IEnumerable<DB.Todo> addedTodos = updatedList.Todos.Except(dbList.Todos, todoComparer).ToList();
             IEnumerable<DB.Todo> modifiedTodos = dbList.Todos.Except(deletedTodos, todoComparer).ToList();
 
