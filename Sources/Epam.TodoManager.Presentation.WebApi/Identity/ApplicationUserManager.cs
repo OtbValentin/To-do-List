@@ -20,6 +20,10 @@ namespace Epam.TodoManager.Presentation.WebApi.Identity
             var manager = new ApplicationUserManager(new ApplicationUserStore());
 
             //TODO: configure Identity policies
+            manager.UserValidator = new UserValidator<ApplicationUser, int>(manager)
+            {
+                AllowOnlyAlphanumericUserNames = false
+            };
 
             return manager;
         }
