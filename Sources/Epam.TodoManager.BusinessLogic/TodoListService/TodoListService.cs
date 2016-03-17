@@ -174,11 +174,6 @@ namespace Epam.TodoManager.BusinessLogic.TodoListService
                 throw new ArgumentException("A specified user doesn't exist", nameof(userId));
             }
 
-            if (index < 0 || index >= listCollection.Count)
-            {
-                throw new ArgumentOutOfRangeException(nameof(index));
-            }
-
             TodoList todoList = listCollection.FirstOrDefault(list => list.Id == listId);
 
             if (todoList == null)
@@ -186,8 +181,13 @@ namespace Epam.TodoManager.BusinessLogic.TodoListService
                 throw new ArgumentException("A specified user doesn't have a list with the specified id", nameof(listId));
             }
 
-            Todo todo = todoList.FirstOrDefault(item => item.Id == todoId);
+            if (index < 0 || index >= todoList.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
 
+            Todo todo = todoList.FirstOrDefault(item => item.Id == todoId);
+            
             if (todo == null)
             {
                 throw new ArgumentException("A specified list doesn't contain the specified todo", nameof(listId));
