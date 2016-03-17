@@ -18,6 +18,21 @@ body, html {
     display: block;
 }
 
+#wunderlist-base *::-webkit-scrollbar {
+    width: 6px !important;
+}
+ 
+#wunderlist-base *::-webkit-scrollbar-track {
+    margin-top: 14px;
+    margin-bottom: 14px;
+    background-color: transparent;
+}
+ 
+#wunderlist-base *::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: rgba(102,137,100,0.7);
+}
+
     #wunderlist-base:before {
         content: '';
         background-image: url("06.jpg") !important;
@@ -50,10 +65,18 @@ body, html {
     height: 100%;
 }
 
+#lists .lists-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+}
+
 * {
     text-decoration: none;
     padding: 0;
     margin: 0;
+    user-select: none;
 }
 
 #wunderlist-base #search-toolbar {
@@ -151,7 +174,10 @@ a {
 }
 
 .collapsed .user-name,
-.collapsed .user-arrow{
+.collapsed .user-arrow,
+.collapsed .lists-collection,
+.collapsed .sidebarActions-label,
+.collapsed .search-icon-wrapper{
     display: none;
 }
 
@@ -164,17 +190,17 @@ a {
     display: flex;
 }
 
-#search-toolbar .list-toggle {
+#search-toolbar .search-input-wrapper {
+    display: block;
+    flex: 1;
+}
+
+#search-toolbar .search-icon-wrapper, #search-toolbar .list-toggle {
     width: 20px;
     height: 20px;
     fill: #fff;
     padding: 13px 11px 12px 11px;
     flex-shrink: 0;
-}
-
-#search-toolbar .search-input-wrapper {
-    display: block;
-    flex: 1;
 }
 
 #search-toolbar .search-input[type=text] {
@@ -285,4 +311,145 @@ input, textarea, keygen, select, button {
 
 #user-toolbar svg {
     fill: #737272;
+}
+
+#lists .lists-scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.lists-collection{
+    flex-shrink: 0;
+}
+
+sidebarItem {
+    overflow: hidden;
+    height: 38px;
+    z-index: 15;
+    position: relative;
+}
+
+.sidebarItem a {
+    box-sizing: border-box;
+    height: 38px;
+    color: #1c1c1c;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.sidebarItem.active a {
+    background: #e0eefa;
+    color: #262626;
+    text-shadow: 0 1px 1px rgba(0,0,0,0);
+}
+
+.sidebarItem .list-icon {
+    height: 20px;
+    width: 20px;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-align: center;
+}
+
+.sidebarItem a .title {
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #262626;
+    flex: 1;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.sidebarItem.active a .count {
+     color: rgba(38,38,38,0.75);
+}
+
+.sidebarItem a .count {
+    color: #bdbcbb;
+    font-size: 12px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.sidebarItem a .overdue-count {
+    font-size: 12px;
+    display: none;
+    color: #d74e48;
+    font-weight: bold;
+    background: rgba(215,78,72,0.1);
+    padding: 2px 6px;
+    margin-left: 4px;
+    margin-right: 4px;
+    border-radius: 12px;
+}
+
+.sidebarItem .list-icon svg.list, .sidebarItem .list-icon svg.shared {
+    fill: #b9b9b9;
+}
+
+.sidebarItem.active.list a .list-options {
+    display: block;
+}
+
+.sidebarItem a .list-options {
+    cursor: pointer;
+    display: none;
+    opacity: .6;
+    filter: alpha(opacity=60);
+    z-index: 25;
+    height: 20px;
+    width: 20px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#lists.collapsed .moreButton {
+    display: block;
+}
+
+#lists .moreButton {
+    display: none;
+    box-sizing: border-box;
+    height: 38px;
+    padding-top: 9px;
+    fill: #328ad6;
+    user-select: none;
+    text-align: center;
+}
+
+.new-list-dropzone {
+    flex: 1;
+}
+
+.sidebarActions {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    background: #f7f7f7;
+}
+
+.sidebarActions-addList {
+    display: flex;
+    height: 42px;
+    align-items: center;
+    font-size: 15px;
+    color: #328ad6;
+    fill: #328ad6;
+}
+
+.sidebarActions-icon {
+    height: 20px;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+.sidebarActions-label {
+    flex: 1;
 }
