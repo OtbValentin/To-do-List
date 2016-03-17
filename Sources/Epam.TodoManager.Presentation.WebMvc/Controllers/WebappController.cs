@@ -9,7 +9,7 @@ namespace Epam.TodoManager.Presentation.WebMvc.Controllers
     public class WebappController : Controller
     {
         // GET: Webapp
-        public ActionResult Index()
+        public ActionResult Inbox()
         {
             return View();
         }
