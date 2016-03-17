@@ -76,6 +76,7 @@ body, html {
     text-decoration: none;
     padding: 0;
     margin: 0;
+    -webkit-user-select: none;
     user-select: none;
 }
 
@@ -127,25 +128,30 @@ a {
     text-decoration: none;
 }
 
-.action-bar {
+.actionBar {
+    opacity: 1;
+    filter: none;
+    box-sizing: border-box;
+    padding: 0 !important;
+    transition: opacity 200ms ease-in;
     position: relative;
-    display: block;
-    height: 100%;
-    text-align: center;
 }
 
-    .action-bar a {
-        display: inline-block;
-        padding: 6px;
-        height: 33px;
-        line-height: 33px;
-        min-width: 40px;
-        color: #fff;
-        font-size: 14px;
-        vertical-align: middle;
-    }
+.actionBar-inner {
+    text-align: center;
+    height: 45px;
+}
 
-        .action-bar a:hover {
+.actionBar-inner a {
+    color: #fff;
+    display: inline-block;
+    height: 33px;
+    line-height: 33px;
+    min-width: 40px;
+    padding: 6px;
+}
+
+        .actionBar a:hover {
             background: #5b7a59;
         }
 
@@ -161,12 +167,6 @@ a {
 
     /*height: calc(100% - 45px);
     max-height: calc(100% - 45px);*/
-}
-
-.task-item{
-    height: 47px;
-    list-style: none;
-    margin-top: 3px;
 }
 
 .collapsed{
@@ -452,4 +452,227 @@ sidebarItem {
 
 .sidebarActions-label {
     flex: 1;
+}
+
+#wunderlist-base .addTask {
+    background: rgba(102,137,100,0.75);
+    overflow: hidden;
+    position: relative;
+    margin: 14px 0;
+    padding: 0 12px;
+    border-radius: 3px;
+}
+
+#wunderlist-base .addTask .plus-wrapper {
+    left: 10px;
+    top: 14px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 13px;
+    opacity: .7;
+    filter: alpha(opacity=70);
+}
+
+#wunderlist-base .addTask .plus-wrapper svg {
+    fill: #fff;
+}
+
+#wunderlist-base .addTask .addTask-input, #wunderlist-base .addTask .nlp-feedback {
+    transition: none;
+    font-size: 16px;
+    padding: 13px 8px 14px 28px;
+}
+
+#wunderlist-base .addTask .addTask-input {
+    color: #fff;
+}
+
+#wunderlist-base [type=text], #wunderlist-base [type=email], #wunderlist-base [type=password], #wunderlist-base .input-fake {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    font-family: $wlFonts;
+    font-weight: 500;
+    font-size: 15px;
+    color: #262626;
+    border: none;
+    background: #fff;
+    transition: all 0.15s ease-in-out;
+    box-shadow: inset 0 0 0 1px #d6d6d6;
+    border-radius: 3px;
+}
+
+#wunderlist-base .addTask .nlp-feedback {
+    position: absolute;
+    top: 0;
+    color: rgba(255,255,255,0);
+    pointer-events: none;
+    white-space: pre;
+}
+
+.positionHelper {
+    position: absolute;
+    visibility: hidden;
+    width: auto;
+    white-space: nowrap;
+    font-size: 16px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    margin-left: 25px;
+}
+
+.end-positionHelper-target {
+    position: absolute;
+    visibility: hidden;
+    width: 5px;
+    right: 120px;
+    height: 20px;
+}
+
+#wunderlist-base #tasks #task-items .task-list {
+    padding-bottom: 72px;
+}
+
+.taskItem {
+    height: 47px;
+    list-style: none;
+}
+
+.taskItem-body {
+    background: #fff;
+    list-style: none;
+    height: 46px;
+    border-radius: 3px;
+    display: flex;
+    padding-left: 4px;
+    padding-right: 4px;
+    align-items: center;
+    position: relative;
+}
+
+.taskItem-body .taskItem-checkboxWrapper {
+    padding-left: 8px;
+    padding-right: 8px;
+    height: 20px;
+}
+
+.taskItem-titleWrapper {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 15px;
+    font-weight: 500;
+    color: #262626;
+    cursor: default;
+    position: relative;
+    top: -1px;
+    flex: 1;
+}
+
+#wunderlist-base .hidden {
+    display: none !important;
+}
+
+.taskItem-duedate, .taskItem-assign {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.taskItem-duedate {
+    font-size: 12px;
+    color: #328ad6;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#wunderlist-base .transparent {
+    opacity: 0 !important;
+    filter: alpha(opacity=0) !important;
+    pointer-events: none;
+}
+
+.taskItem-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+    transition: opacity 225ms ease;
+    pointer-events: none;
+}
+
+#wunderlist-base #tasks .heading {
+    margin-top: 20px !important;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    word-break: break-word;
+    font-size: 11px;
+    color: #fff;
+    position: relative;
+}
+
+#wunderlist-base #tasks .heading a {
+    background: rgba(102,137,100,0.75);
+}
+
+#wunderlist-base #tasks .heading a {
+    color: #fff;
+    padding: 3px 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    display: inline-block;
+    box-sizing: border-box;
+    line-height: 16px;
+    border-radius: 3px;
+}
+
+#tasks .tasks-404, #tasks .tasks-404 {
+    border-radius: 10px;
+    margin: 0 25%;
+    background: rgba(0,0,0,0.25);
+}
+
+#wunderlist-base .main-interface #detail {
+    width: 0;
+}
+
+.checkBox .detail-check, .checkBox .task-check {
+    stroke: rgba(0,0,0,0.35);
+}
+
+
+/*content*/
+
+#wunderlist-base .main-interface #detail.animated {
+    -webkit-transition: 100ms width ease;
+    -moz-transition: 100ms width ease;
+    -o-transition: 100ms width ease;
+    -ms-transition: 100ms width ease;
+    transition: 100ms width ease;
+}
+
+#wunderlist-base .main-interface.detail-visible #detail {
+    width: 367px;
+}
+
+#wunderlist-base .main-interface #lists, #wunderlist-base .main-interface #tasks, #wunderlist-base .main-interface #detail {
+    overflow: hidden;
+}
+
+#wunderlist-base .main-interface #detail {
+    width: 0;
+}
+
+@media (max-width: 1000px)
+<style>…</style>
+#wunderlist-base #detail {
+    position: absolute;
+    z-index: 1;
 }

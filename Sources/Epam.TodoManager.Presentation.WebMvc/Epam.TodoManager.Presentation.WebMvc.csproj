@@ -136,7 +136,7 @@
     <Content Include="Content\styles\account\common.css" />
     <Content Include="Content\styles\account\login.css" />
     <Content Include="Content\styles\account\signup.css" />
-    <Content Include="favicon.ico" />
+    <Content Include="Content\styles\webapp\inbox.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -154,12 +154,16 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Webapp\06.jpg" />
-    <Content Include="Views\Webapp\angular.min.js" />
-    <Content Include="Views\Webapp\inbox.html" />
-    <Content Include="Views\Webapp\jquery-2.2.1.min.js" />
-    <Content Include="Views\Webapp\style.css" />
-    <Content Include="Views\Webapp\user-icon.png" />
+    <Content Include="Content\images\06.jpg" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\jquery-2.2.1.min.js" />
+    <Content Include="Content\images\user-icon.png" />
+    <Content Include="Views\Trash\06.jpg" />
+    <Content Include="Views\Trash\angular.min.js" />
+    <Content Include="Views\Trash\inbox.html" />
+    <Content Include="Views\Trash\jquery-2.2.1.min.js" />
+    <Content Include="Views\Trash\style.css" />
+    <Content Include="Views\Trash\user-icon.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -176,13 +180,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Webapp\View.cshtml" />
     <Content Include="Views\Webapp\inbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Trash\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
