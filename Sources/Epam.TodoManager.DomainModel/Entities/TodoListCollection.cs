@@ -43,7 +43,6 @@ namespace Epam.TodoManager.DomainModel.Entities
 
         public void RemoveTodoList(int listId)
         {
-            // Fix removing with id
             TodoList list = todoLists.FirstOrDefault(item => item.Id == listId);
             todoLists.Remove(list);
         }

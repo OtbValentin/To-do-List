@@ -19,14 +19,8 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
 
         }
 
-        // Single or FirstOrDefault with custom exception
-        // Include todos when loading lists
         public TodoListCollection GetUserLists(int userId)
         {
-            //DB.TodoListCollection dbListColection = context.Set<DB.TodoListCollection>().Include(collection => collection.Lists).Single(list => list.Id == userId);
-
-            //return mapper.Map<TodoListCollection>(dbListColection);
-
             return Find(userId);
         }
 
@@ -42,7 +36,6 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             return mapper.Map<TodoListCollection>(listCollection);
         }
 
-        // Handle nonexisting users
         public override void Update(TodoListCollection entity)
         {
             DB.TodoListCollection updatedListCollection = mapper.Map<DB.TodoListCollection>(entity);
