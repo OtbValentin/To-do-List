@@ -52,7 +52,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
                 return BadRequest(exception.Message);
             }
 
-            return Json(list.ToApiModel());
+            return Json(list.ToPopulatedApiModel());
         }
 
         // POST: api/TodoLists

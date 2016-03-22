@@ -11,4 +11,11 @@ namespace Epam.TodoManager.Presentation.WebApi.Models
         public string Title { get; set; }
         public IList<int> TodoItems { get; set; }
     }
+
+    public class PopulatedTodoList
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public IList<TodoItem> TodoItems { get; set; }
+    }
 }
