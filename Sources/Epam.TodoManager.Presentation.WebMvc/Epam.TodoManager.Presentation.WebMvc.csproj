@@ -129,6 +129,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bower_components\angular-cookies\angular-cookies.js" />
+    <Content Include="bower_components\angular-cookies\angular-cookies.min.js" />
+    <Content Include="bower_components\angular-cookies\index.js" />
+    <Content Include="bower_components\angular-oauth2\dist\angular-oauth2.js" />
+    <Content Include="bower_components\angular-oauth2\dist\angular-oauth2.min.js" />
+    <Content Include="bower_components\angular-oauth2\src\angular-oauth2.js" />
+    <Content Include="bower_components\angular-oauth2\src\config\oauth-config.js" />
+    <Content Include="bower_components\angular-oauth2\src\interceptors\oauth-interceptor.js" />
+    <Content Include="bower_components\angular-oauth2\src\providers\oauth-provider.js" />
+    <Content Include="bower_components\angular-oauth2\src\providers\oauth-token-provider.js" />
+    <Content Include="bower_components\angular\angular-csp.css" />
+    <Content Include="bower_components\angular\angular.js" />
+    <Content Include="bower_components\angular\angular.min.js" />
+    <Content Include="bower_components\angular\index.js" />
+    <Content Include="bower_components\query-string\query-string.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\favicon.ico" />
@@ -136,12 +151,43 @@
     <Content Include="Content\styles\account\common.css" />
     <Content Include="Content\styles\account\login.css" />
     <Content Include="Content\styles\account\signup.css" />
-    <Content Include="Content\styles\webapp\inbox.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular-cookies.js" />
+    <Content Include="Scripts\angular-cookies.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\controllers\LoginController.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-cookies.min.js.map" />
+    <Content Include="bower.json" />
+    <Content Include="bower_components\angular-cookies\.bower.json" />
+    <Content Include="bower_components\angular-cookies\angular-cookies.min.js.map" />
+    <Content Include="bower_components\angular-cookies\bower.json" />
+    <Content Include="bower_components\angular-cookies\package.json" />
+    <Content Include="bower_components\angular-cookies\README.md" />
+    <Content Include="bower_components\angular-oauth2\.bower.json" />
+    <Content Include="bower_components\angular-oauth2\bower.json" />
+    <Content Include="bower_components\angular-oauth2\CHANGELOG.md" />
+    <Content Include="bower_components\angular-oauth2\LICENSE" />
+    <Content Include="bower_components\angular-oauth2\README.md" />
+    <Content Include="bower_components\angular\.bower.json" />
+    <Content Include="bower_components\angular\angular.min.js.gzip" />
+    <Content Include="bower_components\angular\angular.min.js.map" />
+    <Content Include="bower_components\angular\bower.json" />
+    <Content Include="bower_components\angular\package.json" />
+    <Content Include="bower_components\angular\README.md" />
+    <Content Include="bower_components\query-string\.bower.json" />
+    <Content Include="bower_components\query-string\bower.json" />
+    <Content Include="bower_components\query-string\license" />
+    <Content Include="bower_components\query-string\readme.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -184,7 +230,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\styles\webapp\" />
     <Folder Include="Models\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
