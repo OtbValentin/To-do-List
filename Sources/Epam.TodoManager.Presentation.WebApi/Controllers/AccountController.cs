@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Epam.TodoManager.BusinessLogic.UserService;
+﻿using Epam.TodoManager.BusinessLogic.UserService;
 using Epam.TodoManager.Presentation.WebApi.Identity;
 using Epam.TodoManager.Presentation.WebApi.Models;
 using Microsoft.AspNet.Identity;
@@ -7,7 +6,6 @@ using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;

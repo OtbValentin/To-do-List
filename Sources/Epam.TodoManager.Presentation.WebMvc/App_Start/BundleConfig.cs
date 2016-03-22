@@ -23,6 +23,10 @@ namespace Epam.TodoManager.Presentation.WebMvc
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/webapp").Include(
+                "~/Scripts/jquery-2.2.1.min.js",
+                "~/Scripts/angular.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
@@ -34,6 +38,9 @@ namespace Epam.TodoManager.Presentation.WebMvc
             bundles.Add(new StyleBundle("~/Content/css/signup").Include(
                "~/Content/styles/account/common.css",
                "~/Content/styles/account/signup.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css/inbox").Include(
+                "~/Content/styles/webapp/inbox.css"));
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Epam.TodoManager.DataAccess.EF.Model
         {
             modelBuilder.Entity<User>().HasOptional<UserProfile>(user => user.Profile).WithRequired(profile => profile.User).WillCascadeOnDelete(true);
             modelBuilder.Entity<User>().HasOptional<TodoListCollection>(user => user.ListCollection).WithRequired(collection => collection.User).WillCascadeOnDelete(true);
+            modelBuilder.Entity<TodoList>().HasRequired<TodoListCollection>(list => list.ListCollection).WithMany(collection => collection.Lists).WillCascadeOnDelete(true);
+            modelBuilder.Entity<Todo>().HasRequired<TodoList>(todo => todo.List).WithMany(list => list.Todos).WillCascadeOnDelete(true);
 
             base.OnModelCreating(modelBuilder);
         }
