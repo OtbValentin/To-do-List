@@ -1,0 +1,6 @@
+{
+  "name": "todoListMvc",
+  "dependencies": {
+    "angular-oauth2": "~4.0.0"
+  }
+}
