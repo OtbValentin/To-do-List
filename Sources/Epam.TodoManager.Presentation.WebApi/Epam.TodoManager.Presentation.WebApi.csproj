@@ -129,21 +129,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Temp\webapp\06.jpg" />
-    <Content Include="Temp\webapp\inbox.html" />
-    <Content Include="Temp\webapp\scripts\app\app.js" />
-    <Content Include="Temp\webapp\scripts\app\controllers\listsController.js" />
-    <Content Include="Temp\webapp\scripts\app\controllers\tasksController.js" />
-    <Content Include="Temp\webapp\scripts\app\directives.js" />
-    <Content Include="Temp\webapp\scripts\app\listsService.js" />
-    <Content Include="Temp\webapp\scripts\app\toArrayFilter.js" />
-    <Content Include="Temp\webapp\scripts\libs\angular.js" />
-    <Content Include="Temp\webapp\scripts\libs\angular.min.js" />
-    <Content Include="Temp\webapp\scripts\libs\jquery-2.2.1.min.js" />
-    <Content Include="Temp\webapp\style.css" />
-    <Content Include="Temp\webapp\test.css" />
-    <Content Include="Temp\webapp\test.html" />
-    <Content Include="Temp\webapp\user-icon.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

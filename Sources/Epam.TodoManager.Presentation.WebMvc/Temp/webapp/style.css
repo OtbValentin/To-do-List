@@ -349,6 +349,7 @@ sidebarItem {
     text-shadow: 0 1px 1px rgba(0,0,0,0);
 }
 
+
 .sidebarItem .list-icon {
     height: 20px;
     width: 20px;
@@ -524,6 +525,10 @@ sidebarItem {
     text-decoration: line-through;
 }
 
+.taskItem.active .taskItem-body, .taskItem.selected .taskItem-body {
+    background: #e1f2fe;
+}
+
 .taskItem-body {
     background: #fff;
     list-style: none;
@@ -649,10 +654,6 @@ sidebarItem {
     width: 0;
 }
 
-.checkBox .detail-check, .checkBox .task-check {
-    stroke: rgba(0,0,0,0.35);
-}
-
 
 /*Details*/
 #wunderlist-base .main-interface.detail-visible #detail {
@@ -746,10 +747,6 @@ sidebarItem {
     visibility: hidden;
 }
 
-#detail .title textarea, #detail .title pre {
-    font-weight: bold;
-}
-
 #wunderlist-base textarea {
     resize: none;
     color: #262626;
@@ -762,16 +759,6 @@ sidebarItem {
 
 .content-fakable textarea, .content-fakable pre {
     tab-size: 1;
-}
-
-.expandingArea textarea, .expandingArea pre {
-    font-family: "Lato","Geneva CY","Lucida Grande","Arial Unicode MS","Helvetica Neue","Helvetica","Arial",sans-serif;
-    padding: 0;
-    background: transparent;
-    border: none;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    text-shadow: none !important;
 }
 
 .expandingArea textarea {
@@ -802,17 +789,17 @@ body.animate #detail .body {
     flex: 1;
 }
 
+#wunderlist-base #detail .section {
+    position: relative;
+    padding: 8px 0;
+}
+
 #wunderlist-base #detail .section-item {
     padding-left: 10px;
     padding-right: 10px;
     position: relative;
     display: flex;
     align-items: center;
-}
-
-#wunderlist-base #detail .section {
-    position: relative;
-    padding: 8px 0;
 }
 
 #wunderlist-base #detail .section:before {
@@ -888,4 +875,90 @@ body.animate #detail .body {
     height: 32px;
     min-width: 32px;
     fill: #a3a3a2;
+}
+
+#wunderlist-base #detail .section-item .section-attachments svg, #wunderlist-base #detail .section-item .section-delete svg {
+    fill: #737272;
+}
+
+#wunderlist-base #detail .section-item .section-delete svg, #wunderlist-base #detail .section-item .section-icon svg, #wunderlist-base #detail .section-item .section-attachments svg {
+    margin: 6px;
+}
+
+#wunderlist-base #detail .section-item .section-content.top {
+    -webkit-align-self: flex-start;
+    align-self: flex-start;
+    -ms-flex-item-align: start;
+    padding: 6px 0;
+}
+
+.dropTarget {
+    display: none;
+}
+
+.note .note-body, .note .note-edit {
+    height: auto;
+    border: none;
+    font-size: 15px;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+.note .note-body.selectable div, .note .note-edit.selectable div, .note .note-body.selectable span, .note .note-edit.selectable span {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}
+
+.note .note-body.selectable div, .note .note-edit.selectable div, .note .note-body.selectable span, .note .note-edit.selectable span {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}
+
+.content-fakable .display-view {
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.note .note-body .expandingArea textarea, .note .note-edit .expandingArea textarea, .note .note-body .expandingArea pre, .note .note-edit .expandingArea pre {
+    min-height: 100px !important;
+}
+
+#wunderlist-base textarea {
+    resize: none;
+    color: #262626;
+    font-weight: 500;
+}
+
+#wunderlist-base input, #wunderlist-base textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.note textarea {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.content-fakable textarea, .content-fakable pre {
+    -moz-tab-size: 1;
+    -o-tab-size: 1;
+    -webkit-tab-size: 1;
+    -moz-tab-size: 1;
+    -o-tab-size: 1;
+    tab-size: 1;
+}
+
+.note.hasNote .section-icon svg {
+    fill: #e29600;
+}
+
+#wunderlist-base :focus{
+    outline: none;
 }
