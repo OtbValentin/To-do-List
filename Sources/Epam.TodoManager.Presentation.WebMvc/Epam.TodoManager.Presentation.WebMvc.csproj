@@ -163,9 +163,13 @@
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\controllers\TestController.js" />
+    <Content Include="Scripts\app\services\accountService.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\LoginController.js" />
     <Content Include="Scripts\app\controllers\RegisterController.js" />
+    <Content Include="Scripts\app\services\listService.js" />
+    <Content Include="Scripts\app\services\taskService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular-cookies.min.js.map" />
@@ -248,6 +252,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Webapp\inbox.cshtml" />
     <Content Include="Temp\webapp\wl3-complete.ogg" />
+    <Content Include="Views\Webapp\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

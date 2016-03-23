@@ -5,6 +5,7 @@
         // Angular modules 
         'ngRoute',
         'ngResource',
+        'ngCookies',
 
         // Custom modules 
 
@@ -16,6 +17,14 @@
             baseUrl: "http://localhost:51733/api",
             grantPath: "/Account/Token",
             clientId: "WebApp"
+        });
+    }])
+    .config(['OAuthTokenProvider', function (OAuthTokenProvider) {
+        OAuthTokenProvider.configure({
+            name: 'token',
+            options: {
+                secure: false
+            }
         });
     }]);
 })();
