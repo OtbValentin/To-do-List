@@ -49,6 +49,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -58,6 +62,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -83,9 +91,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Optimization">
-      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
@@ -102,18 +107,13 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="WebGrease">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
-    </Reference>
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -156,8 +156,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
-    <Content Include="Scripts\angular-mocks.js" />
-    <Content Include="Scripts\angular-resource.js" />
     <Content Include="Scripts\angular-resource.min.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular-route.min.js" />
@@ -170,10 +168,8 @@
     <Content Include="Scripts\app\controllers\RegisterController.js" />
     <Content Include="Scripts\app\services\listService.js" />
     <Content Include="Scripts\app\services\taskService.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular-cookies.min.js.map" />
-    <Content Include="bower.json" />
+    <Content Include="Views\bower.json" />
     <Content Include="bower_components\angular-cookies\.bower.json" />
     <Content Include="bower_components\angular-cookies\angular-cookies.min.js.map" />
     <Content Include="bower_components\angular-cookies\bower.json" />
@@ -197,37 +193,10 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular-resource.min.js.map" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Content\images\06.jpg" />
     <Content Include="Scripts\jquery-2.2.1.min.js" />
     <Content Include="Content\images\user-icon.png" />
-    <Content Include="Temp\webapp\06.jpg" />
-    <Content Include="Temp\webapp\inbox.html" />
-    <Content Include="Temp\webapp\scripts\app\app.js" />
-    <Content Include="Temp\webapp\scripts\app\controllers\detailController.js" />
-    <Content Include="Temp\webapp\scripts\app\controllers\listsController.js" />
-    <Content Include="Temp\webapp\scripts\app\controllers\tasksController.js" />
-    <Content Include="Temp\webapp\scripts\app\directives.js" />
-    <Content Include="Temp\webapp\scripts\app\listsService.js" />
-    <Content Include="Temp\webapp\scripts\app\toArrayFilter.js" />
-    <Content Include="Temp\webapp\scripts\libs\angular.js" />
-    <Content Include="Temp\webapp\scripts\libs\angular.min.js" />
-    <Content Include="Temp\webapp\scripts\libs\jquery-2.2.1.min.js" />
-    <Content Include="Temp\webapp\style.css" />
-    <Content Include="Temp\webapp\test.css" />
-    <Content Include="Temp\webapp\test.html" />
-    <Content Include="Temp\webapp\user-icon.png" />
     <Content Include="Views\Trash\06.jpg" />
     <Content Include="Views\Trash\angular.min.js" />
     <Content Include="Views\Trash\inbox.html" />
@@ -251,7 +220,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Webapp\inbox.cshtml" />
-    <Content Include="Temp\webapp\wl3-complete.ogg" />
     <Content Include="Views\Webapp\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -266,7 +234,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

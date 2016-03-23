@@ -35,7 +35,7 @@ body, html {
 
     #wunderlist-base:before {
         content: '';
-        background-image: url("06.jpg") !important;
+        background-image: url("../../images/06.jpg") !important;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center top;
@@ -155,7 +155,7 @@ a {
             background: #5b7a59;
         }
 
-#wunderlist-base #tasks .tasks-scroll {
+#wunderlist-base #tasks #task-items {
     overflow-y: auto;
     overflow-x: hidden;
     margin-right: 7px;
@@ -349,7 +349,6 @@ sidebarItem {
     text-shadow: 0 1px 1px rgba(0,0,0,0);
 }
 
-
 .sidebarItem .list-icon {
     height: 20px;
     width: 20px;
@@ -505,28 +504,39 @@ sidebarItem {
     border-radius: 3px;
 }
 
-#wunderlist-base #tasks .tasks-scroll .task-list {
+#wunderlist-base .addTask .nlp-feedback {
+    position: absolute;
+    top: 0;
+    color: rgba(255,255,255,0);
+    pointer-events: none;
+    white-space: pre;
+}
+
+.positionHelper {
+    position: absolute;
+    visibility: hidden;
+    width: auto;
+    white-space: nowrap;
+    font-size: 16px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    margin-left: 25px;
+}
+
+.end-positionHelper-target {
+    position: absolute;
+    visibility: hidden;
+    width: 5px;
+    right: 120px;
+    height: 20px;
+}
+
+#wunderlist-base #tasks #task-items .task-list {
     padding-bottom: 72px;
 }
 
 .taskItem {
     height: 47px;
     list-style: none;
-}
-
-.taskItem.done {
-    opacity: .6;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-    filter: alpha(opacity=60);
-    list-style: none;
-}
-
-.taskItem.done .taskItem-titleWrapper-title {
-    text-decoration: line-through;
-}
-
-.taskItem.active .taskItem-body, .taskItem.selected .taskItem-body {
-    background: #e1f2fe;
 }
 
 .taskItem-body {
@@ -541,31 +551,10 @@ sidebarItem {
     position: relative;
 }
 
-.taskItem.active .taskItem-body, .taskItem.selected .taskItem-body {
-     background: #e1f2fe;
-}
-
 .taskItem-body .taskItem-checkboxWrapper {
     padding-left: 8px;
     padding-right: 8px;
     height: 20px;
-}
-
-.checkBox .detail-check, .checkBox .task-check {
-    stroke: rgba(0,0,0,0.35);
-}
-
-.checkBox .detail-checked, .checkBox .task-checked {
-    fill: rgba(0,0,0,0.35);
-    display: none;
-}
-
-.checkBox.checked .detail-check, .checkBox.checked .task-check {
-    display: none;
-}
-
-.checkBox.checked .detail-checked, .checkBox.checked .task-checked {
-    display: block;
 }
 
 .taskItem-titleWrapper {
@@ -654,14 +643,23 @@ sidebarItem {
     width: 0;
 }
 
-
-/*Details*/
-#wunderlist-base .main-interface.detail-visible #detail {
-    width: 367px;
+.checkBox .detail-check, .checkBox .task-check {
+    stroke: rgba(0,0,0,0.35);
 }
 
+
+/*content*/
+
 #wunderlist-base .main-interface #detail.animated {
+    -webkit-transition: 100ms width ease;
+    -moz-transition: 100ms width ease;
+    -o-transition: 100ms width ease;
+    -ms-transition: 100ms width ease;
     transition: 100ms width ease;
+}
+
+#wunderlist-base .main-interface.detail-visible #detail {
+    width: 367px;
 }
 
 #wunderlist-base .main-interface #lists, #wunderlist-base .main-interface #tasks, #wunderlist-base .main-interface #detail {
@@ -672,293 +670,9 @@ sidebarItem {
     width: 0;
 }
 
-@media (max-width: 1000px) {
-    #wunderlist-base #detail {
-        right: 0;
-        position: absolute;
-        z-index: 1;
-    }
-}
-
-#detail .inner {
-    position: relative;
-    background: #fff;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-
-#detail .detail-checkbox {
+@media (max-width: 1000px)
+<style>…</style>
+#wunderlist-base #detail {
     position: absolute;
-    left: 18px;
-    top: 18px;
-    z-index: 5;
-}
-
-#detail .title-container {
-    position: relative;
     z-index: 1;
-}
-
-#detail .title {
-    min-height: 24px;
-    overflow: hidden;
-    padding: 16px 50px 14px;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: bold;
-    border-bottom: 1px solid #ebebeb;
-}
-
-.content-fakable .display-view {
-    overflow: hidden;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
-
-.expandingArea {
-    position: relative;
-}
-
-#detail .title textarea, #detail .title pre {
-    font-weight: bold;
-}
-
-.content-fakable textarea, .content-fakable pre {
-    tab-size: 1;
-}
-
-.expandingArea textarea, .expandingArea pre {
-    font-family: "Lato","Geneva CY","Lucida Grande","Arial Unicode MS","Helvetica Neue","Helvetica","Arial",sans-serif;
-    padding: 0;
-    background: transparent;
-    border: none;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    text-shadow: none !important;
-}
-
-.expandingArea pre {
-    margin: 0;
-    padding: 0 !important;
-    border: 0 !important;
-    display: block;
-    visibility: hidden;
-}
-
-#wunderlist-base textarea {
-    resize: none;
-    color: #262626;
-    font-weight: 500;
-}
-
-#wunderlist-base input, #wunderlist-base textarea {
-    user-select: text;
-}
-
-.content-fakable textarea, .content-fakable pre {
-    tab-size: 1;
-}
-
-.expandingArea textarea {
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    resize: none;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-
-body.animate #detail .body {
-    transition: margin 150ms !important;
-}
-
-#detail .body {
-    background: #fafafa;
-    overflow: auto;
-    padding-bottom: 16px;
-    right: 0;
-    left: 0;
-    overflow-x: hidden;
-    flex: 1;
-}
-
-#wunderlist-base #detail .section {
-    position: relative;
-    padding: 8px 0;
-}
-
-#wunderlist-base #detail .section-item {
-    padding-left: 10px;
-    padding-right: 10px;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-#wunderlist-base #detail .section:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50px;
-    right: 0;
-    border-bottom: 1px solid #ebebeb;
-}
-
-#wunderlist-base #detail .section-item .section-delete, #wunderlist-base #detail .section-item .section-icon, #wunderlist-base #detail .section-item .section-attachments {
-    -webkit-align-self: flex-start;
-    align-self: flex-start;
-    -ms-flex-item-align: start;
-    -webkit-flex-shrink: 0;
-    flex-shrink: 0;
-    height: 32px;
-    min-width: 32px;
-    fill: #a3a3a2;
-}
-
-#wunderlist-base #detail .section-item .section-delete svg, #wunderlist-base #detail .section-item .section-icon svg, #wunderlist-base #detail .section-item .section-attachments svg {
-    margin: 6px;
-}
-
-#wunderlist-base #detail .section-item .section-content {
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -o-box-flex: 1;
-    box-flex: 1;
-    -webkit-flex: auto;
-    -ms-flex: auto;
-    flex: auto;
-    margin-right: 8px;
-    margin-left: 8px;
-    overflow: hidden;
-}
-
-#wunderlist-base #detail .section-item .section-title {
-    white-space: nowrap;
-    overflow: hidden;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    font-size: 15px;
-    line-height: 20px;
-    color: #9fa2a6;
-}
-
-#wunderlist-base #detail .section-item .section-description {
-    display: none;
-    font-size: 11px;
-}
-
-#wunderlist-base #detail .section-item.editing .section-delete {
-    display: block;
-}
-
-#wunderlist-base #detail .section-item .section-delete {
-    visibility: hidden;
-}
-
-#wunderlist-base #detail .section-item .section-attachments, #wunderlist-base #detail .section-item .section-delete {
-    margin-left: auto;
-}
-
-#wunderlist-base #detail .section-item .section-delete, #wunderlist-base #detail .section-item .section-icon, #wunderlist-base #detail .section-item .section-attachments {
-    -webkit-align-self: flex-start;
-    align-self: flex-start;
-    -ms-flex-item-align: start;
-    -webkit-flex-shrink: 0;
-    flex-shrink: 0;
-    height: 32px;
-    min-width: 32px;
-    fill: #a3a3a2;
-}
-
-#wunderlist-base #detail .section-item .section-attachments svg, #wunderlist-base #detail .section-item .section-delete svg {
-    fill: #737272;
-}
-
-#wunderlist-base #detail .section-item .section-delete svg, #wunderlist-base #detail .section-item .section-icon svg, #wunderlist-base #detail .section-item .section-attachments svg {
-    margin: 6px;
-}
-
-#wunderlist-base #detail .section-item .section-content.top {
-    -webkit-align-self: flex-start;
-    align-self: flex-start;
-    -ms-flex-item-align: start;
-    padding: 6px 0;
-}
-
-.dropTarget {
-    display: none;
-}
-
-.note .note-body, .note .note-edit {
-    height: auto;
-    border: none;
-    font-size: 15px;
-    line-height: 20px;
-    word-wrap: break-word;
-}
-
-.note .note-body.selectable div, .note .note-edit.selectable div, .note .note-body.selectable span, .note .note-edit.selectable span {
-    -webkit-user-select: text !important;
-    -moz-user-select: text !important;
-    -ms-user-select: text !important;
-    user-select: text !important;
-}
-
-.note .note-body.selectable div, .note .note-edit.selectable div, .note .note-body.selectable span, .note .note-edit.selectable span {
-    -webkit-user-select: text !important;
-    -moz-user-select: text !important;
-    -ms-user-select: text !important;
-    user-select: text !important;
-}
-
-.content-fakable .display-view {
-    overflow: hidden;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
-
-.note .note-body .expandingArea textarea, .note .note-edit .expandingArea textarea, .note .note-body .expandingArea pre, .note .note-edit .expandingArea pre {
-    min-height: 100px !important;
-}
-
-#wunderlist-base textarea {
-    resize: none;
-    color: #262626;
-    font-weight: 500;
-}
-
-#wunderlist-base input, #wunderlist-base textarea {
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-}
-
-.note textarea {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
-.content-fakable textarea, .content-fakable pre {
-    -moz-tab-size: 1;
-    -o-tab-size: 1;
-    -webkit-tab-size: 1;
-    -moz-tab-size: 1;
-    -o-tab-size: 1;
-    tab-size: 1;
-}
-
-.note.hasNote .section-icon svg {
-    fill: #e29600;
-}
-
-#wunderlist-base :focus{
-    outline: none;
 }
