@@ -357,7 +357,7 @@ html[dir="rtl"] .external-auth {
     }
 
 .auth-form.login {
-    height: 230px;
+    height: 200px;
 }
 
 @media screen and (max-height:480px) {

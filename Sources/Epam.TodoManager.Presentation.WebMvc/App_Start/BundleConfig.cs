@@ -23,6 +23,19 @@ namespace Epam.TodoManager.Presentation.WebMvc
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                "~/Scripts/angular.min.js",
+                "~/Scripts/angular-route.min.js",
+                "~/Scripts/angular-resource.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular-oauth").Include(
+                "~/bower_components/angular-cookies/angular-cookies.min.js",
+                "~/bower_components/query-string/query-string.js",
+                "~/bower_components/angular-oauth2/dist/angular-oauth2.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/appScripts")
+                .IncludeDirectory("~/Scripts/app", "*.js", true));
+
             bundles.Add(new ScriptBundle("~/bundles/webapp").Include(
                 "~/Scripts/jquery-2.2.1.min.js",
                 "~/Scripts/angular.min.js"));

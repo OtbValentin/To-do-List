@@ -11,10 +11,11 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Epam.TodoManager.Presentation.WebApi.Controllers
 {
-    [Authorize]
+    [Authorize/*, EnableCors("*", "*", "*", SupportsCredentials = true)*/]
     public class AccountController : ApiController
     {
         private ApplicationUserManager Manager =>
@@ -41,7 +42,15 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
                 return BadRequest(ModelState);
 
             var newUser = value.ToAppUser();
-            var result = await Manager.CreateAsync(newUser, value.Password);
+            IdentityResult result;
+            try
+            {
+                result = await Manager.CreateAsync(newUser, value.Password);
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
+            }
 
             if (!result.Succeeded)
                 return BadRequest(AggregateErrors(result.Errors));
