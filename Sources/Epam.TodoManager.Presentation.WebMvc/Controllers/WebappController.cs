@@ -14,7 +14,7 @@ namespace Epam.TodoManager.Presentation.WebMvc.Controllers
             return View();
         }
 
-        public ActionResult Tasks()
+        public ActionResult Index()
         {
             return View();
         }

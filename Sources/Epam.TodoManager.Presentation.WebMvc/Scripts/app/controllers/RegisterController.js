@@ -5,14 +5,13 @@
         .module('todoListApp')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$location', '$window', '$resource'];
+    RegisterController.$inject = ['$location', '$window', 'accountService'];
 
-    function RegisterController($location, $window, $resource) {
+    function RegisterController($location, $window, accountService) {
         var vm = this;
         vm.title = 'RegisterController';
 
-        var Account = $resource('http://localhost:51733/api/Account');
-        vm.newAccount = new Account();
+        vm.newAccount = new accountService.Account();
 
         vm.displayErrorMessage = false;
         vm.errorMessage = "";
@@ -20,7 +19,7 @@
         vm.register = function () {
             vm.newAccount.$save()
                 .then(function () {
-                    $window.location.href = "/WebApp";
+                    $window.location.href = "/Account/Login";
                 })
                 .catch(function (response) {
                     var responseData = response.data;

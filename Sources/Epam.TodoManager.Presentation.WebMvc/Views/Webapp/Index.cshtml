@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body ng-app="todoListApp" ng-controller="TestController as controller">
+    <div>abcde</div>
+    <div>{{controller.title}}</div>
+    <div>{{controller.isAuthenticated}}</div>
+    <div>{{controller.list | json}}</div>
+
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/angular-oauth")
+    @Scripts.Render("~/bundles/appScripts")
+</body>
+</html>

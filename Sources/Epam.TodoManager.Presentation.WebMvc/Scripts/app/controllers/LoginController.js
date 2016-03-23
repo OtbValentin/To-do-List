@@ -25,7 +25,7 @@
                 password: vm.password
             })
             .then(function () {
-                $window.location.href = "/WebApp";
+                $window.location.href = "/Webapp/Index";
             })
             .catch(function (response) {
                 vm.errorMessage = response.data.error_description;
