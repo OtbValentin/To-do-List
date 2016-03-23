@@ -144,8 +144,6 @@
     <Content Include="bower_components\angular\angular.min.js" />
     <Content Include="bower_components\angular\index.js" />
     <Content Include="bower_components\query-string\query-string.js" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\wl_icon.png" />
     <Content Include="Content\styles\account\common.css" />
@@ -153,7 +151,6 @@
     <Content Include="Content\styles\account\signup.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-resource.min.js" />
@@ -169,6 +166,14 @@
     <Content Include="Scripts\app\services\listService.js" />
     <Content Include="Scripts\app\services\taskService.js" />
     <Content Include="Scripts\angular-cookies.min.js.map" />
+    <Content Include="Scripts\app\webapp\app.js" />
+    <Content Include="Scripts\app\webapp\appService.js" />
+    <Content Include="Scripts\app\webapp\controllers\appController.js" />
+    <Content Include="Scripts\app\webapp\controllers\detailController.js" />
+    <Content Include="Scripts\app\webapp\controllers\listsController.js" />
+    <Content Include="Scripts\app\webapp\controllers\tasksController.js" />
+    <Content Include="Scripts\app\webapp\directives.js" />
+    <Content Include="Scripts\app\webapp\listsService.js" />
     <Content Include="Views\bower.json" />
     <Content Include="bower_components\angular-cookies\.bower.json" />
     <Content Include="bower_components\angular-cookies\angular-cookies.min.js.map" />
@@ -233,7 +238,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
+    <Content Include="Content\sounds\wl3-complete.ogg" />
     <None Include="Project_Readme.html" />
+    <Content Include="Views\Webapp\Tasks.cshtml" />
+    <Content Include="Views\Webapp\Lists.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -26,6 +26,12 @@ namespace Epam.TodoManager.Presentation.WebMvc
             );
 
             routes.MapRoute(
+                name: "Webapp",
+                url: "",
+                defaults: new { controller = "Webapp", action = "Inbox" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

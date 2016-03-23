@@ -15,7 +15,7 @@ angular.module('app').controller('listsController', function ($scope, listsServi
 
     $scope.addNewList = function () {
         listsService.addList('New list title');
-        listsService.setActiveList(listsService.todoLists[listsService.todoLists.length - 1]);
+        //listsService.setActiveList(listsService.todoLists[listsService.todoLists.length - 1]);
         listsService.selectTask(null);     
     }
 
@@ -26,10 +26,6 @@ angular.module('app').controller('listsController', function ($scope, listsServi
     $scope.isCollapsed = false;
     $scope.lists = listsService.todoLists;
     $scope.activeList = listsService.activeList;
-
-    if (listsService.todoLists.length > 0) {
-        listsService.setActiveList(listsService.todoLists[0]);
-    }
 
     $scope.userName = 'Valentin';
 });
