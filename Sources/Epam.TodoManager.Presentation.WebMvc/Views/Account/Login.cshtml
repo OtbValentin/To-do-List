@@ -13,15 +13,15 @@
     <link rel="icon" href="~/Content/images/favicon.ico" type="image/x-icon">
     @Styles.Render("~/Content/css/login")
 </head>
-<body ng-app="todoListApp" ng-controller="LoginController as login">
+<body ng-app="todoListApp" ng-controller="LoginController as controller">
     <div class="logo"></div>
 
-    <div ng-show="login.displayErrorMessage" class="errors">
-        <div ng-bind="login.errorMessage" role="alert" class="message"></div>
+    <div ng-show="controller.displayErrorMessage" class="errors">
+        <div ng-bind="controller.errorMessage" role="alert" class="message"></div>
     </div>
 
     <div class="card login">
-        <form ng-submit="login.submit()" class="auth-form login">
+        <form ng-submit="controller.login()" class="auth-form login">
 
             <div class="row email">
                 <span class="icon email">
@@ -41,7 +41,7 @@
                         </g>
                     </svg>
                 </span>
-                <input ng-model="login.email" type="email" name="email" value="" 
+                <input ng-model="controller.email" type="email" name="email" value="" 
                        required autofocus @*pattern=".*"*@ title="Введите действительный адрес электронной почты." 
                        placeholder="Электронная почта" />
             </div>
@@ -64,7 +64,7 @@
                         </g>
                     </svg>
                 </span>
-                <input ng-model="login.password" ng-pattern="login.passwordRegex" type="password" 
+                <input ng-model="controller.password" ng-pattern="login.passwordRegex" type="password" 
                        name="password" required placeholder="Пароль" />
             </div>
 
@@ -82,6 +82,6 @@
 
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/angular-oauth")
-    @Scripts.Render("~/bundles/loginScripts")
+    @Scripts.Render("~/bundles/appScripts")
 </body>
 </html>

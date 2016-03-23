@@ -4,6 +4,7 @@
     angular.module('todoListApp', [
         // Angular modules 
         'ngRoute',
+        'ngResource',
 
         // Custom modules 
 
@@ -14,7 +15,7 @@
         OAuthProvider.configure({
             baseUrl: "http://localhost:51733/api",
             grantPath: "/Account/Token",
-            clientId: "dslmdslkvmldsvmsld"
+            clientId: "WebApp"
         });
     }]);
 })();

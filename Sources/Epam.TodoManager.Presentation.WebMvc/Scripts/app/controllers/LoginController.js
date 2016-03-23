@@ -14,12 +14,10 @@
         vm.email = "";
         vm.password = "";
 
-        vm.passwordPattern = "^.{3,20}$";
-
         vm.displayErrorMessage = false;
         vm.errorMessage = "";
 
-        vm.submit = function () {
+        vm.login = function () {
             vm.displayErrorMessage = false;
 
             OAuth.getAccessToken({
@@ -34,9 +32,5 @@
                 vm.displayErrorMessage = true;
             });
         };
-
-        //activate();
-
-        //function activate() { }
     }
 })();
