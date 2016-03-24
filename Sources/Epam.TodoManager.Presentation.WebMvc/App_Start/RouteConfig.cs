@@ -25,16 +25,22 @@ namespace Epam.TodoManager.Presentation.WebMvc
                 defaults: new { controller = "Account", action = "Register" }
             );
 
-            routes.MapRoute(
-                name: "Webapp",
-                url: "",
-                defaults: new { controller = "Webapp", action = "Index" }
-            );
+            //routes.MapRoute(
+            //    name: "Lists",
+            //    url: "lists/{id}",
+            //    defaults: new { controller = "Webapp", action = "Lists", id = UrlParameter.Optional }
+            //);
+
+            //routes.MapRoute(
+            //    name: "Tasks",
+            //    url: "lists/{listid}/tasks",
+            //    defaults: new { controller="Webapp", action = "Tasks"}
+            //);
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}",
+                defaults: new { controller = "Webapp", action = "Index"}
             );
         }
     }

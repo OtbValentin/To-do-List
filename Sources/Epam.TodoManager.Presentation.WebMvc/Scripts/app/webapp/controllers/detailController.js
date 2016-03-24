@@ -1,4 +1,5 @@
-angular.module('app').controller('detailController', function ($scope, $timeout, listsService) {
+angular.module('app').controller('detailsController', function ($scope, $timeout, listsService) {
+    console.log('started details controller');
     $scope.toggleDetail = function () {
         $scope.showDetail = !$scope.showDetail;
     }
@@ -6,6 +7,16 @@ angular.module('app').controller('detailController', function ($scope, $timeout,
     $scope.deleteTask = function (task) {
         listsService.deleteTask(listsService.activeList, task);
         listsService.selectTask(null);
+    }
+
+    $scope.deleteNote = function (task) {
+        console.log('remove note', task);
+        task.Note = "";
+    }
+
+    $scope.deleteDueDate = function (task) {
+        console.log('remove date', task);
+        task.DueDate = null;
     }
 
     $scope.toggleNoteEditing = function () {
@@ -36,8 +47,14 @@ angular.module('app').controller('detailController', function ($scope, $timeout,
         $scope.titleEditing = false;
     }
 
-    $scope.$on('task selected', function () {
+    $scope.$on('taskSelected', function () {
+        console.log('selected task', $scope.task);
         $scope.task = listsService.selectedTask;
+    });
+
+    $scope.$on('showTaskDetails', function () {
+        console.log('show details in detail controller');
+        $scope.showDetail = true;
     });
 
     $scope.$watch('task', function () {

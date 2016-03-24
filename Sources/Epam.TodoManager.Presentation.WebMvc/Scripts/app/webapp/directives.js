@@ -1,22 +1,4 @@
-angular.module('app').directive('addNewList', function (listsService) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            element.bind("click", function () {
-                listsService.addList('newList');
-            });
-        }
-    }
-}).directive('addNewTask', function (listsService) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            element.bind("click", function () {
-                listsService.addTask(listsService.activeList, scope.newTaskTitle);
-            });
-        }
-    }
-}).directive('focusNoteItem', function ($timeout) {
+angular.module('app').directive('focusNoteItem', function ($timeout) {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
@@ -70,14 +52,4 @@ angular.module('app').directive('addNewList', function (listsService) {
             })
         }
     }
-}).directive('selectTask', function (listsService) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            element.bind('click', function () {
-                listsService.selectTask(scope.task);
-                scope.$apply();
-            });
-        }
-    }
-})
+});

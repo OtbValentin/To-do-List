@@ -1,4 +1,6 @@
-angular.module('app').controller('listsController', function ($scope, listsService) {
+angular.module('app').controller('listsController', function ($scope, listsService, $routeParams) {
+
+    console.log('started lists controller');
     $scope.$on('list added', function () {
     });
 
@@ -7,25 +9,31 @@ angular.module('app').controller('listsController', function ($scope, listsServi
     }
 
     $scope.setActive = function (list) {
-        if (list != $scope.activeList) {
-            listsService.setActiveList(list);
-            listsService.selectTask(null);
-        }
+        console.log('controller setActive', list);
+        listsService.setActiveList(list);
     }
 
     $scope.addNewList = function () {
         listsService.addList('New list title');
         //listsService.setActiveList(listsService.todoLists[listsService.todoLists.length - 1]);
-        listsService.selectTask(null);     
+        listsService.selectTask(null);
     }
 
-    $scope.$on('active list updated', function () {
+    $scope.$on('activeListUpdated', function () {
         $scope.activeList = listsService.activeList;
     });
 
     $scope.isCollapsed = false;
     $scope.lists = listsService.todoLists;
-    $scope.activeList = listsService.activeList;
+    $scope.activeList = null;
+    console.log($scope.lists);
+    $scope.$on('stateChangeSuccess', function () {
+        console.log('state change success');
+        console.log($routeParams);
+        console.log($routeParams["listid"]);
+        console.log($routeParams.listid);
+        $scope.setActive(listsService.todoLists.filter(function (list) { console.log(list.Id); return list.Id == $routeParams.listid })[0]);
+    });
 
     $scope.userName = 'Valentin';
 });

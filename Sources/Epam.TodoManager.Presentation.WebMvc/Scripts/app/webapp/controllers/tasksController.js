@@ -1,18 +1,20 @@
-angular.module('app').controller('tasksController', function ($scope, listsService, appService) {
-    $scope.$on('task added', function () {
+angular.module('app').controller('tasksController', function ($scope, listsService, $routeParams) {
+    console.log('started tasks controller');
+    $scope.$on('taskAdded', function () {
         $scope.newTaskTitle = '';
     });
 
-    $scope.addTask = function () {
-        listsService.addTask(listsService.activeList, $scope.newTaskTitle);
+    $scope.redirectToTask = function(task)
+    {
+        document.location = '/lists/' + $scope.activeList.Id + '/tasks/' + $scope.task.Id;
     }
 
-    $scope.selectTask = function(task){
+    $scope.addTask = function (title) {
+        listsService.addTask(listsService.activeList, title);
+    }
+
+    $scope.selectTask = function (task) {
         listsService.selectTask(task);
-    }
-
-    $scope.showDetails = function () {
-        appService.showTaskDetails()
     }
 
     $scope.toggleCompletedTasks = function () {
@@ -31,12 +33,7 @@ angular.module('app').controller('tasksController', function ($scope, listsServi
         $event.stopPropagation();
     };
 
-    $scope.$on('active list updated', function () {
-        $scope.activeList = listsService.activeList;
-        $scope.showCompleted = false;
-    });
-
-    $scope.$on('task selected', function () {
+    $scope.$on('taskSelected', function () {
         $scope.selectedTask = listsService.selectedTask;
     });
 
@@ -44,7 +41,7 @@ angular.module('app').controller('tasksController', function ($scope, listsServi
         $event.stopPropagation();
     };
 
-    $scope.activeList = listsService.activeList;
-    $scope.showCompleted = false;
+    $scope.activeList = null;
     $scope.selectedTask = null;
+    $scope.showCompleted = false;
 });

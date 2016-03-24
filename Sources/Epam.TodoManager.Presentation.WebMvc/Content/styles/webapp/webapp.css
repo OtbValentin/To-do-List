@@ -18,20 +18,20 @@ body, html {
     display: block;
 }
 
-#wunderlist-base *::-webkit-scrollbar {
-    width: 6px !important;
-}
- 
-#wunderlist-base *::-webkit-scrollbar-track {
-    margin-top: 14px;
-    margin-bottom: 14px;
-    background-color: transparent;
-}
- 
-#wunderlist-base *::-webkit-scrollbar-thumb {
-    border-radius: 3px;
-    background-color: rgba(102,137,100,0.7);
-}
+    #wunderlist-base *::-webkit-scrollbar {
+        width: 6px !important;
+    }
+
+    #wunderlist-base *::-webkit-scrollbar-track {
+        margin-top: 14px;
+        margin-bottom: 14px;
+        background-color: transparent;
+    }
+
+    #wunderlist-base *::-webkit-scrollbar-thumb {
+        border-radius: 3px;
+        background-color: rgba(102,137,100,0.7);
+    }
 
     #wunderlist-base:before {
         content: '';
@@ -65,12 +65,12 @@ body, html {
     height: 100%;
 }
 
-#lists .lists-inner {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    position: relative;
-}
+    #lists .lists-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        position: relative;
+    }
 
 * {
     text-decoration: none;
@@ -142,18 +142,18 @@ a {
     height: 45px;
 }
 
-.actionBar-inner a {
-    color: #fff;
-    display: inline-block;
-    height: 33px;
-    line-height: 33px;
-    min-width: 40px;
-    padding: 6px;
-}
+    .actionBar-inner a {
+        color: #fff;
+        display: inline-block;
+        height: 33px;
+        line-height: 33px;
+        min-width: 40px;
+        padding: 6px;
+    }
 
-        .actionBar a:hover {
-            background: #5b7a59;
-        }
+.actionBar a:hover {
+    background: #5b7a59;
+}
 
 #wunderlist-base #tasks .tasks-scroll {
     overflow-y: auto;
@@ -164,22 +164,21 @@ a {
     padding-right: 7px;
     display: block;
     flex: 1;
-
     /*height: calc(100% - 45px);
     max-height: calc(100% - 45px);*/
 }
 
-.collapsed{
+.collapsed {
     flex-basis: 42px;
 }
 
-.collapsed .user-name,
-.collapsed .user-arrow,
-.collapsed .lists-collection,
-.collapsed .sidebarActions-label,
-.collapsed .search-icon-wrapper{
-    display: none;
-}
+    .collapsed .user-name,
+    .collapsed .user-arrow,
+    .collapsed .lists-collection,
+    .collapsed .sidebarActions-label,
+    .collapsed .search-icon-wrapper {
+        display: none;
+    }
 
 #wunderlist-base :focus {
     outline: none;
@@ -190,26 +189,26 @@ a {
     display: flex;
 }
 
-#search-toolbar .search-input-wrapper {
-    display: block;
-    flex: 1;
-}
+    #search-toolbar .search-input-wrapper {
+        display: block;
+        flex: 1;
+    }
 
-#search-toolbar .search-icon-wrapper, #search-toolbar .list-toggle {
-    width: 20px;
-    height: 20px;
-    fill: #fff;
-    padding: 13px 11px 12px 11px;
-    flex-shrink: 0;
-}
+    #search-toolbar .search-icon-wrapper, #search-toolbar .list-toggle {
+        width: 20px;
+        height: 20px;
+        fill: #fff;
+        padding: 13px 11px 12px 11px;
+        flex-shrink: 0;
+    }
 
-#search-toolbar .search-input[type=text] {
-    font-size: 18px;
-    color: #fff;
-    height: 45px;
-    -webkit-app-region: no-drag;
-    width: 100%;
-}
+    #search-toolbar .search-input[type=text] {
+        font-size: 18px;
+        color: #fff;
+        height: 45px;
+        -webkit-app-region: no-drag;
+        width: 100%;
+    }
 
 .chromeless {
     border: none !important;
@@ -250,20 +249,20 @@ input, textarea, keygen, select, button {
     padding-bottom: 4px;
 }
 
-#user-toolbar .user {
-    height: 45px;
-    align-items: center;
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-}
+    #user-toolbar .user {
+        height: 45px;
+        align-items: center;
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+    }
 
-#user-toolbar .user-avatar {
-    display: inline-block;
-    padding-left: 5px;
-    padding-right: 5px;
-    flex-shrink: 0;
-}
+    #user-toolbar .user-avatar {
+        display: inline-block;
+        padding-left: 5px;
+        padding-right: 5px;
+        flex-shrink: 0;
+    }
 
 .avatar.medium {
     width: 32px;
@@ -277,20 +276,19 @@ input, textarea, keygen, select, button {
     height: 25px;
 }
 
-.avatar.medium img {
-    height: 32px !important;
-    width: 32px !important;
-}
+    .avatar.medium img {
+        height: 32px !important;
+        width: 32px !important;
+    }
 
-.avatar img {
-    height: 25px;
-    width: 25px;
-    position: relative;
-
-    border-radius: 50%;
-    overflow: hidden;
-    z-index: 1;
-}
+    .avatar img {
+        height: 25px;
+        width: 25px;
+        position: relative;
+        border-radius: 50%;
+        overflow: hidden;
+        z-index: 1;
+    }
 
 #user-toolbar .user-name {
     padding-left: 5px;
@@ -321,7 +319,7 @@ input, textarea, keygen, select, button {
     flex-direction: column;
 }
 
-.lists-collection{
+.lists-collection {
     flex-shrink: 0;
 }
 
@@ -371,7 +369,7 @@ sidebarItem {
 }
 
 .sidebarItem.active a .count {
-     color: rgba(38,38,38,0.75);
+    color: rgba(38,38,38,0.75);
 }
 
 .sidebarItem a .count {
@@ -464,31 +462,31 @@ sidebarItem {
     border-radius: 3px;
 }
 
-#wunderlist-base .addTask .plus-wrapper {
-    left: 10px;
-    top: 14px;
-    display: block;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    top: 13px;
-    opacity: .7;
-    filter: alpha(opacity=70);
-}
+    #wunderlist-base .addTask .plus-wrapper {
+        left: 10px;
+        top: 14px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 13px;
+        opacity: .7;
+        filter: alpha(opacity=70);
+    }
 
-#wunderlist-base .addTask .plus-wrapper svg {
-    fill: #fff;
-}
+        #wunderlist-base .addTask .plus-wrapper svg {
+            fill: #fff;
+        }
 
-#wunderlist-base .addTask .addTask-input, #wunderlist-base .addTask .nlp-feedback {
-    transition: none;
-    font-size: 16px;
-    padding: 13px 8px 14px 28px;
-}
+    #wunderlist-base .addTask .addTask-input, #wunderlist-base .addTask .nlp-feedback {
+        transition: none;
+        font-size: 16px;
+        padding: 13px 8px 14px 28px;
+    }
 
-#wunderlist-base .addTask .addTask-input {
-    color: #fff;
-}
+    #wunderlist-base .addTask .addTask-input {
+        color: #fff;
+    }
 
 #wunderlist-base [type=text], #wunderlist-base [type=email], #wunderlist-base [type=password], #wunderlist-base .input-fake {
     width: 100%;
@@ -514,20 +512,20 @@ sidebarItem {
     list-style: none;
 }
 
-.taskItem.done {
-    opacity: .6;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-    filter: alpha(opacity=60);
-    list-style: none;
-}
+    .taskItem.done {
+        opacity: .6;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+        filter: alpha(opacity=60);
+        list-style: none;
+    }
 
-.taskItem.done .taskItem-titleWrapper-title {
-    text-decoration: line-through;
-}
+        .taskItem.done .taskItem-titleWrapper-title {
+            text-decoration: line-through;
+        }
 
-.taskItem.active .taskItem-body, .taskItem.selected .taskItem-body {
-    background: #e1f2fe;
-}
+    .taskItem.active .taskItem-body, .taskItem.selected .taskItem-body {
+        background: #e1f2fe;
+    }
 
 .taskItem-body {
     background: #fff;
@@ -542,7 +540,7 @@ sidebarItem {
 }
 
 .taskItem.active .taskItem-body, .taskItem.selected .taskItem-body {
-     background: #e1f2fe;
+    background: #e1f2fe;
 }
 
 .taskItem-body .taskItem-checkboxWrapper {
@@ -628,21 +626,21 @@ sidebarItem {
     position: relative;
 }
 
-#wunderlist-base #tasks .heading a {
-    background: rgba(102,137,100,0.75);
-}
+    #wunderlist-base #tasks .heading a {
+        background: rgba(102,137,100,0.75);
+    }
 
-#wunderlist-base #tasks .heading a {
-    color: #fff;
-    padding: 3px 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 400;
-    display: inline-block;
-    box-sizing: border-box;
-    line-height: 16px;
-    border-radius: 3px;
-}
+    #wunderlist-base #tasks .heading a {
+        color: #fff;
+        padding: 3px 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 400;
+        display: inline-block;
+        box-sizing: border-box;
+        line-height: 16px;
+        border-radius: 3px;
+    }
 
 #tasks .tasks-404, #tasks .tasks-404 {
     border-radius: 10px;
@@ -650,26 +648,18 @@ sidebarItem {
     background: rgba(0,0,0,0.25);
 }
 
-#wunderlist-base .main-interface #detail {
-    width: 0;
-}
-
 
 /*Details*/
-#wunderlist-base .main-interface.detail-visible #detail {
+#wunderlist-base .main-interface #detail {
     width: 367px;
 }
 
-#wunderlist-base .main-interface #detail.animated {
-    transition: 100ms width ease;
-}
+    #wunderlist-base .main-interface #detail.animated {
+        transition: 100ms width ease;
+    }
 
 #wunderlist-base .main-interface #lists, #wunderlist-base .main-interface #tasks, #wunderlist-base .main-interface #detail {
     overflow: hidden;
-}
-
-#wunderlist-base .main-interface #detail {
-    width: 0;
 }
 
 @media (max-width: 1000px) {
@@ -822,9 +812,9 @@ body.animate #detail .body {
     fill: #a3a3a2;
 }
 
-#wunderlist-base #detail .section-item .section-delete svg, #wunderlist-base #detail .section-item .section-icon svg, #wunderlist-base #detail .section-item .section-attachments svg {
-    margin: 6px;
-}
+    #wunderlist-base #detail .section-item .section-delete svg, #wunderlist-base #detail .section-item .section-icon svg, #wunderlist-base #detail .section-item .section-attachments svg {
+        margin: 6px;
+    }
 
 #wunderlist-base #detail .section-item .section-content {
     -webkit-box-flex: 1;
@@ -877,13 +867,13 @@ body.animate #detail .body {
     fill: #a3a3a2;
 }
 
-#wunderlist-base #detail .section-item .section-attachments svg, #wunderlist-base #detail .section-item .section-delete svg {
-    fill: #737272;
-}
+    #wunderlist-base #detail .section-item .section-attachments svg, #wunderlist-base #detail .section-item .section-delete svg {
+        fill: #737272;
+    }
 
-#wunderlist-base #detail .section-item .section-delete svg, #wunderlist-base #detail .section-item .section-icon svg, #wunderlist-base #detail .section-item .section-attachments svg {
-    margin: 6px;
-}
+    #wunderlist-base #detail .section-item .section-delete svg, #wunderlist-base #detail .section-item .section-icon svg, #wunderlist-base #detail .section-item .section-attachments svg {
+        margin: 6px;
+    }
 
 #wunderlist-base #detail .section-item .section-content.top {
     -webkit-align-self: flex-start;
@@ -904,19 +894,19 @@ body.animate #detail .body {
     word-wrap: break-word;
 }
 
-.note .note-body.selectable div, .note .note-edit.selectable div, .note .note-body.selectable span, .note .note-edit.selectable span {
-    -webkit-user-select: text !important;
-    -moz-user-select: text !important;
-    -ms-user-select: text !important;
-    user-select: text !important;
-}
+    .note .note-body.selectable div, .note .note-edit.selectable div, .note .note-body.selectable span, .note .note-edit.selectable span {
+        -webkit-user-select: text !important;
+        -moz-user-select: text !important;
+        -ms-user-select: text !important;
+        user-select: text !important;
+    }
 
-.note .note-body.selectable div, .note .note-edit.selectable div, .note .note-body.selectable span, .note .note-edit.selectable span {
-    -webkit-user-select: text !important;
-    -moz-user-select: text !important;
-    -ms-user-select: text !important;
-    user-select: text !important;
-}
+    .note .note-body.selectable div, .note .note-edit.selectable div, .note .note-body.selectable span, .note .note-edit.selectable span {
+        -webkit-user-select: text !important;
+        -moz-user-select: text !important;
+        -ms-user-select: text !important;
+        user-select: text !important;
+    }
 
 .content-fakable .display-view {
     overflow: hidden;
@@ -959,23 +949,23 @@ body.animate #detail .body {
     fill: #e29600;
 }
 
-#wunderlist-base :focus{
+#wunderlist-base :focus {
     outline: none;
 }
 
-#wunderlist-base #detail .section-item.hasDate .section-title{
+#wunderlist-base #detail .section-item.hasDate .section-title {
     color: #328ad6;
 }
 
-#wunderlist-base #detail .section-item.hasDate .date{
+#wunderlist-base #detail .section-item.hasDate .date {
     fill: #328ad6;
 }
 
-#wunderlist-base #detail .section-item.hasDate.overdue .date{
+#wunderlist-base #detail .section-item.hasDate.overdue .date {
     fill: #b3312d;
 }
 
-#wunderlist-base #detail .section-item.hasDate.overdue .section-title{
+#wunderlist-base #detail .section-item.hasDate.overdue .section-title {
     color: #b3312d;
 }
 
@@ -1059,21 +1049,21 @@ body.animate .dialog-wrapper .dialog {
     position: relative;
 }
 
-.dialog .content {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: box;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -o-box-orient: vertical;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    overflow: hidden;
-}
+    .dialog .content {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: box;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        -o-box-orient: vertical;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        overflow: hidden;
+    }
 
 #wunderlist-base .listOptions .content-header {
     padding: 14px 14px 0;
@@ -1103,25 +1093,25 @@ body.animate .dialog-wrapper .dialog {
     position: relative;
 }
 
-.dialog .separator:before {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    content: '';
-    height: 1px;
-    border-bottom: 1px solid #e0e0df;
-}
+    .dialog .separator:before {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        content: '';
+        height: 1px;
+        border-bottom: 1px solid #e0e0df;
+    }
 
-.dialog .separator:last-child:before, .dialog .separator.noline:before {
-    opacity: 0;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: alpha(opacity=0);
-}
+    .dialog .separator:last-child:before, .dialog .separator.noline:before {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter: alpha(opacity=0);
+    }
 
-.dialog .separator:before, .dialog .separator:after {
-    content: "";
-    display: table;
-}
+    .dialog .separator:before, .dialog .separator:after {
+        content: "";
+        display: table;
+    }
 
 #wunderlist-base [type=text].big, #wunderlist-base [type=email].big, #wunderlist-base [type=password].big, #wunderlist-base .input-fake.big {
     padding: 9px 10px 10px;
@@ -1272,4 +1262,16 @@ html .button, html button {
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     margin: 0;
+}
+
+#wunderlist-base #detail .section-item.hasDate:hover .section-delete, #wunderlist-base #detail .section-item.hasNote:hover .section-delete {
+    visibility: visible;
+}
+
+#placeholder {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }

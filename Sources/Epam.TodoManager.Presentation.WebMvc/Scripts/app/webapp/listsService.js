@@ -32,30 +32,29 @@ angular.module('app').factory('listsService', function ($rootScope) {
                 ]
             }
         ],
-        activeList: null,
-        selectedTask: null,
 
         selectTask: function (task) {
             service.selectedTask = task;
-            $rootScope.$broadcast('task selected');
+            $rootScope.$broadcast('taskSelected');
         },
         addList: function (title) {
             var list = { Id: 0, Title: title, TodoItems: [] };
 
             service.todoLists.push(list);
-            $rootScope.$broadcast('list added');
+            $rootScope.$broadcast('listAdded');
         },
         addTask: function (list, title) {
             list.TodoItems.unshift({ Id: 0, List: list.Id, Text: title, Note: "", IsCompleted: false });
-            $rootScope.$broadcast('task added');
+            $rootScope.$broadcast('taskAdded');
         },
         deleteTask: function(list, task){
             list.TodoItems.splice(list.TodoItems.indexOf(task), 1);
-            $rootScope.$broadcast('task deleted');
+            $rootScope.$broadcast('taskDeleted');
         },
         setActiveList: function (list) {
+            console.log('in service active', list);
             service.activeList = list;
-            $rootScope.$broadcast('active list updated');
+            $rootScope.$broadcast('activeListUpdated');
         }
     };
 

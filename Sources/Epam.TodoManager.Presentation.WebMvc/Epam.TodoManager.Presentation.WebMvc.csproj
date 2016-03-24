@@ -197,6 +197,7 @@
     <Content Include="Scripts\app\webapp\controllers\appController.js" />
     <Content Include="Scripts\app\webapp\controllers\detailController.js" />
     <Content Include="Scripts\app\webapp\controllers\listsController.js" />
+    <Content Include="Scripts\app\webapp\controllers\routeControllers.js" />
     <Content Include="Scripts\app\webapp\controllers\tasksController.js" />
     <Content Include="Scripts\app\webapp\directives.js" />
     <Content Include="Scripts\app\webapp\listsService.js" />
@@ -234,6 +235,7 @@
     <Content Include="Views\Webapp\Index%28renamed%29.cshtml" />
     <Content Include="Views\Webapp\Lists.cshtml" />
     <Content Include="Views\Webapp\Tasks.cshtml" />
+    <Content Include="Views\Webapp\Task.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
