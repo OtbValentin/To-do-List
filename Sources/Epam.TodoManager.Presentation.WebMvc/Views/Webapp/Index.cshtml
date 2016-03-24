@@ -91,7 +91,7 @@
                 </div>
                 <div class="lists-scroll">
                     <ul class="lists-collection">
-                        <li role="menuitem" tabindex="0" class="sidebarItem owner list draggable" draggable="true" ng-click="setActive(list)" ng-repeat="list in lists | filter: {Title: searchTitle} track by $index" ng-class="{'active': activeList === list}">
+                        <li role="menuitem" tabindex="0" class="sidebarItem owner list draggable" draggable="true" ng-repeat="list in lists | filter: {Title: searchTitle} track by $index" ng-class="{'active': activeList === list}">
                             <a href="#/lists/{{list.Id}}">
                                 <span class="list-icon">
                                     <svg class="list rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -154,13 +154,14 @@
             </audio>
         </div>
     </div>
-    <script src="~/Scripts/app/webapp/app.js"></script>
+    @Scripts.Render("~/bundles/webapp-custom")
+    @*<script src="~/Scripts/app/webapp/app.js"></script>
     <script src="~/Scripts/app/webapp/listsService.js"></script>
     <script src="~/Scripts/app/webapp/controllers/appController.js"></script>
     <script src="~/Scripts/app/webapp/controllers/listsController.js"></script>
     <script src="~/Scripts/app/webapp/controllers/tasksController.js"></script>
     <script src="~/Scripts/app/webapp/controllers/detailController.js"></script>
     <script src="~/Scripts/app/webapp/controllers/routeControllers.js"></script>
-    <script src="~/Scripts/app/webapp/directives.js"></script>
+    <script src="~/Scripts/app/webapp/directives.js"></script>*@
 </body>
 </html>

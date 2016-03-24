@@ -42,6 +42,16 @@ namespace Epam.TodoManager.Presentation.WebMvc
                 "~/Scripts/jquery-ui.min.js",
                 "~/Scripts/angular-route.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/webapp-custom").Include(
+                    "~/Scripts/app/webapp/app.js",
+                    "~/Scripts/app/webapp/listsService.js",
+                    "~/Scripts/app/webapp/controllers/appController.js",
+                    "~/Scripts/app/webapp/controllers/listsController.js",
+                    "~/Scripts/app/webapp/controllers/tasksController.js",
+                    "~/Scripts/app/webapp/controllers/detailsController.js",
+                    "~/Scripts/app/webapp/controllers/routeControllers.js",
+                    "~/Scripts/app/webapp/directives.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

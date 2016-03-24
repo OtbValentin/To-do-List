@@ -1,7 +1,7 @@
-angular.module('app').controller('detailsController', function ($scope, $timeout, listsService) {
-    console.log('started details controller');
-    $scope.toggleDetail = function () {
-        $scope.showDetail = !$scope.showDetail;
+angular.module('app').controller('detailsController', function ($scope, $timeout, listsService, $routeParams) {
+    console.log('details controller');
+    $scope.closeDetail = function () {
+        document.location = '#/lists/' + $routeParams.listid;
     }
 
     $scope.deleteTask = function (task) {
@@ -10,12 +10,10 @@ angular.module('app').controller('detailsController', function ($scope, $timeout
     }
 
     $scope.deleteNote = function (task) {
-        console.log('remove note', task);
         task.Note = "";
     }
 
     $scope.deleteDueDate = function (task) {
-        console.log('remove date', task);
         task.DueDate = null;
     }
 
@@ -48,18 +46,13 @@ angular.module('app').controller('detailsController', function ($scope, $timeout
     }
 
     $scope.$on('taskSelected', function () {
-        console.log('selected task', $scope.task);
         $scope.task = listsService.selectedTask;
-    });
-
-    $scope.$on('showTaskDetails', function () {
-        console.log('show details in detail controller');
-        $scope.showDetail = true;
+        document.location = '#/lists/' + listsService.activeList.Id + '/tasks/' + $scope.task.Id;
     });
 
     $scope.$watch('task', function () {
         if ($scope.task == null) {
-            $scope.showDetail = false;
+            $scope.closeDetail();
         }
     });
 
@@ -89,10 +82,10 @@ angular.module('app').controller('detailsController', function ($scope, $timeout
 
     $("#datepicker").datepicker();
     $scope.showDetail = false;
-    $scope.task = null;
+    $scope.task = listsService.selectedTask;
+    console.log($scope.task);
     $scope.noteEditing = false;
     $scope.dateEditing = false;
     $scope.titleEditing = false;
     $scope.overdue = false;
-    $scope.showAddListDialog = false;
 });

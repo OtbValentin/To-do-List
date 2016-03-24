@@ -2,7 +2,7 @@
     Layout = null;
 }
 
-@Html.Partial("Tasks");
+@Html.Partial("Tasks")
 
 <div role="contentinfo" id="detail" ng-controller="detailsController" class="animated">
     <div class="inner">
@@ -108,7 +108,7 @@
             </div>
         </div>
         <div class="bottom">
-            <a class="detail-close" tabindex="0" title="Hide information" ng-click="toggleDetail()">
+            <a class="detail-close" tabindex="0" title="Hide information" ng-click="closeDetail()">
                 <svg class="close-right" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g stroke="none" stroke-width="1" fill-rule="evenodd">
                         <g id="close-right">

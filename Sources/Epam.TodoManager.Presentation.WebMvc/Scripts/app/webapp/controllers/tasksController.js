@@ -1,12 +1,12 @@
 angular.module('app').controller('tasksController', function ($scope, listsService, $routeParams) {
-    console.log('started tasks controller');
+    console.log('tasks controller');
+    console.log(listsService.selectedTask);
     $scope.$on('taskAdded', function () {
         $scope.newTaskTitle = '';
     });
 
-    $scope.redirectToTask = function(task)
-    {
-        document.location = '/lists/' + $scope.activeList.Id + '/tasks/' + $scope.task.Id;
+    $scope.redirectToTask = function (task) {
+        document.location = '#/lists/' + $scope.activeList.Id + '/tasks/' + task.Id;
     }
 
     $scope.addTask = function (title) {
@@ -14,11 +14,13 @@ angular.module('app').controller('tasksController', function ($scope, listsServi
     }
 
     $scope.selectTask = function (task) {
+        console.log('selected task in task cntrl');
         listsService.selectTask(task);
     }
 
     $scope.toggleCompletedTasks = function () {
         $scope.showCompleted = !$scope.showCompleted;
+        lists.showCompleted = $scope.showCompleted;
     };
 
     $scope.setCompleted = function ($event, task) {
@@ -37,11 +39,29 @@ angular.module('app').controller('tasksController', function ($scope, listsServi
         $scope.selectedTask = listsService.selectedTask;
     });
 
+    $scope.$on('activeListUpdated', function () {
+        $scope.activeList = listsService.activeList;
+    });
+
     $scope.stopPropagation = function ($event) {
         $event.stopPropagation();
     };
 
-    $scope.activeList = null;
-    $scope.selectedTask = null;
-    $scope.showCompleted = false;
+    $scope.updateSelected = function () {
+        listsService.setActiveList(listsService.todoLists.filter(function (list) { return list.Id == $routeParams.listid })[0]);
+        var taskId = $routeParams.taskid;
+
+        if (taskId != null && taskId != undefined) {
+            listsService.selectTask(listsService.activeList.TodoItems.filter(function (task) { return task.Id == taskId })[0]);
+            console.log('assigned task', listsService.selectedTask);
+        }
+    };
+
+    $scope.$on('routeChanged', $scope.updateSelected);
+
+    $scope.showCompleted = lists.showCompleted;
+    $scope.updateSelected();
+    $scope.selectedTask = listsService.selectedTask;
+
+    console.log('final selected', $scope.selectedTask, listsService.selectedTask);
 });

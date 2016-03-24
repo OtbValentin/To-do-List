@@ -32,8 +32,11 @@ angular.module('app').factory('listsService', function ($rootScope) {
                 ]
             }
         ],
-
+        activeList: null,
+        selectedTask: null,
+        showCompleted: false,
         selectTask: function (task) {
+            console.log('select task in service', task);
             service.selectedTask = task;
             $rootScope.$broadcast('taskSelected');
         },
@@ -52,7 +55,7 @@ angular.module('app').factory('listsService', function ($rootScope) {
             $rootScope.$broadcast('taskDeleted');
         },
         setActiveList: function (list) {
-            console.log('in service active', list);
+            console.log('set active list service', list);
             service.activeList = list;
             $rootScope.$broadcast('activeListUpdated');
         }

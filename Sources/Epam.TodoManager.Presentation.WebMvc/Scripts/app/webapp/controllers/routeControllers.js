@@ -1,9 +1,8 @@
-﻿angular.module('app').controller('listsRouteController', function ($scope, $routeParams) {
-    console.log('started lists route controller');
-    console.log($routeParams);
-    console.log('AHSHSHHSSHHS');
-}).controller('tasksRouteController', function ($scope) {
-    console.log('started tasks route controller');
-}).controller('detailsRouteController', function ($scope) {
-    console.log('started details route controller');
+﻿angular.module('app').controller('listsRouteController', function ($scope, $routeParams, $rootScope) {
+    $rootScope.$broadcast('routeChanged');
+}).controller('tasksRouteController', function ($scope, $rootScope) {
+    $rootScope.$broadcast('routeChanged');
+}).controller('detailsRouteController', function ($scope, $rootScope) {
+    console.log('details route controller');
+    $rootScope.$broadcast('routeChanged');
 });
