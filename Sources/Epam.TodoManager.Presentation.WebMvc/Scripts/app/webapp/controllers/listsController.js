@@ -10,8 +10,16 @@ angular.module('app').controller('listsController', function ($scope, listsServi
         listsService.setActiveList(list);
     }
 
-    $scope.addNewList = function () {
-        listsService.addList('New list title');
+    $scope.showAddListDialog = function () {
+        listsService.showAddListDialog();
+    }
+
+    $scope.addNewList = function (title) {
+        listsService.addList('title');
+    }
+
+    $scope.showEditListDialog = function (list) {
+        listsService.showEditListDialog(list);
     }
 
     $scope.$on('activeListUpdated', function () {
