@@ -20,8 +20,8 @@
             <input type="text" class="addTask-input chromeless" maxlength="255" placeholder="Add a new task" ng-model="newTaskTitle">
         </div>
         <div class="task-list inbox">
-            <ol class="tasks">
-                <li tabindex="0" class="taskItem" draggable="true" ng-repeat="task in activeList.TodoItems | filter:{IsCompleted : false} track by $index" ng-class="{'selected': selectedTask === task}">
+            <ol ui-sortable="sortableOptions" ng-model="activeList.TodoItems" class="tasks">
+                <li @*tabindex="0"*@ class="taskItem" @*draggable="true"*@ ng-repeat="task in activeList.TodoItems | filter:{IsCompleted : false} track by $index" ng-class="{'selected': selectedTask === task}">
                     <div class="taskItem-body" ng-dblclick="redirectToTask(task)" ng-click="selectTask(task)">
                         <a class="taskItem-checkboxWrapper checkBox" tabindex="-1" ng-click="setCompleted($event, task)" ng-dblclick="stopPropagation($event)">
                             <span data-key-title="contextual_mark_as_completed" title="Mark as Completed">

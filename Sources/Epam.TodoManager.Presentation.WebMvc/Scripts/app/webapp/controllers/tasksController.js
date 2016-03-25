@@ -1,6 +1,13 @@
 angular.module('app').controller('tasksController', function ($scope, listsService, $routeParams) {
     console.log('tasks controller');
     console.log(listsService.selectedTask);
+
+    $scope.sortableOptions = {
+        stop: function (event, ui) {
+            //handle item movement
+        }
+    }
+
     $scope.$on('taskAdded', function () {
         $scope.newTaskTitle = '';
     });

@@ -30,6 +30,28 @@ angular.module('app').factory('listsService', function ($rootScope) {
                       DueDate: null
                   }
                 ]
+            },
+            {
+                Id: 2,
+                Title: "List2 modified",
+                TodoItems: [
+                  {
+                      Id: 10,
+                      List: 0,
+                      Text: "Item10",
+                      Note: "kek drek",
+                      IsCompleted: false,
+                      DueDate: null
+                  },
+                  {
+                      Id: 11,
+                      List: 0,
+                      Text: "Item11",
+                      Note: "",
+                      IsCompleted: false,
+                      DueDate: null
+                  }
+                ]
             }
         ],
         activeList: null,
