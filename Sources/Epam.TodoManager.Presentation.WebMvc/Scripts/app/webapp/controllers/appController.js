@@ -1,4 +1,11 @@
 angular.module('app').controller('appController', function ($scope, listsService) {
+    $scope.closeAllDialogs = function ($event) {
+        if ($event.keyCode == 27) {
+            $scope.closeAddListDialog();
+            $scope.closeEditListDialog();
+            $scope.closeUserSettingsDialog();
+        }
+    };
     //$scope.$watch(listsService.activeList, function () {
     //    if (listsService.activeList == null) {
     //        document.location = '#/lists';
@@ -17,6 +24,12 @@ angular.module('app').controller('appController', function ($scope, listsService
         $scope.showEditListDialog = true;
     });
 
+    $scope.$on('showUserSettingsDialog', function (event, args) {
+        console.log('app controller show user dialog');
+        $scope.userToEdit = args;
+        $scope.showUserSettingsDialog = true;
+    });
+
     $scope.renameList = function (newTitle) {
         //listsService.renameList($scope.listToEdit, newTitle);
         $scope.listToEdit.Title = newTitle;
@@ -29,7 +42,6 @@ angular.module('app').controller('appController', function ($scope, listsService
     }
 
     $scope.closeAddListDialog = function () {
-        console.log('canceled');
         $scope.showAddListDialog = false;
         $scope.newListTitle = '';
     }
@@ -40,6 +52,11 @@ angular.module('app').controller('appController', function ($scope, listsService
         $scope.listToEdit = null;
     }
 
+    $scope.closeUserSettingsDialog = function () {
+        $scope.showUserSettingsDialog = false;
+        $scope.userToEdit = null;
+    }
+
     $scope.addNewList = function (title) {
         listsService.addList(title);
         $scope.closeAddListDialog();
@@ -47,6 +64,8 @@ angular.module('app').controller('appController', function ($scope, listsService
 
     $scope.showAddListDialog = false;
     $scope.showEditListDialog = false;
+    $scope.showUserSettingsDialog = false;
     $scope.newListTitle = '';
     $scope.listToEdit = null;
+    $scope.userToEdit = null;
 });

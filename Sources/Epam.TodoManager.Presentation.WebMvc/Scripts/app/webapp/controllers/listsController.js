@@ -22,6 +22,10 @@ angular.module('app').controller('listsController', function ($scope, listsServi
         listsService.showEditListDialog(list);
     }
 
+    $scope.showUserSettingsDialog = function () {
+        listsService.showUserSettingsDialog(listsService.user);
+    }
+
     $scope.$on('activeListUpdated', function () {
         $scope.activeList = listsService.activeList;
     });

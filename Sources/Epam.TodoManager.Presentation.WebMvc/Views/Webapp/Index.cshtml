@@ -10,8 +10,8 @@
     @Styles.Render("~/Content/css/webapp")
     @Scripts.Render("~/bundles/webapp")
 </head>
-<body id="wunderlist-base">
-    <div class="main-interface" ng-app="app" ng-controller="appController">
+<body id="wunderlist-base" ng-app="app" ng-controller="appController" ng-keyup="closeAllDialogs($event)">
+    <div class="main-interface">
         <div id="modals">
             <div class="dialog-wrapper hidden" ng-class="{'hidden': showAddListDialog == false}">
                 <div id="" class="dialog listOptions shown">
@@ -82,7 +82,117 @@
                     <ul class="content-people inviteAutocomplete hidden"></ul>
                 </div>
             </div>
+
+            <div class="dialog-wrapper hidden" ng-class="{'hidden': showUserSettingsDialog == false}">
+                <div id="settings" class="dialog preferences shown">
+                    <div class="content">
+                        <div class="settings-content-inner-wrapper">
+                            <div class="settings-content-inner account">
+                                <div class="settings">
+                                    <!-- Picture -->
+                                    <div class="separator">
+                                        <div class="cols">
+                                            <div class="col-32">
+                                                <div class="avatar-frame">
+                                                    <div class="avatar large hover choose">
+                                                        <span class="icon options" style="display: block;"></span>
+                                                        <img src="~/Content/images/user-icon.png" class="opaque">
+                                                        <div class="drop-message">
+                                                            <span><text rel="settings_account_drop_image">Перетащите фото сюда</text></span>
+                                                        </div> <div class="message error hidden"><span><text rel="file_uploaded_failed">Не удалось добавить файл. Попробуйте еще раз.</text></span></div> <div class="state loading spinner"><span class="dark"></span></div>
+                                                    </div> <div class="avatar-upload"> <div class="drop-zone"></div> </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-68">
+                                                <div class="pro-status-wrapper">
+                                                    <div tabindex="0" class="pro-status pro-section-style tabStart">
+                                                        <h3>
+                                                            <text rel="settings_account_header_account_$" data="$settings_account_header_free">User profile</text>
+                                                        </h3>
+                                                        <p>
+                                                            <text rel="settings_account_pro_description">Account settings</text>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="separator basic-account-settings">
+                                        <!-- Full Name -->
+                                        <div class="cols">
+                                            <div class="col-32 text-right">
+                                                <text rel="label_name">Name</text>
+                                            </div>
+                                            <div class="col-68">
+                                                <input type="text" id="edit-full-name" data-key-aria-label="label_name" data-key-placeholder="label_name" value="Valentin" initial-value="" tabindex="0" placeholder="Имя" aria-label="Имя">
+                                            </div>
+                                        </div> <!-- Email -->
+                                        <div class="cols">
+                                            <div class="col-32 text-right">
+                                                <text rel="label_email">Email</text>
+                                            </div>
+                                            <div class="col-40">
+                                                <input type="text" id="edit-email" data-key-aria-label="label_email" data-key-placeholder="label_email" value="valentin.pilipchuk.24@gmail.com" initial-value="" disabled="" tabindex="0" placeholder="Электронная почта" aria-label="Электронная почта">
+                                            </div> <div class="col-28">
+                                                <button id="change-email" class="full" data-key-aria-label="settings_account_change_email" tabindex="0" aria-label="Изменить адрес электронной почты">
+                                                    <text rel="settings_account_change_email">Изменить адрес электронной почты</text>
+                                                </button>
+                                            </div>
+                                        </div> <!-- Password for email confirm -->
+                                        <div class="cols password-confirm">
+                                            <div class="col-32 text-right">
+                                                <text rel="label_password">Password</text>
+                                            </div> <div class="col-40">
+                                                <input type="password" id="edit-email-pw-confirm" data-key-aria-label="label_password" disabled="" tabindex="0" aria-label="Пароль">
+                                            </div> <div class="col-28"></div>
+                                        </div> <!-- Change Email -->
+                                        <div class="cols change-email-buttons">
+                                            <div class="col-32 text-right"></div>
+                                            <div class="col-40">
+                                                <div class="cols email-error error-message">
+                                                    <div class="col-100"><text rel="api_error_incorrect_password">Неверный пароль.</text></div>
+                                                </div>
+                                                <div class="cols">
+                                                    <div class="col-50">
+                                                        <button class="full" id="cancel-email" data-key-aria-label="button_cancel" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button>
+                                                    </div>
+                                                    <div class="col-50">
+                                                        <button class="full blue disabled" id="save-email" disabled="" data-key-aria-label="button_save" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Сохранить</text> </button>
+                                                    </div>
+                                                </div>
+                                            </div> <div class="col-28"></div>
+                                        </div>  <!-- Additional Emails -->
+                                        <div class="cols">
+                                            <div class="col-32 text-right"></div>
+                                            <div class="col-68">
+                                                <p class="settings-account-manage-emails"> <a href="/account/emails" target="_blank"><text rel="settings_account_manage_emails">Добавление и изменение адресов электронной почты</text></a> </p>
+                                            </div>
+                                        </div> <!-- Change Password --> <div class="cols show-password-buttons"> <div class="col-32 text-right"> <text rel="label_password">Пароль</text> </div> <div class="col-40"> <input type="password" class="old-password" data-key-placeholder="settings_account_current_password" data-key-aria-label="settings_account_current_password" tabindex="0" placeholder="Текущий пароль" aria-label="Текущий пароль"> <button id="change-password" class="full" data-key-aria-label="settings_account_change_password" tabindex="0" aria-label="Изменить пароль…"> <text rel="settings_account_change_password">Изменить пароль…</text> </button> </div> <div class="col-28"></div> </div> <div class="cols change-password-buttons"> <div class="col-32"></div> <div class="col-40"> <div class="cols"> <div class="col-100"> <input type="password" class="new-password" data-key-placeholder="settings_account_new_password" data-key-aria-label="settings_account_new_password" tabindex="0" placeholder="Новый пароль" aria-label="Новый пароль"> </div> </div> <div class="cols"> <div class="col-100"> <input id="confirm-password" type="password" class="confirm-password" data-key-placeholder="settings_account_repeat_new_password" data-key-aria-label="settings_account_repeat_new_password" tabindex="0" placeholder="Повторите новый пароль" aria-label="Повторите новый пароль"> </div> </div> <div class="cols change-password-error error-message"> <div class="col-100"> <text rel="settings_account_change_password_error">При попытке изменить пароль произошла ошибка. Попробуйте еще раз.</text> </div> </div> <div class="cols"> <div class="col-50"> <button class="full" id="cancel-password" data-key-aria-label="button_cancel" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button> </div> <div class="col-50"> <button class="full blue" id="save-password" data-key-aria-label="button_save" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Сохранить</text> </button> </div> </div> </div> <div class="col-28"></div> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-footer">
+                        <div class="cols">
+                            <div class="col-40"></div>
+                            <div class="col-20"></div>
+                            <div class="col-20">
+                                <button class="full blue close">
+                                    <text rel="button_cancel">Cancel</text>
+                                </button>
+                            </div>
+                            <div class="col-20">
+                                <button class="full blue close">
+                                    <text rel="button_done">Done</text>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div id="lists" ng-class="{collapsed: isCollapsed}" ng-controller="listsController">
             <div tabindex="0" class="lists-inner">
                 <div id="search-toolbar">
@@ -112,7 +222,7 @@
                     </span>
                 </div>
                 <div id="user-toolbar">
-                    <a class="user" data-path="me" role="button" tabindex="0">
+                    <a class="user" data-path="me" role="button" tabindex="0" ng-click="showUserSettingsDialog()">
                         <div class="user-avatar">
                             <div class="avatar medium" title="Valentin">
                                 <img src="~/Content/images/user-icon.png">
