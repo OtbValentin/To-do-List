@@ -138,6 +138,8 @@
     <Content Include="bower_components\angular-oauth2\src\interceptors\oauth-interceptor.js" />
     <Content Include="bower_components\angular-oauth2\src\providers\oauth-provider.js" />
     <Content Include="bower_components\angular-oauth2\src\providers\oauth-token-provider.js" />
+    <Content Include="bower_components\angular-ui-sortable\sortable.js" />
+    <Content Include="bower_components\angular-ui-sortable\sortable.min.js" />
     <Content Include="bower_components\angular\angular-csp.css" />
     <Content Include="bower_components\angular\angular.js" />
     <Content Include="bower_components\angular\angular.min.js" />
@@ -149,6 +151,7 @@
     <Content Include="Content\styles\account\login.css" />
     <Content Include="Content\styles\account\signup.css" />
     <Content Include="Content\styles\webapp\jquery-ui.min.css" />
+    <Content Include="Content\styles\webapp\jquery-ui.structure.min.css" />
     <Content Include="Content\styles\webapp\webapp.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-cookies.js" />
@@ -192,6 +195,8 @@
     <Content Include="Content\sounds\wl3-complete.ogg" />
     <Content Include="Content\images\06.jpg" />
     <Content Include="Content\images\user-icon.png" />
+    <Content Include="Scripts\app\services\listService.js" />
+    <Content Include="Scripts\app\services\taskService.js" />
     <Content Include="Scripts\app\webapp\app.js" />
     <Content Include="Scripts\app\webapp\appService.js" />
     <Content Include="Scripts\app\webapp\controllers\appController.js" />
@@ -204,6 +209,7 @@
     <Content Include="Scripts\jquery-2.2.1.js" />
     <Content Include="Scripts\jquery-2.2.1.min.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\sortable.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -229,6 +235,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="bower_components\angular-ui-sortable\.bower.json" />
+    <Content Include="bower_components\angular-ui-sortable\.travis.yml" />
+    <Content Include="bower_components\angular-ui-sortable\bower.json" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\jquery-2.2.1.min.map" />

@@ -38,9 +38,10 @@ namespace Epam.TodoManager.Presentation.WebMvc
 
             bundles.Add(new ScriptBundle("~/bundles/webapp").Include(
                 "~/Scripts/jquery-2.2.1.js",
-                "~/Scripts/angular.js",
                 "~/Scripts/jquery-ui.min.js",
-                "~/Scripts/angular-route.min.js"));
+                "~/Scripts/angular.js",
+                "~/Scripts/angular-route.min.js",
+                "~/Scripts/sortable.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/webapp-custom").Include(
                     "~/Scripts/app/webapp/app.js",
@@ -66,7 +67,8 @@ namespace Epam.TodoManager.Presentation.WebMvc
 
             bundles.Add(new StyleBundle("~/Content/css/webapp").Include(
                 "~/Content/styles/webapp/webapp.css",
-                "~/Content/styles/webapp/jquery-ui.min.css"));
+                "~/Content/styles/webapp/jquery-ui.min.css",
+                "~/Content/styles/webapp/jquery-ui.structure.min.css"));
         }
     }
 }

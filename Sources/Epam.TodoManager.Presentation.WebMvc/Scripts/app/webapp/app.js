@@ -1,21 +1,21 @@
-var app = angular.module("app", ['ngRoute']);
+var app = angular.module("app", ['ngRoute', 'ui.sortable']);
 
 app.config(['$routeProvider',
   function ($routeProvider) {
       $routeProvider.
         when('/lists', {
-            templateUrl: 'webapp/lists',
+            templateUrl: 'Lists',
             controller: 'listsRouteController'
         }).
         when('/lists/:listid', {
-            templateUrl: 'webapp/tasks',
+            templateUrl: 'Tasks',
             controller: 'tasksRouteController'
         }).
         when('/lists/:listid/tasks/:taskid', {
-            templateUrl: 'webapp/task',
+            templateUrl: 'Task',
             controller: 'detailsRouteController'
         }).
         otherwise({
-            redirectTo: '/lists'
+            redirectTo: 'Lists'
         });
   }]);
