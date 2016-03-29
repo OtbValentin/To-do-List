@@ -1,4 +1,4 @@
-var app = angular.module("app", ['ngRoute', 'ui.sortable', 'angled-dragndrop']);
+var app = angular.module("app", ['ngRoute', 'ui.sortable']);
 
 app.config(['$routeProvider',
   function ($routeProvider) {
