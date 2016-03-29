@@ -45,13 +45,20 @@ namespace Epam.TodoManager.Presentation.WebMvc
 
             bundles.Add(new ScriptBundle("~/bundles/webapp-custom").Include(
                     "~/Scripts/app/webapp/app.js",
-                    "~/Scripts/app/webapp/listsService.js",
-                    "~/Scripts/app/webapp/controllers/appController.js",
-                    "~/Scripts/app/webapp/controllers/listsController.js",
-                    "~/Scripts/app/webapp/controllers/tasksController.js",
-                    "~/Scripts/app/webapp/controllers/detailsController.js",
-                    "~/Scripts/app/webapp/controllers/routeControllers.js",
-                    "~/Scripts/app/webapp/directives.js"));
+                    "~/Scripts/app/services/listService.js",
+                    "~/Scripts/app/services/taskService.js",
+                    "~/Scripts/app/services/accountService.js",
+                    "~/Scripts/app/services/dataService.js",
+                    //"~/Scripts/app/webapp/controllers/appController.js",
+                    //"~/Scripts/app/webapp/controllers/listsController.js",
+                    //"~/Scripts/app/webapp/controllers/tasksController.js",
+                    //"~/Scripts/app/webapp/controllers/detailsController.js",
+                    //"~/Scripts/app/webapp/controllers/routeControllers.js",
+                    //"~/Scripts/app/webapp/controllers/addListController.js",
+                    //"~/Scripts/app/webapp/controllers/editListController.js",
+                    //"~/Scripts/app/webapp/controllers/accountController.js",
+                    "~/Scripts/app/webapp/directives.js").
+                    IncludeDirectory("~/Scripts/app/webapp/controllers", "*.js", false));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

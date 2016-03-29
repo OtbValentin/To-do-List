@@ -5,9 +5,9 @@
         .module('app')
         .factory('taskService', taskService);
 
-    taskService.$inject = ['$http'];
+    taskService.$inject = ['$http', 'listService'];
 
-    function taskService($http) {
+    function taskService($http, listService) {
         var service = {
             create: create,
             get: get,
@@ -18,7 +18,7 @@
             shift: shift,
 
             resourceUrl: "http://localhost:51733/api/TodoItems",
-            listResourceUrl: "http://localhost:51733/api/TodoLists"
+            listResourceUrl: listService.resourceUrl
         };
         return service;
 

@@ -4,18 +4,18 @@ app.config(['$routeProvider',
   function ($routeProvider) {
       $routeProvider.
         when('/lists', {
-            templateUrl: '/webapp/lists',
+            templateUrl: 'Webapp/Lists',
             controller: 'listsRouteController'
         }).
         when('/lists/:listid', {
-            templateUrl: '/webapp/tasks',
+            templateUrl: 'Webapp/Tasks',
             controller: 'tasksRouteController'
         }).
         when('/lists/:listid/tasks/:taskid', {
-            templateUrl: '/webapp/task',
+            templateUrl: 'Webapp/Task',
             controller: 'detailsRouteController'
         }).
         otherwise({
-            redirectTo: '/lists'
+            redirectTo: 'Lists'
         });
   }]);

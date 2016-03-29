@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('todoListApp')
+        .module('app')
         .factory('accountService', accountService);
 
     accountService.$inject = ['$resource'];

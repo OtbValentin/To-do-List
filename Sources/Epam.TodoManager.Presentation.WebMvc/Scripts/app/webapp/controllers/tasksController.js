@@ -1,10 +1,10 @@
-angular.module('app').controller('tasksController', function ($scope, listsService, $routeParams) {
+angular.module('app').controller('tasksController', function ($scope, listsService, $routeParams, $filter) {
     console.log('tasks controller');
     console.log(listsService.selectedTask);
 
     $scope.sortableOptions = {
         stop: function (event, ui) {
-            //handle item movement
+            console.log('sortable stop')
         }
     }
 

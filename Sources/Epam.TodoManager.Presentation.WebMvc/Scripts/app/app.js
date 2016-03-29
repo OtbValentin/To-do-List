@@ -10,7 +10,8 @@
         // Custom modules 
 
         // 3rd Party Modules
-        'angular-oauth2'
+        'angular-oauth2',
+        'angled-dragndrop'
     ])
     .config([ 'OAuthProvider', function (OAuthProvider) {
         OAuthProvider.configure({

@@ -1,4 +1,4 @@
-angular.module('app').controller('listsController', function ($scope, listsService, $location, $routeParams, $route) {
+angular.module('app').controller('listsController', function ($scope, $rootScope, listService, $location, $routeParams, $route) {
     $scope.$on('list added', function () {
     });
 
@@ -7,27 +7,27 @@ angular.module('app').controller('listsController', function ($scope, listsServi
     }
 
     $scope.setActive = function (list) {
-        listsService.setActiveList(list);
+        listService.setActiveList(list);
     }
 
     $scope.showAddListDialog = function () {
-        listsService.showAddListDialog();
+        listService.showAddListDialog();
     }
 
     $scope.addNewList = function (title) {
-        listsService.addList('title');
+        listService.addList('title');
     }
 
     $scope.showEditListDialog = function (list) {
-        listsService.showEditListDialog(list);
+        listService.showEditListDialog(list);
     }
 
     $scope.showUserSettingsDialog = function () {
-        listsService.showUserSettingsDialog(listsService.user);
+        $rootScope.$broadcast('showUserSettingsDialog', null);
     }
 
     $scope.$on('activeListUpdated', function () {
-        $scope.activeList = listsService.activeList;
+        $scope.activeList = listService.activeList;
     });
 
     $scope.isCollapsed = false;
@@ -35,8 +35,12 @@ angular.module('app').controller('listsController', function ($scope, listsServi
     $scope.activeList = null;
 
     $scope.$on('routeChanged', function () {
-        $scope.setActive(listsService.todoLists.filter(function (list) { return list.Id == $routeParams.listid })[0]);
+        $scope.setActive(listService.todoLists.filter(function (list) { return list.Id == $routeParams.listid })[0]);
     });
 
     $scope.userName = 'Valentin';
+
+    $scope.$on('angled.droppable.dropped', function (event) {
+        console.log(event);
+    });
 });

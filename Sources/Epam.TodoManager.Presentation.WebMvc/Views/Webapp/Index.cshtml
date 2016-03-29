@@ -12,7 +12,7 @@
 <body id="wunderlist-base" ng-app="app" ng-controller="appController" ng-keyup="closeAllDialogs($event)">
     <div class="main-interface">
         <div id="modals">
-            <div class="dialog-wrapper hidden" ng-class="{'hidden': showAddListDialog == false}">
+            <div class="dialog-wrapper hidden" ng-controller="addListController" ng-class="{'hidden': showAddListDialog == false}">
                 <div id="" class="dialog listOptions shown">
                     <div class="content">
                         <div class="content-header" tabindex="0">
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <div class="dialog-wrapper hidden" ng-class="{'hidden': showEditListDialog == false}">
+            <div class="dialog-wrapper hidden" ng-controller="editListController" ng-class="{'hidden': showEditListDialog == false}">
                 <div id="" class="dialog listOptions shown">
                     <div class="content">
                         <div class="content-header" tabindex="0">
@@ -73,7 +73,7 @@
                                     </button>
                                 </div>
                                 <div class="col-30">
-                                    <button class="submit full blue" aria-disabled="false" tabindex="0" ng-click="renameList(newListTitle)">Done</button>
+                                    <button class="submit full blue" aria-disabled="false" tabindex="0" ng-click="saveChanges()">Done</button>
                                 </div>
                             </div>
                         </div>
@@ -97,9 +97,15 @@
                                                         <span class="icon options" style="display: block;"></span>
                                                         <img src="~/Content/images/user-icon.png" class="opaque">
                                                         <div class="drop-message">
-                                                            <span><text rel="settings_account_drop_image">Перетащите фото сюда</text></span>
-                                                        </div> <div class="message error hidden"><span><text rel="file_uploaded_failed">Не удалось добавить файл. Попробуйте еще раз.</text></span></div> <div class="state loading spinner"><span class="dark"></span></div>
-                                                    </div> <div class="avatar-upload"> <div class="drop-zone"></div> </div>
+                                                            <span>
+                                                                <text rel="settings_account_drop_image">Перетащите фото сюда</text>
+                                                            </span>
+                                                        </div>
+                                                        <div class="message error hidden"><span><text rel="file_uploaded_failed">Не удалось добавить файл. Попробуйте еще раз.</text></span></div> <div class="state loading spinner"><span class="dark"></span></div>
+                                                    </div>
+                                                    <div class="avatar-upload">
+                                                        <div class="drop-zone"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-68">
@@ -133,19 +139,19 @@
                                             <div class="col-40">
                                                 <input type="text" id="edit-email" data-key-aria-label="label_email" data-key-placeholder="label_email" value="valentin.pilipchuk.24@gmail.com" initial-value="" disabled="" tabindex="0" placeholder="Электронная почта" aria-label="Электронная почта">
                                             </div> <div class="col-28">
-                                                <button id="change-email" class="full" tabindex="0">
+                                                <button id="change-email" class="full" ng-class="{'hidden': emailEditing == true}" ng-click="beginEmailEditing()" tabindex="0">
                                                     <text rel="settings_account_change_email">Change email address</text>
                                                 </button>
                                             </div>
                                         </div> <!-- Password for email confirm -->
-                                        <div class="cols password-confirm">
+                                        <div class="cols password-confirm hidden" ng-class="{'hidden': emailEditing == false}">
                                             <div class="col-32 text-right">
                                                 <text rel="label_password">Password</text>
                                             </div> <div class="col-40">
                                                 <input type="password" id="edit-email-pw-confirm" data-key-aria-label="label_password" disabled="" tabindex="0" aria-label="Пароль">
                                             </div> <div class="col-28"></div>
                                         </div> <!-- Change Email -->
-                                        <div class="cols change-email-buttons">
+                                        <div class="cols change-email-buttons hidden" ng-class="{'hidden': emailEditing == false}">
                                             <div class="col-32 text-right"></div>
                                             <div class="col-40">
                                                 <div class="cols email-error error-message">
@@ -306,13 +312,5 @@
         </div>
     </div>
     @Scripts.Render("~/bundles/webapp-custom")
-    @*<script src="~/Scripts/app/webapp/app.js"></script>
-        <script src="~/Scripts/app/webapp/listsService.js"></script>
-        <script src="~/Scripts/app/webapp/controllers/appController.js"></script>
-        <script src="~/Scripts/app/webapp/controllers/listsController.js"></script>
-        <script src="~/Scripts/app/webapp/controllers/tasksController.js"></script>
-        <script src="~/Scripts/app/webapp/controllers/detailController.js"></script>
-        <script src="~/Scripts/app/webapp/controllers/routeControllers.js"></script>
-        <script src="~/Scripts/app/webapp/directives.js"></script>*@
 </body>
 </html>
