@@ -137,7 +137,7 @@
                                                 <text rel="label_email">Email</text>
                                             </div>
                                             <div class="col-40">
-                                                <input type="text" id="edit-email" data-key-aria-label="label_email" data-key-placeholder="label_email" value="valentin.pilipchuk.24@gmail.com" initial-value="" disabled="" tabindex="0" placeholder="Электронная почта" aria-label="Электронная почта">
+                                                <input type="text" id="edit-email" data-key-aria-label="label_email" data-key-placeholder="label_email" value="valentin.pilipchuk.24@gmail.com" initial-value="" disabled="" tabindex="0" placeholder="Email address" ng-disabled="emailEditing == false">
                                             </div> <div class="col-28">
                                                 <button id="change-email" class="full" ng-class="{'hidden': emailEditing == true}" ng-click="beginEmailEditing()" tabindex="0">
                                                     <text rel="settings_account_change_email">Change email address</text>
@@ -159,10 +159,10 @@
                                                 </div>
                                                 <div class="cols">
                                                     <div class="col-50">
-                                                        <button class="full" id="cancel-email" data-key-aria-label="button_cancel" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button>
+                                                        <button class="full" id="cancel-email" data-key-aria-label="button_cancel" tabindex="0" aria-label="Отмена" ng-click="stopEmailEditing()"> <text rel="button_cancel">Cancel</text> </button>
                                                     </div>
                                                     <div class="col-50">
-                                                        <button class="full blue disabled" id="save-email" disabled="" data-key-aria-label="button_save" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Сохранить</text> </button>
+                                                        <button class="full blue disabled" id="save-email" disabled="" data-key-aria-label="button_save" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Save</text> </button>
                                                     </div>
                                                 </div>
                                             </div> <div class="col-28"></div>

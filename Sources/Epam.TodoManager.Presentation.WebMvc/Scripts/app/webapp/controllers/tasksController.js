@@ -1,6 +1,6 @@
-angular.module('app').controller('tasksController', function ($scope, listsService, $routeParams, $filter) {
+angular.module('app').controller('tasksController', function ($scope, listService, $routeParams, $filter) {
     console.log('tasks controller');
-    console.log(listsService.selectedTask);
+    console.log(listService.selectedTask);
 
     $scope.sortableOptions = {
         stop: function (event, ui) {
@@ -17,11 +17,11 @@ angular.module('app').controller('tasksController', function ($scope, listsServi
     }
 
     $scope.addTask = function (title) {
-        listsService.addTask(listsService.activeList, title);
+        listService.addTask(listService.activeList, title);
     }
 
     $scope.selectTask = function (task) {
-        listsService.selectTask(task);
+        listService.selectTask(task);
     }
 
     $scope.toggleCompletedTasks = function () {
@@ -42,11 +42,11 @@ angular.module('app').controller('tasksController', function ($scope, listsServi
     };
 
     $scope.$on('taskSelected', function () {
-        $scope.selectedTask = listsService.selectedTask;
+        $scope.selectedTask = listService.selectedTask;
     });
 
     $scope.$on('activeListUpdated', function () {
-        $scope.activeList = listsService.activeList;
+        $scope.activeList = listService.activeList;
     });
 
     $scope.stopPropagation = function ($event) {
@@ -54,11 +54,11 @@ angular.module('app').controller('tasksController', function ($scope, listsServi
     };
 
     $scope.updateSelected = function () {
-        listsService.setActiveList(listsService.todoLists.filter(function (list) { return list.Id == $routeParams.listid })[0]);
+        listService.setActiveList(listService.todoLists.filter(function (list) { return list.Id == $routeParams.listid })[0]);
         var taskId = $routeParams.taskid;
 
         if (taskId != null && taskId != undefined) {
-            listsService.selectTask(listsService.activeList.TodoItems.filter(function (task) { return task.Id == taskId })[0]);
+            listService.selectTask(listService.activeList.TodoItems.filter(function (task) { return task.Id == taskId })[0]);
         }
     };
 
@@ -66,5 +66,5 @@ angular.module('app').controller('tasksController', function ($scope, listsServi
 
     $scope.showCompleted = lists.showCompleted;
     $scope.updateSelected();
-    $scope.selectedTask = listsService.selectedTask;
+    $scope.selectedTask = listService.selectedTask;
 });

@@ -1,4 +1,4 @@
-var app = angular.module("app", ['ngRoute', 'ui.sortable']);
+var app = angular.module("app", ['ngRoute', 'ui.sortable', 'ngResource']);
 
 app.config(['$routeProvider',
   function ($routeProvider) {

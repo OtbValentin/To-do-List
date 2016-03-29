@@ -31,7 +31,7 @@ angular.module('app').controller('listsController', function ($scope, $rootScope
     });
 
     $scope.isCollapsed = false;
-    $scope.lists = listsService.todoLists;
+    $scope.lists = listService.todoLists;
     $scope.activeList = null;
 
     $scope.$on('routeChanged', function () {

@@ -1,4 +1,4 @@
-angular.module('app').factory('listsService', function ($rootScope) {
+angular.module('app').factory('', function ($rootScope) {
     var service = {
         todoLists: [
             {

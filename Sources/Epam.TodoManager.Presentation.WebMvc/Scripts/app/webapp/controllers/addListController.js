@@ -1,4 +1,4 @@
-﻿angular.module('app').controller('addListController', function ($scope, listsService) {
+﻿angular.module('app').controller('addListController', function ($scope, listService) {
 
     $scope.$on('showAddListDialog', function () {
         $scope.showAddListDialog = true;
@@ -11,7 +11,7 @@
     }
 
     $scope.addNewList = function (title) {
-        listsService.addList(title);
+        listService.addList(title);
         $scope.closeAddListDialog();
     }
 

@@ -1450,9 +1450,9 @@ html .button, html button {
     width: 28%;
 }
 
-.dialog .change-password-buttons, .dialog .change-email-buttons, .dialog .delete-form, .dialog .old-password, .dialog .password-confirm {
+/*.dialog .change-password-buttons, .dialog .change-email-buttons, .dialog .delete-form, .dialog .old-password, .dialog .password-confirm {
     display: none;
-}
+}*/
 
 #wunderlist-base .text-right {
     text-align: right;

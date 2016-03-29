@@ -1,12 +1,12 @@
-angular.module('app').controller('detailsController', function ($scope, $timeout, listsService, $routeParams) {
+angular.module('app').controller('detailsController', function ($scope, $timeout, listService, $routeParams) {
     console.log('details controller');
     $scope.closeDetail = function () {
         document.location = '#/lists/' + $routeParams.listid;
     }
 
     $scope.deleteTask = function (task) {
-        listsService.deleteTask(listsService.activeList, task);
-        listsService.selectTask(null);
+        listService.deleteTask(listService.activeList, task);
+        listService.selectTask(null);
     }
 
     $scope.deleteNote = function (task) {
@@ -46,8 +46,8 @@ angular.module('app').controller('detailsController', function ($scope, $timeout
     }
 
     $scope.$on('taskSelected', function () {
-        $scope.task = listsService.selectedTask;
-        document.location = '#/lists/' + listsService.activeList.Id + '/tasks/' + $scope.task.Id;
+        $scope.task = listService.selectedTask;
+        document.location = '#/lists/' + listService.activeList.Id + '/tasks/' + $scope.task.Id;
     });
 
     $scope.$watch('task', function () {
@@ -82,7 +82,7 @@ angular.module('app').controller('detailsController', function ($scope, $timeout
 
     $("#datepicker").datepicker();
     $scope.showDetail = false;
-    $scope.task = listsService.selectedTask;
+    $scope.task = listService.selectedTask;
     console.log($scope.task);
     $scope.noteEditing = false;
     $scope.dateEditing = false;

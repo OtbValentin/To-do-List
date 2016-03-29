@@ -1,4 +1,4 @@
-﻿angular.module('app').controller('editListController', function ($scope, listsService) {
+﻿angular.module('app').controller('editListController', function ($scope, listService) {
     $scope.$on('showEditListDialog', function (event, args) {
         $scope.listToEdit = args;
         $scope.newListTitle = $scope.listToEdit.Title;
@@ -14,11 +14,11 @@
     }
 
     $scope.renameList = function (list, newTitle) {
-        listsService.renameList(list, newTitle);
+        listService.renameList(list, newTitle);
     }
 
     $scope.deleteList = function () {
-        listsService.deleteList($scope.listToEdit);
+        listService.deleteList($scope.listToEdit);
         $scope.closeEditListDialog();
     }
 
