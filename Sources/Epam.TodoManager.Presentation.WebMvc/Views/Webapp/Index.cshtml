@@ -147,32 +147,68 @@
                                         <div class="cols password-confirm hidden" ng-class="{'hidden': emailEditing == false}">
                                             <div class="col-32 text-right">
                                                 <text rel="label_password">Password</text>
-                                            </div> <div class="col-40">
-                                                <input type="password" id="edit-email-pw-confirm" data-key-aria-label="label_password" disabled="" tabindex="0" aria-label="Пароль">
-                                            </div> <div class="col-28"></div>
+                                            </div>
+                                            <div class="col-40">
+                                                <input type="password" id="edit-email-pw-confirm" data-key-aria-label="label_password" disabled="" ng-disabled="emailEditing == false" tabindex="0">
+                                            </div>
+                                            <div class="col-28"></div>
                                         </div> <!-- Change Email -->
                                         <div class="cols change-email-buttons hidden" ng-class="{'hidden': emailEditing == false}">
                                             <div class="col-32 text-right"></div>
                                             <div class="col-40">
-                                                <div class="cols email-error error-message">
-                                                    <div class="col-100"><text rel="api_error_incorrect_password">Неверный пароль.</text></div>
+                                                <div class="cols email-error error-message" ng-style="emailError == true? {display: 'block'} : {display: 'none'}">
+                                                    <div class="col-100"><text rel="api_error_incorrect_password" ng-bind="emailErrorText"></text></div>
                                                 </div>
                                                 <div class="cols">
                                                     <div class="col-50">
-                                                        <button class="full" id="cancel-email" data-key-aria-label="button_cancel" tabindex="0" aria-label="Отмена" ng-click="stopEmailEditing()"> <text rel="button_cancel">Cancel</text> </button>
+                                                        <button class="full" id="cancel-email" data-key-aria-label="button_cancel" tabindex="0" ng-click="stopEmailEditing()"> <text rel="button_cancel">Cancel</text> </button>
                                                     </div>
                                                     <div class="col-50">
-                                                        <button class="full blue disabled" id="save-email" disabled="" data-key-aria-label="button_save" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Save</text> </button>
+                                                        <button class="full blue" id="save-email" data-key-aria-label="button_save" tabindex="0" ng-click="saveEmail()"><text rel="button_save">Save</text> </button>
                                                     </div>
                                                 </div>
                                             </div> <div class="col-28"></div>
-                                        </div>  <!-- Additional Emails -->
-                                        <div class="cols">
-                                            <div class="col-32 text-right"></div>
-                                            <div class="col-68">
-                                                <p class="settings-account-manage-emails"> <a href="/account/emails" target="_blank"><text rel="settings_account_manage_emails">Добавление и изменение адресов электронной почты</text></a> </p>
+                                        </div>
+                                        <!-- Change Password -->
+                                        <div class="cols show-password-buttons">
+                                            <div class="col-32 text-right">
+                                                <text rel="label_password">Password</text>
                                             </div>
-                                        </div> <!-- Change Password --> <div class="cols show-password-buttons"> <div class="col-32 text-right"> <text rel="label_password">Пароль</text> </div> <div class="col-40"> <input type="password" class="old-password" data-key-placeholder="settings_account_current_password" data-key-aria-label="settings_account_current_password" tabindex="0" placeholder="Текущий пароль" aria-label="Текущий пароль"> <button id="change-password" class="full" data-key-aria-label="settings_account_change_password" tabindex="0" aria-label="Изменить пароль…"> <text rel="settings_account_change_password">Изменить пароль…</text> </button> </div> <div class="col-28"></div> </div> <div class="cols change-password-buttons"> <div class="col-32"></div> <div class="col-40"> <div class="cols"> <div class="col-100"> <input type="password" class="new-password" data-key-placeholder="settings_account_new_password" data-key-aria-label="settings_account_new_password" tabindex="0" placeholder="Новый пароль" aria-label="Новый пароль"> </div> </div> <div class="cols"> <div class="col-100"> <input id="confirm-password" type="password" class="confirm-password" data-key-placeholder="settings_account_repeat_new_password" data-key-aria-label="settings_account_repeat_new_password" tabindex="0" placeholder="Повторите новый пароль" aria-label="Повторите новый пароль"> </div> </div> <div class="cols change-password-error error-message"> <div class="col-100"> <text rel="settings_account_change_password_error">При попытке изменить пароль произошла ошибка. Попробуйте еще раз.</text> </div> </div> <div class="cols"> <div class="col-50"> <button class="full" id="cancel-password" data-key-aria-label="button_cancel" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button> </div> <div class="col-50"> <button class="full blue" id="save-password" data-key-aria-label="button_save" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Сохранить</text> </button> </div> </div> </div> <div class="col-28"></div> </div>
+                                            <div class="col-40">
+                                                <input type="password" class="old-password" data-key-placeholder="settings_account_current_password" data-key-aria-label="settings_account_current_password" tabindex="0" placeholder="Current password" ng-style="passwordEditing == true ? { 'display': 'inline-block' } : { 'display': 'none' }">
+                                                <button id="change-password" class="full" data-key-aria-label="settings_account_change_password" tabindex="0" ng-style="passwordEditing == false ? { 'display': 'inline-block' } : { 'display': 'none' }" ng-click="beginPasswordEditing()"> <text rel="settings_account_change_password">Change password</text> </button>
+                                            </div>
+                                            <div class="col-28"></div>
+                                        </div>
+                                        <div class="cols change-password-buttons hidden" ng-class="{'hidden': passwordEditing == false}">
+                                            <div class="col-32"></div>
+                                            <div class="col-40">
+                                                <div class="cols">
+                                                    <div class="col-100">
+                                                        <input type="password" class="new-password" tabindex="0" placeholder="New password">
+                                                    </div>
+                                                </div>
+                                                <div class="cols">
+                                                    <div class="col-100">
+                                                        <input id="confirm-password" type="password" class="confirm-password" data-key-placeholder="settings_account_repeat_new_password" data-key-aria-label="settings_account_repeat_new_password" tabindex="0" placeholder="Repeat the new password">
+                                                    </div>
+                                                </div>
+                                                <div class="cols change-password-error error-message" ng-style="passwordError == true? {display: 'block'} : {display: 'none'}">
+                                                    <div class="col-100" >
+                                                        <text rel="settings_account_change_password_error" ng-bind="passwordErrorText"></text>
+                                                    </div>
+                                                </div>
+                                                <div class="cols">
+                                                    <div class="col-50">
+                                                        <button class="full" id="cancel-password" data-key-aria-label="button_cancel" tabindex="0" aria-label="Отмена" ng-click="stopPasswordEditing()"> <text rel="button_cancel">Cancel</text> </button>
+                                                    </div>
+                                                    <div class="col-50">
+                                                        <button class="full blue" id="save-password" data-key-aria-label="button_save" tabindex="0" ng-click="savePassword()"> <text rel="button_save">Save</text> </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-28"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -183,12 +219,12 @@
                             <div class="col-40"></div>
                             <div class="col-20"></div>
                             <div class="col-20">
-                                <button class="full blue close">
+                                <button class="full blue close" ng-click="closeUserSettingsDialog()">
                                     <text rel="button_cancel">Cancel</text>
                                 </button>
                             </div>
                             <div class="col-20">
-                                <button class="full blue close">
+                                <button class="full blue close" ng-click="closeUserSettingsDialog()">
                                     <text rel="button_done">Done</text>
                                 </button>
                             </div>
@@ -198,7 +234,7 @@
             </div>
         </div>
 
-        <div id="lists" ng-class="{collapsed: isCollapsed}" ng-controller="listsController">
+        <div id="lists" ng-class="{collapsed: isCollapsed}" ng-controller="listController">
             <div tabindex="0" class="lists-inner">
                 <div id="search-toolbar">
                     <a ng-click="toggle()" id="list-toggle-item" class="toggle-icon">

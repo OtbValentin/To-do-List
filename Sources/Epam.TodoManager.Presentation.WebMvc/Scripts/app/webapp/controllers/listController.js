@@ -1,4 +1,4 @@
-angular.module('app').controller('listsController', function ($scope, $rootScope, listService, $location, $routeParams, $route) {
+angular.module('app').controller('listController', function ($scope, $rootScope, listService, $location, $routeParams, $route) {
     $scope.$on('list added', function () {
     });
 

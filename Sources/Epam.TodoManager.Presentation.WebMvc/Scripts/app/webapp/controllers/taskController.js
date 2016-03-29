@@ -1,4 +1,4 @@
-angular.module('app').controller('tasksController', function ($scope, listService, $routeParams, $filter) {
+angular.module('app').controller('taskController', function ($scope, listService, $routeParams, $filter) {
     console.log('tasks controller');
     console.log(listService.selectedTask);
 

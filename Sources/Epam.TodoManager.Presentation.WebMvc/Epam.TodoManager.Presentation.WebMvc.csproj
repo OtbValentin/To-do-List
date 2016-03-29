@@ -203,9 +203,9 @@
     <Content Include="Scripts\app\webapp\controllers\appController.js" />
     <Content Include="Scripts\app\webapp\controllers\detailsController.js" />
     <Content Include="Scripts\app\webapp\controllers\editListController.js" />
-    <Content Include="Scripts\app\webapp\controllers\listsController.js" />
+    <Content Include="Scripts\app\webapp\controllers\listController.js" />
     <Content Include="Scripts\app\webapp\controllers\routeControllers.js" />
-    <Content Include="Scripts\app\webapp\controllers\tasksController.js" />
+    <Content Include="Scripts\app\webapp\controllers\taskController.js" />
     <Content Include="Scripts\app\webapp\directives.js" />
     <Content Include="Scripts\app\webapp\listsService.js" />
     <Content Include="Scripts\jquery-2.2.1.js" />

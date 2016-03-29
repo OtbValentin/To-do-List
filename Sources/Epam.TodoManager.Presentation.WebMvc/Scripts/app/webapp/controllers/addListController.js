@@ -1,5 +1,6 @@
 ﻿angular.module('app').controller('addListController', function ($scope, listService) {
 
+    $scope.$on('closeDialogs', function () { $scope.closeAddListDialog(); });
     $scope.$on('showAddListDialog', function () {
         $scope.showAddListDialog = true;
         $scope.newListTitle = '';
