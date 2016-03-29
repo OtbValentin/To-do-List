@@ -199,6 +199,7 @@
     <Content Include="Scripts\app\services\taskService.js" />
     <Content Include="Scripts\app\webapp\app.js" />
     <Content Include="Scripts\app\webapp\appService.js" />
+    <Content Include="Scripts\app\webapp\controllers\accountController.js" />
     <Content Include="Scripts\app\webapp\controllers\appController.js" />
     <Content Include="Scripts\app\webapp\controllers\detailsController.js" />
     <Content Include="Scripts\app\webapp\controllers\listsController.js" />

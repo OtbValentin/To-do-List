@@ -21,7 +21,6 @@ angular.module('app').controller('tasksController', function ($scope, listsServi
     }
 
     $scope.selectTask = function (task) {
-        console.log('selected task in task cntrl');
         listsService.selectTask(task);
     }
 
@@ -60,7 +59,6 @@ angular.module('app').controller('tasksController', function ($scope, listsServi
 
         if (taskId != null && taskId != undefined) {
             listsService.selectTask(listsService.activeList.TodoItems.filter(function (task) { return task.Id == taskId })[0]);
-            console.log('assigned task', listsService.selectedTask);
         }
     };
 
@@ -69,6 +67,4 @@ angular.module('app').controller('tasksController', function ($scope, listsServi
     $scope.showCompleted = lists.showCompleted;
     $scope.updateSelected();
     $scope.selectedTask = listsService.selectedTask;
-
-    console.log('final selected', $scope.selectedTask, listsService.selectedTask);
 });
