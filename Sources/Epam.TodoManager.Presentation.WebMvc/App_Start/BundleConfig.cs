@@ -41,7 +41,8 @@ namespace Epam.TodoManager.Presentation.WebMvc
                 "~/Scripts/jquery-ui.min.js",
                 "~/Scripts/angular.js",
                 "~/Scripts/angular-route.min.js",
-                "~/Scripts/sortable.js"));
+                "~/Scripts/sortable.js",
+                "~/Scripts/angled-dragndrop.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/webapp-custom").Include(
                     "~/Scripts/app/webapp/app.js",

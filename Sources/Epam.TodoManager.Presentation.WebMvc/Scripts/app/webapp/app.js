@@ -1,18 +1,18 @@
-var app = angular.module("app", ['ngRoute', 'ui.sortable']);
+var app = angular.module("app", ['ngRoute', 'ui.sortable', 'angled-dragndrop']);
 
 app.config(['$routeProvider',
   function ($routeProvider) {
       $routeProvider.
         when('/lists', {
-            templateUrl: 'Lists',
+            templateUrl: 'Webapp/Lists',
             controller: 'listsRouteController'
         }).
         when('/lists/:listid', {
-            templateUrl: 'Tasks',
+            templateUrl: 'Webapp/Tasks',
             controller: 'tasksRouteController'
         }).
         when('/lists/:listid/tasks/:taskid', {
-            templateUrl: 'Task',
+            templateUrl: 'Webapp/Task',
             controller: 'detailsRouteController'
         }).
         otherwise({
