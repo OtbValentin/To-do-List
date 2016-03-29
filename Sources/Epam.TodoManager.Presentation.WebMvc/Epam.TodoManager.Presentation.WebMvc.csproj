@@ -165,6 +165,8 @@
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\controllers\AppController.js" />
+    <Content Include="Scripts\app\controllers\ListsController.js" />
     <Content Include="Scripts\app\controllers\TestController.js" />
     <Content Include="Scripts\app\services\accountService.js" />
     <Content Include="Scripts\app\app.js" />

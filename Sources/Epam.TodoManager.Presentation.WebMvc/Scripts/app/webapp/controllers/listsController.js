@@ -39,8 +39,4 @@ angular.module('app').controller('listsController', function ($scope, $rootScope
     });
 
     $scope.userName = 'Valentin';
-
-    $scope.$on('angled.droppable.dropped', function (event) {
-        console.log(event);
-    });
 });
