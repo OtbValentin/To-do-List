@@ -1,8 +1,9 @@
 ﻿angular.module('app').controller('accountController', function ($scope, dataService) {
     $scope.$on('closeDialogs', function () { $scope.closeUserSettingsDialog(); });
 
-    $scope.$on('showUserSettingsDialog', function (event, args) {
-        $scope.userToEdit = args;
+    $scope.$on('showUserSettingsDialog', function (event) {
+        $scope.userToEdit = dataService.data.user;
+        console.log($scope.userToEdit);
         $scope.newName = $scope.userToEdit.Name;
         $scope.newEmail = $scope.userToEdit.Email;
         $scope.showUserSettingsDialog = true;

@@ -1,4 +1,4 @@
-angular.module('app').controller('appController', function ($scope, dataService, OAuth, $rootScope) {
+angular.module('app').controller('appController', function ($scope, dataService, OAuth, $rootScope, $routeParams) {
     if (!OAuth.isAuthenticated()) {
         document.location = '/login';
     }

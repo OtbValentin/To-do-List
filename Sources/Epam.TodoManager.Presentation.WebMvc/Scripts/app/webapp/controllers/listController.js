@@ -17,14 +17,10 @@ angular.module('app').controller('listController', function ($scope, $rootScope,
     }
 
     $scope.showUserSettingsDialog = function () {
-        $rootScope.$broadcast('showUserSettingsDialog', null);
+        $rootScope.$broadcast('showUserSettingsDialog');
     }
 
     $scope.isCollapsed = false;
-
-    $scope.$on('routeChanged', function () {
-        $scope.setActive(listService.todoLists.filter(function (list) { return list.Id == $routeParams.listid })[0]);
-    });
 
     $scope.userName = 'Valentin';
 });
