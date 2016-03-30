@@ -214,7 +214,7 @@
         }
 
         function updateUser() {
-            service.data.user = accountService.Account.$get();
+            service.data.user = accountService.Account.get();
         }
     }
 })();

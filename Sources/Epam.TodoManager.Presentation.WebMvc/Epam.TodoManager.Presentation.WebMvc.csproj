@@ -240,7 +240,6 @@
     <Content Include="bower_components\angular-ui-sortable\bower.json" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Views\Webapp\Test.cshtml" />
     <Content Include="Views\Webapp\Lists.cshtml" />
     <Content Include="Views\Webapp\Tasks.cshtml" />
     <Content Include="Views\Webapp\Task.cshtml" />
