@@ -1,20 +1,21 @@
-angular.module('app').controller('detailsController', function ($scope, $timeout, listService, $routeParams) {
+angular.module('app').controller('detailsController', function ($scope, dataService, listService, taskService, $routeParams) {
     console.log('details controller');
     $scope.closeDetail = function () {
         document.location = '#/lists/' + $routeParams.listid;
     }
 
     $scope.deleteTask = function (task) {
-        listService.deleteTask(listService.activeList, task);
-        listService.selectTask(null);
+        dataService.deleteTask($routeParams.listid, $routeParams.taskid);
     }
 
     $scope.deleteNote = function (task) {
         task.Note = "";
+        dataService.saveTask(dataService.activeList, task);
     }
 
     $scope.deleteDueDate = function (task) {
         task.DueDate = null;
+        dataService.saveTask(dataService.activeList, task);
     }
 
     $scope.toggleNoteEditing = function () {
@@ -45,25 +46,22 @@ angular.module('app').controller('detailsController', function ($scope, $timeout
         $scope.titleEditing = false;
     }
 
-    $scope.$on('taskSelected', function () {
-        $scope.task = listService.selectedTask;
-        document.location = '#/lists/' + listService.activeList.Id + '/tasks/' + $scope.task.Id;
-    });
-
-    $scope.$watch('task', function () {
-        if ($scope.task == null) {
-            $scope.closeDetail();
-        }
-    });
+    //$scope.$watch('task', function () {
+    //    if ($scope.task == null) {
+    //        $scope.closeDetail();
+    //    }
+    //});
 
     $scope.toggleCompletion = function ($event) {
-        $scope.task.IsCompleted = !$scope.task.IsCompleted;
+        dataService.selectedTask.IsCompleted = !dataService.selectedTask.IsCompleted;
 
         if ($scope.task.IsCompleted) {
             document.getElementById('wl3-complete').load();
             document.getElementById('wl3-complete').play();
             $event.stopPropagation();
         }
+
+        dataService.saveTask(dataService.activeList, dataService.selectedTask);
     }
 
     $scope.compareDates = function (a, b) {
@@ -81,9 +79,6 @@ angular.module('app').controller('detailsController', function ($scope, $timeout
     });
 
     $("#datepicker").datepicker();
-    $scope.showDetail = false;
-    $scope.task = listService.selectedTask;
-    console.log($scope.task);
     $scope.noteEditing = false;
     $scope.dateEditing = false;
     $scope.titleEditing = false;

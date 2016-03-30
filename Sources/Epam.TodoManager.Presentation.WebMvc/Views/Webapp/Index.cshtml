@@ -129,7 +129,7 @@
                                                 <text rel="label_name">Name</text>
                                             </div>
                                             <div class="col-68">
-                                                <input type="text" id="edit-full-name" data-key-aria-label="label_name" data-key-placeholder="label_name" value="Valentin" tabindex="0" placeholder="Name">
+                                                <input type="text" id="edit-full-name" data-key-aria-label="label_name" data-key-placeholder="label_name" value="Valentin" tabindex="0" placeholder="Name" ng-model="newName">
                                             </div>
                                         </div> <!-- Email -->
                                         <div class="cols">
@@ -137,7 +137,7 @@
                                                 <text rel="label_email">Email</text>
                                             </div>
                                             <div class="col-40">
-                                                <input type="text" id="edit-email" data-key-aria-label="label_email" data-key-placeholder="label_email" value="valentin.pilipchuk.24@gmail.com" initial-value="" disabled="" tabindex="0" placeholder="Email address" ng-disabled="emailEditing == false">
+                                                <input type="text" id="edit-email" data-key-aria-label="label_email" data-key-placeholder="label_email" value="valentin.pilipchuk.24@gmail.com" initial-value="" disabled="" tabindex="0" placeholder="Email address" ng-disabled="emailEditing == false" ng-model="newEmail">
                                             </div> <div class="col-28">
                                                 <button id="change-email" class="full" ng-class="{'hidden': emailEditing == true}" ng-click="beginEmailEditing()" tabindex="0">
                                                     <text rel="settings_account_change_email">Change email address</text>
@@ -149,7 +149,7 @@
                                                 <text rel="label_password">Password</text>
                                             </div>
                                             <div class="col-40">
-                                                <input type="password" id="edit-email-pw-confirm" data-key-aria-label="label_password" disabled="" ng-disabled="emailEditing == false" tabindex="0">
+                                                <input type="password" id="edit-email-pw-confirm" data-key-aria-label="label_password" disabled="" ng-disabled="emailEditing == false" tabindex="0" ng-model="emailConfirmPassword">
                                             </div>
                                             <div class="col-28"></div>
                                         </div> <!-- Change Email -->
@@ -175,7 +175,7 @@
                                                 <text rel="label_password">Password</text>
                                             </div>
                                             <div class="col-40">
-                                                <input type="password" class="old-password" data-key-placeholder="settings_account_current_password" data-key-aria-label="settings_account_current_password" tabindex="0" placeholder="Current password" ng-style="passwordEditing == true ? { 'display': 'inline-block' } : { 'display': 'none' }">
+                                                <input type="password" class="old-password" data-key-placeholder="settings_account_current_password" data-key-aria-label="settings_account_current_password" tabindex="0" placeholder="Current password" ng-style="passwordEditing == true ? { 'display': 'inline-block' } : { 'display': 'none' }" ng-model="currentPassword">
                                                 <button id="change-password" class="full" data-key-aria-label="settings_account_change_password" tabindex="0" ng-style="passwordEditing == false ? { 'display': 'inline-block' } : { 'display': 'none' }" ng-click="beginPasswordEditing()"> <text rel="settings_account_change_password">Change password</text> </button>
                                             </div>
                                             <div class="col-28"></div>
@@ -185,12 +185,12 @@
                                             <div class="col-40">
                                                 <div class="cols">
                                                     <div class="col-100">
-                                                        <input type="password" class="new-password" tabindex="0" placeholder="New password">
+                                                        <input type="password" class="new-password" tabindex="0" placeholder="New password" ng-model="newPassword">
                                                     </div>
                                                 </div>
                                                 <div class="cols">
                                                     <div class="col-100">
-                                                        <input id="confirm-password" type="password" class="confirm-password" data-key-placeholder="settings_account_repeat_new_password" data-key-aria-label="settings_account_repeat_new_password" tabindex="0" placeholder="Repeat the new password">
+                                                        <input id="confirm-password" type="password" class="confirm-password" data-key-placeholder="settings_account_repeat_new_password" data-key-aria-label="settings_account_repeat_new_password" tabindex="0" placeholder="Repeat the new password" ng-model="repeatedPassword">
                                                     </div>
                                                 </div>
                                                 <div class="cols change-password-error error-message" ng-style="passwordError == true? {display: 'block'} : {display: 'none'}">
@@ -265,11 +265,11 @@
                 <div id="user-toolbar">
                     <a class="user" data-path="me" role="button" tabindex="0" ng-click="showUserSettingsDialog()">
                         <div class="user-avatar">
-                            <div class="avatar medium" title="Valentin">
+                            <div class="avatar medium" title="dataService.user.Name">
                                 <img src="~/Content/images/user-icon.png">
                             </div>
                         </div>
-                        <span class="user-name" ng-bind="userName"></span>
+                        <span class="user-name" ng-bind="dataService.user.Name"></span>
                         <span class="user-arrow">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
                             <g>
@@ -284,7 +284,7 @@
                 </div>
                 <div class="lists-scroll">
                     <ul class="lists-collection">
-                        <li role="menuitem" tabindex="0" class="sidebarItem owner list draggable" draggable="true" ng-repeat="list in lists | filter: {Title: searchTitle} track by $index" ng-class="{'active': activeList === list}">
+                        <li role="menuitem" tabindex="0" class="sidebarItem owner list draggable" draggable="true" ng-repeat="list in dataService.lists | filter: {Title: searchTitle} track by $index" ng-class="{'active': dataService.activeList === list}">
                             <a href="#/lists/{{list.Id}}">
                                 <span class="list-icon">
                                     <svg class="list rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -297,7 +297,7 @@
                                 </span>
                                 <span class="title" ng-bind="list.Title"></span>
                                 <span class="count" ng-bind="list.TodoItems.length"></span>
-                                <span class="list-options" title="Параметры списка" ng-click="showEditListDialog(list)">
+                                <span class="list-options" title="List parameters" ng-click="showEditListDialog(list)">
                                     <svg class="options rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <g stroke="none" stroke-width="1" fill-rule="evenodd">
                                             <g id="options">

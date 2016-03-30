@@ -2,9 +2,9 @@
     Layout = null;
 }
 
-<div id="tasks" ng-controller="tasksController">
+<div id="tasks" ng-controller="taskController">
     <div id="list-toolbar">
-        <h1 class="title" ng-bind="activeList.Title"></h1>
+        <h1 class="title" ng-bind="dataService.activeList.Title"></h1>
     </div>
 
     <!-- ??? config routes here -->
@@ -21,7 +21,7 @@
         </div>
         <div class="task-list inbox">
             <ol ui-sortable="sortableOptions" ng-model="activeList.TodoItems" class="tasks">
-                <li tabindex="0" class="taskItem" ng-repeat="task in activeList.TodoItems | filter:{IsCompleted : false} track by $index" ng-class="{'selected': selectedTask === task}">
+                <li tabindex="0" class="taskItem" ng-repeat="task in dataService.activeList.TodoItems | filter:{IsCompleted : false} track by $index" ng-class="{'selected': dataService.selectedTask === task}">
                     <div class="taskItem-body" ng-dblclick="redirectToTask(task)" ng-click="selectTask(task)">
                         <a class="taskItem-checkboxWrapper checkBox" tabindex="-1" ng-click="setCompleted($event, task)" ng-dblclick="stopPropagation($event)">
                             <span data-key-title="contextual_mark_as_completed" title="Mark as Completed">
@@ -41,7 +41,7 @@
                             </span>
                         </a>
                         <div class="taskItem-titleWrapper" tabindex="-1">
-                            <span class="taskItem-titleWrapper-title" ng-bind="task.Text + ' ' + task.IsCompleted"></span>
+                            <span class="taskItem-titleWrapper-title" ng-bind="task.Text"></span>
                         </div>
 
                         <span class="taskItem-duedate" tabindex="-1" ng-bind="task.DueDate"></span>
@@ -53,8 +53,8 @@
                     <text rel="settings_show_completed_tasks_mobile">Show completed tasks</text>
                 </a>
             </h2>
-            <ol class="tasks" ng-show="showCompleted">
-                <li tabindex="0" class="taskItem done" draggable="true" ng-repeat="task in activeList.TodoItems | filter:{IsCompleted: true} track by $index" ng-class="{'selected': selectedTask === task}">
+            <ol class="tasks" ng-show="dataService.showCompleted">
+                <li tabindex="0" class="taskItem done" draggable="true" ng-repeat="task in dataService.activeList.TodoItems | filter:{IsCompleted: true} track by $index" ng-class="{'selected': selectedTask === task}">
                     <div class="taskItem-body" ng-click="selectTask(task)" ng-dblclick="redirectToTask(task)">
                         <a class="taskItem-checkboxWrapper checkBox checked" tabindex="-1" ng-click="setUncompleted($event, task)" ng-dblclick="stopPropagation($event)">
                             <span data-key-title="contextual_mark_as_completed" title="Mark as Completed">

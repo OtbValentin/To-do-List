@@ -1,4 +1,4 @@
-﻿angular.module('app').controller('accountController', function ($scope, accountService) {
+﻿angular.module('app').controller('accountController', function ($scope, dataService) {
     $scope.$on('closeDialogs', function () { $scope.closeUserSettingsDialog(); });
 
     $scope.$on('showUserSettingsDialog', function (event, args) {
@@ -13,16 +13,15 @@
         $scope.newName = '';
     }
 
-    $scope.saveChanges = function () {
-        if ($scope.userToEdit.Name != $scope.newName) {
-            $scope.changeName($scope.userToEdit, $s.newName);
-        }
-
-        $scope.closeUserSettingsDialog();
+    $scope.renameUser = function () {
+        dataService.renameUser($scope.userToEdit, $scope.newName);
     }
 
-    $scope.changeName = function (user, name) {
-        account.changeName(use, name);
+    $scope.saveChanges = function () {
+        if ($scope.userToEdit.Name != $scope.newName) {
+            $scope.renameUser();
+        }
+
         $scope.closeUserSettingsDialog();
     }
 
@@ -43,25 +42,44 @@
     }
 
     $scope.saveEmail = function () {
+        // return error message if error occured, otherwise return null
+        dataService.changeEmail($scope.userToEdit, $scope.newEmail);
         console.log('save email');
         $scope.emailError = !$scope.emailError;
     }
 
     $scope.savePassword = function () {
+        if ($scope.newPassword != $scope.repeatedPassword) {
+            $scope.passwordErrorText = 'New password does not match to the confirmed password.';
+            $scope.passwordError = true;
+        }
+        else
+        {
+            dataService.changePassword($scope.currentPassword, $scope.newPassword);
+        }
+
         console.log('save password');
         $scope.passwordError = !$scope.passwordError;
     }
 
     $scope.showUserSettingsDialog = false;
-    $scope.newName = '';
     $scope.userToEdit = null;
 
+    $scope.newName = '';
+
     $scope.emailEditing = false;
-    $scope.passwordEditing = false;
-
-    $scope.emailErrorText = 'Email error';
-    $scope.passwordErrorText = 'Password error';
-
     $scope.emailError = false;
-    $scope.passwordError = false;
+    $scope.emailErrorText = 'Email error';
+    $scope.emailConfirmPassword = '';
+    $scope.newEmail = '';
+
+    $scope.passwordEditing = false;
+    $scope.passwordError = false; 
+    $scope.passwordErrorText = 'Password error';
+    $scope.newPassword = '';
+    $scope.repeatedPassword = '';
+    $scope.currentPassword = '';
+
+
+
 });
