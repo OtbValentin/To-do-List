@@ -32,5 +32,5 @@ angular.module('app').controller('appController', function ($scope, dataService,
 
     $scope.$on('routeChanged', function () { $scope.updateSelection(); });
 
-    $rootScope.updateSelection();
+    $scope.updateSelection();
 });
