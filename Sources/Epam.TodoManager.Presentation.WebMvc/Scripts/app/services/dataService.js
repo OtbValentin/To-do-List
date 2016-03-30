@@ -108,7 +108,7 @@
         }
 
         function saveTask(list, task) {
-            taskService.update(task.Id, list.Id);
+            taskService.update(task, list.Id);
         }
 
         function selectTask(task) {
@@ -124,7 +124,7 @@
 
 
         function saveAccount() {
-            service.data.account.$save().then(function (response) {
+            service.data.account.put().then(function (response) {
                 updateAccount();
             });
         }
