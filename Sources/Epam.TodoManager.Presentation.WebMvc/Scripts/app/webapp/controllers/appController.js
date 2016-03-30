@@ -1,6 +1,6 @@
 angular.module('app').controller('appController', function ($scope, dataService, OAuth, $rootScope) {
     if (!OAuth.isAuthenticated()) {
-        document.location = '/webapp/login';
+        document.location = '/login';
     }
 
     $scope.closeAllDialogs = function ($event) {
