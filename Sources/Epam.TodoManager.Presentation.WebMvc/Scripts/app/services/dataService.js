@@ -123,9 +123,9 @@
 
 
 
-        function saveAccount() {
+        function saveUser() {
             service.data.account.put().then(function (response) {
-                updateAccount();
+                updateUser();
             });
         }
 
