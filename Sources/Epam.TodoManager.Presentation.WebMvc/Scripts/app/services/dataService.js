@@ -5,7 +5,7 @@
         .module('app')
         .factory('dataService', dataService);
 
-    dataService.$inject = ['$http', 'listService', 'taskService'];
+    dataService.$inject = ['$http', 'listService', 'taskService', 'accountService'];
 
     function dataService($http, listService, taskService) {
         var service = {
@@ -13,7 +13,8 @@
                 lists: null,
                 activeList: null,
                 selectedTask: null,
-                showCompleted: false
+                showCompleted: false,
+                user: null
             },
 
             //list actions
@@ -30,11 +31,22 @@
             selectTask: selectTask,
             shiftTask: shiftTask,
 
+            //user actions
+            saveUser: saveUser,
+
             updateAll: updateAll,
-            updateList: updateList
+            updateList: updateList,
+            updateUser: updateUser
         };
 
         updateAll();
+        updateUser();
+
+        //service.data.user = {
+        //    Id: 1,
+        //    Name: "User 1",
+        //    Email: "abc@abc.com"
+        //};
 
         return service;
 
@@ -91,7 +103,7 @@
         function moveTask(task, list, newList) {
             taskService.move(task.Id, list.Id, newList.Id).then(function (response) {
                 updateList(list);
-                updateList(newList);
+                updateListSafe(newList, task);
             });
         }
 
@@ -104,9 +116,16 @@
         }
 
         function shiftTask(list, task, newIndex) {
-            taskService.shift(task.Id, list.Id, newIndex);
+            taskService.shift(task.Id, list.Id, newIndex).then(function (response) {
+                updateListSafe(list, task);
+            });
         }
 
+        function saveAccount() {
+            service.data.account.$save().then(function (response) {
+                updateAccount();
+            });
+        }
 
         function updateAll() {
             var data = service.data;
@@ -146,15 +165,52 @@
 
                 if (data.activeList == list) {
                     data.activeList = newList;
-                }
 
-                if (data.selectedTask) {
-                    var newSelectedTask = data.activeList.find(function (task) {
-                        return task.Id == data.selectedTask;
-                    });
-                    data.selectedTask = !!newSelectedTask ? newSelectedTask : null;
+                    if (data.selectedTask) {
+                        var newSelectedTask = data.activeList.find(function (task) {
+                            return task.Id == data.selectedTask;
+                        });
+                        data.selectedTask = !!newSelectedTask ? newSelectedTask : null;
+                    }
                 }
             });
+        }
+
+        function updateListSafe(list, changedTask) {
+            var data = service.data;
+
+            listService.get(list.Id).then(function (response) {
+                var newList = response.data;
+
+                var oldListIndex = data.lists.indexOf(list);
+                if (oldListIndex >= 0) {
+                    data.lists.splice(oldListIndex, 1, newList);
+                }
+
+                if (data.activeList == list) {
+                    data.activeList = newList;
+
+                    if (data.selectedTask) {
+                        var newSelectedTask;
+                        if (data.selectedTask == changedTask) {
+                            newSelectedTask = data.activeList.find(function (task) {
+                                return task.Text == data.selectedTask.Text;
+                            })
+                        }
+                        else {
+                            newSelectedTask = data.activeList.find(function (task) {
+                                return task.Id == data.selectedTask.Id;
+                            });
+                        }
+
+                        data.selectedTask = !!newSelectedTask ? newSelectedTask : null;
+                    }
+                }
+            });
+        }
+
+        function updateUser() {
+            service.data.user = accountService.Account.$get();
         }
     }
 })();
