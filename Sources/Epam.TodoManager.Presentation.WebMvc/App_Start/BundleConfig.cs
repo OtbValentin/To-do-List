@@ -34,7 +34,9 @@ namespace Epam.TodoManager.Presentation.WebMvc
                 "~/bower_components/angular-oauth2/dist/angular-oauth2.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/appScripts")
-                .IncludeDirectory("~/Scripts/app", "*.js", true));
+                .Include("~/Scripts/webapp/app.js")
+                .IncludeDirectory("~/Scripts/app/controllers", "*.js", true)
+                .IncludeDirectory("~/Scripts/app/services", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/bundles/webapp").Include(
                 "~/Scripts/jquery-2.2.1.js",
