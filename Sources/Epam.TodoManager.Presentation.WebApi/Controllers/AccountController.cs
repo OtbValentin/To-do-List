@@ -6,10 +6,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -59,22 +61,22 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
         }
 
         // PUT: api/Account/5
-        public async Task<IHttpActionResult> Put(int id, [FromBody] UpdatedUser value)
+        public async Task<IHttpActionResult> Put([FromBody] UpdatedUser value)
         {
             var existingUser = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
             if (existingUser == null)
                 return InternalServerError();
 
             if (value.Id.HasValue)
-                if (value.Id != existingUser.Id || id != existingUser.Id)
+                if (value.Id != existingUser.Id)
                     return Unauthorized();
 
             try
             {
                 if (value.Name != null && value.Name != existingUser.UserName)
-                    userService.ChangeName(id, value.Name);
+                    userService.ChangeName(existingUser.Id, value.Name);
                 if (value.Email != null && value.Email != existingUser.Name)
-                    userService.ChangeEmail(id, value.Email);
+                    userService.ChangeEmail(existingUser.Id, value.Email);
                 if (value.Password != null)
                 {
                     var validationResult = await Manager.PasswordValidator.ValidateAsync(value.Password);
@@ -82,7 +84,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
                         return BadRequest(AggregateErrors(validationResult.Errors));
 
                     var passwordHash = Manager.PasswordHasher.HashPassword(value.Password);
-                    userService.ChangePassword(id, passwordHash);
+                    userService.ChangePassword(existingUser.Id, passwordHash);
                 }
             }
             catch (ArgumentException exception)
@@ -91,6 +93,63 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
             }
 
             return Ok();
+        }
+
+        [HttpPost, Route("api/Account/Avatar")]
+        public async Task<IHttpActionResult> SetAvatar()
+        {
+            var files = HttpContext.Current.Request.Files;
+            var images = new List<HttpPostedFile>();
+            for (int i = 0; i < files.Count; i++)
+            {
+                var file = files[i];
+                if (file.ContentType.StartsWith("image"))
+                    images.Add(file);
+            }
+            if (images.Count <= 0)
+                return BadRequest("No image attached.");
+            if (images.Count > 1)
+                return BadRequest("Multiple images not supported.");
+
+            var existingUser = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
+            if (existingUser == null)
+                return InternalServerError();
+
+            var imageDataStream = images[0].InputStream;
+            var imageData = (new BinaryReader(imageDataStream)).ReadBytes((int)imageDataStream.Length);
+            try
+            {
+                //call BL
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+
+            return Ok();
+        }
+
+        public async Task<IHttpActionResult> GetAvatar()
+        {
+            var existingUser = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
+            if (existingUser == null)
+                return InternalServerError();
+
+            byte[] data;
+            try
+            {
+                data = null; //call BL
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            var content = new ByteArrayContent(data);
+            response.Content = content;
+
+            return ResponseMessage(response);
         }
 
         private string AggregateErrors(IEnumerable<string> errors)
