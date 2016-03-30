@@ -7,7 +7,7 @@
 
     dataService.$inject = ['$http', 'listService', 'taskService', 'accountService'];
 
-    function dataService($http, listService, taskService) {
+    function dataService($http, listService, taskService, accountService) {
         var service = {
             data: {
                 lists: null,
@@ -121,11 +121,15 @@
             });
         }
 
+
+
         function saveAccount() {
             service.data.account.$save().then(function (response) {
                 updateAccount();
             });
         }
+
+
 
         function updateAll() {
             var data = service.data;
