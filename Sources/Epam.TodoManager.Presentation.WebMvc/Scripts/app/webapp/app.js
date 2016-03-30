@@ -1,4 +1,4 @@
-var app = angular.module("app", ['ngRoute', 'ui.sortable', 'ngResource', 'angular-oauth2'])
+var app = angular.module("app", ['ngRoute', 'ui.sortable', 'ngResource', 'angular-oauth2', 'ngCookies'])
     .config(['OAuthProvider', function (OAuthProvider) {
         OAuthProvider.configure({
             baseUrl: "http://localhost:51733/api",

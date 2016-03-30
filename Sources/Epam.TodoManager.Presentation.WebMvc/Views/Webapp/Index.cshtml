@@ -8,6 +8,7 @@
     <meta charset="utf-8" />
     @Styles.Render("~/Content/css/webapp")
     @Scripts.Render("~/bundles/webapp")
+    @Scripts.Render("~/bundles/angular-oauth")
 </head>
 <body id="wunderlist-base" ng-app="app" ng-controller="appController" ng-keyup="closeAllDialogs($event)">
     <div class="main-interface">
@@ -26,7 +27,8 @@
 
                         <div class="content-footer">
                             <div class="cols">
-                                <div class="col-40">     </div>
+                                <div class="col-40">
+                                </div>
                                 <div class="col-30">
                                     <button class="cancel full close" ng-click="closeAddListDialog()">
                                         <text rel="button_cancel">Cancel</text>
@@ -38,7 +40,6 @@
                             </div>
                         </div>
                     </div>
-                    <ul class="content-people inviteAutocomplete hidden"></ul>
                 </div>
             </div>
 
@@ -68,7 +69,7 @@
                                     </a>
                                 </div>
                                 <div class="col-30">
-                                    <button class="cancel full close hidden">
+                                    <button class="cancel full close" ng-click="closeEditListDialog()">
                                         <text rel="button_cancel">Cancel</text>
                                     </button>
                                 </div>
@@ -78,7 +79,6 @@
                             </div>
                         </div>
                     </div>
-                    <ul class="content-people inviteAutocomplete hidden"></ul>
                 </div>
             </div>
 
@@ -101,7 +101,14 @@
                                                                 <text rel="settings_account_drop_image">Перетащите фото сюда</text>
                                                             </span>
                                                         </div>
-                                                        <div class="message error hidden"><span><text rel="file_uploaded_failed">Не удалось добавить файл. Попробуйте еще раз.</text></span></div> <div class="state loading spinner"><span class="dark"></span></div>
+                                                        <div class="message error hidden">
+                                                            <span>
+                                                                <text rel="file_uploaded_failed">Не удалось добавить файл. Попробуйте еще раз.</text>
+                                                            </span>
+                                                        </div>
+                                                        <div class="state loading spinner">
+                                                            <span class="dark"></span>
+                                                        </div>
                                                     </div>
                                                     <div class="avatar-upload">
                                                         <div class="drop-zone"></div>
@@ -129,7 +136,7 @@
                                                 <text rel="label_name">Name</text>
                                             </div>
                                             <div class="col-68">
-                                                <input type="text" id="edit-full-name" data-key-aria-label="label_name" data-key-placeholder="label_name" value="Valentin" tabindex="0" placeholder="Name" ng-model="newName">
+                                                <input type="text" id="edit-full-name" data-key-aria-label="label_name" data-key-placeholder="label_name" value="Valentin" tabindex="0" placeholder="Name" ng-bind="newName" ng-model="newName">
                                             </div>
                                         </div> <!-- Email -->
                                         <div class="cols">
@@ -137,7 +144,7 @@
                                                 <text rel="label_email">Email</text>
                                             </div>
                                             <div class="col-40">
-                                                <input type="text" id="edit-email" data-key-aria-label="label_email" data-key-placeholder="label_email" value="valentin.pilipchuk.24@gmail.com" initial-value="" disabled="" tabindex="0" placeholder="Email address" ng-disabled="emailEditing == false" ng-model="newEmail">
+                                                <input type="text" id="edit-email" data-key-aria-label="label_email" data-key-placeholder="label_email" value="test.email@gmail.com" initial-value="" disabled="" tabindex="0" placeholder="Email address" ng-disabled="emailEditing == false" ng-bind="newName" ng-model="newEmail">
                                             </div> <div class="col-28">
                                                 <button id="change-email" class="full" ng-class="{'hidden': emailEditing == true}" ng-click="beginEmailEditing()" tabindex="0">
                                                     <text rel="settings_account_change_email">Change email address</text>
@@ -175,7 +182,7 @@
                                                 <text rel="label_password">Password</text>
                                             </div>
                                             <div class="col-40">
-                                                <input type="password" class="old-password" data-key-placeholder="settings_account_current_password" data-key-aria-label="settings_account_current_password" tabindex="0" placeholder="Current password" ng-style="passwordEditing == true ? { 'display': 'inline-block' } : { 'display': 'none' }" ng-model="currentPassword">
+                                                <input type="password" class="old-password" data-key-placeholder="settings_account_current_password" data-key-aria-label="settings_account_current_password" tabindex="0" placeholder="Current password" ng-style="passwordEditing == true ? { 'display': 'inline-block' } : { 'display': 'none' }" ng-model="currentPassword" ng-bind="currentPassword">
                                                 <button id="change-password" class="full" data-key-aria-label="settings_account_change_password" tabindex="0" ng-style="passwordEditing == false ? { 'display': 'inline-block' } : { 'display': 'none' }" ng-click="beginPasswordEditing()"> <text rel="settings_account_change_password">Change password</text> </button>
                                             </div>
                                             <div class="col-28"></div>
@@ -194,7 +201,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="cols change-password-error error-message" ng-style="passwordError == true? {display: 'block'} : {display: 'none'}">
-                                                    <div class="col-100" >
+                                                    <div class="col-100">
                                                         <text rel="settings_account_change_password_error" ng-bind="passwordErrorText"></text>
                                                     </div>
                                                 </div>
