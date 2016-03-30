@@ -40,13 +40,13 @@
         };
 
         updateAll();
-        updateUser();
+        //updateUser();
 
-        //service.data.user = {
-        //    Id: 1,
-        //    Name: "User 1",
-        //    Email: "abc@abc.com"
-        //};
+        service.data.user = {
+            Id: 1,
+            Name: "User 1",
+            Email: "abc@abc.com"
+        };
 
         return service;
 
