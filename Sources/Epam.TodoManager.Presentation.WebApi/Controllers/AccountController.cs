@@ -30,10 +30,17 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
         }
 
         // GET: api/Account
-        public async Task<User> Get()
+        public async Task<IHttpActionResult> Get()
         {
-            var user = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
-            return user.ToApiModel();
+            try
+            {
+                var user = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
+                return Json(user.ToApiModel());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // POST: api/Account
@@ -95,62 +102,63 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
             return Ok();
         }
 
-        [HttpPost, Route("api/Account/Avatar")]
-        public async Task<IHttpActionResult> SetAvatar()
-        {
-            var files = HttpContext.Current.Request.Files;
-            var images = new List<HttpPostedFile>();
-            for (int i = 0; i < files.Count; i++)
-            {
-                var file = files[i];
-                if (file.ContentType.StartsWith("image"))
-                    images.Add(file);
-            }
-            if (images.Count <= 0)
-                return BadRequest("No image attached.");
-            if (images.Count > 1)
-                return BadRequest("Multiple images not supported.");
+        //[HttpPost, Route("api/Account/Avatar")]
+        //public async Task<IHttpActionResult> SetAvatar()
+        //{
+        //    var files = HttpContext.Current.Request.Files;
+        //    var images = new List<HttpPostedFile>();
+        //    for (int i = 0; i < files.Count; i++)
+        //    {
+        //        var file = files[i];
+        //        if (file.ContentType.StartsWith("image"))
+        //            images.Add(file);
+        //    }
+        //    if (images.Count <= 0)
+        //        return BadRequest("No image attached.");
+        //    if (images.Count > 1)
+        //        return BadRequest("Multiple images not supported.");
 
-            var existingUser = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
-            if (existingUser == null)
-                return InternalServerError();
+        //    var existingUser = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
+        //    if (existingUser == null)
+        //        return InternalServerError();
 
-            var imageDataStream = images[0].InputStream;
-            var imageData = (new BinaryReader(imageDataStream)).ReadBytes((int)imageDataStream.Length);
-            try
-            {
-                //call BL
-            }
-            catch (ArgumentException exception)
-            {
-                return BadRequest(exception.Message);
-            }
+        //    var imageDataStream = images[0].InputStream;
+        //    var imageData = (new BinaryReader(imageDataStream)).ReadBytes((int)imageDataStream.Length);
+        //    try
+        //    {
+        //        //call BL
+        //    }
+        //    catch (ArgumentException exception)
+        //    {
+        //        return BadRequest(exception.Message);
+        //    }
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
-        public async Task<IHttpActionResult> GetAvatar()
-        {
-            var existingUser = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
-            if (existingUser == null)
-                return InternalServerError();
+        //[HttpGet, Route("/api/Account/Avatar")]
+        //public async Task<IHttpActionResult> GetAvatar()
+        //{
+        //    var existingUser = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
+        //    if (existingUser == null)
+        //        return InternalServerError();
 
-            byte[] data;
-            try
-            {
-                data = null; //call BL
-            }
-            catch (ArgumentException exception)
-            {
-                return BadRequest(exception.Message);
-            }
+        //    byte[] data;
+        //    try
+        //    {
+        //        data = null; //call BL
+        //    }
+        //    catch (ArgumentException exception)
+        //    {
+        //        return BadRequest(exception.Message);
+        //    }
 
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            var content = new ByteArrayContent(data);
-            response.Content = content;
+        //    var response = Request.CreateResponse(HttpStatusCode.OK);
+        //    var content = new ByteArrayContent(data);
+        //    response.Content = content;
 
-            return ResponseMessage(response);
-        }
+        //    return ResponseMessage(response);
+        //}
 
         private string AggregateErrors(IEnumerable<string> errors)
         {
