@@ -2,22 +2,18 @@
     $scope.$on('closeDialogs', function () { $scope.closeUserSettingsDialog(); });
 
     $scope.$on('showUserSettingsDialog', function (event) {
-        $scope.userToEdit = dataService.data.user;
-        console.log($scope.userToEdit);
-        $scope.newName = $scope.userToEdit.Name;
-        $scope.newEmail = $scope.userToEdit.Email;
+        $scope.newName = $scope.data.user.Name;
+        $scope.newEmail = $scope.data.user.Email;
         $scope.showUserSettingsDialog = true;
     });
 
     $scope.closeUserSettingsDialog = function () {
-        console.log('close user settings dialog');
         $scope.showUserSettingsDialog = false;
-        $scope.userToEdit = null;
-        $scope.newName = '';
     }
 
     $scope.renameUser = function () {
-        dataService.renameUser($scope.userToEdit, $scope.newName);
+        $scope.data.user.Name = $scope.newName;
+        dataService.saveUser();
     }
 
     $scope.saveChanges = function () {
@@ -34,6 +30,8 @@
 
     $scope.stopEmailEditing = function () {
         $scope.emailEditing = false;
+        $scope.emailConfirmPassword = '';
+        $scope.newEmail = $scope.data.user.Email;
     }
 
     $scope.beginPasswordEditing = function () {
@@ -42,13 +40,17 @@
 
     $scope.stopPasswordEditing = function () {
         $scope.passwordEditing = false;
+        $scope.currentPassword = '';
+        $scope.newPassword = '';
+        $scope.repeatedPassword = '';
     }
 
     $scope.saveEmail = function () {
         // return error message if error occured, otherwise return null
-        dataService.changeEmail($scope.userToEdit, $scope.newEmail);
-        console.log('save email');
-        $scope.emailError = !$scope.emailError;
+        if ($scope.data.user.Email != $scope.newEmail) {
+            $scope.data.user.Email = $scope.newEmail;
+            dataService.saveUser();
+        }
     }
 
     $scope.savePassword = function () {
@@ -60,13 +62,11 @@
         {
             dataService.changePassword($scope.currentPassword, $scope.newPassword);
         }
-
-        console.log('save password');
-        $scope.passwordError = !$scope.passwordError;
     }
 
+    $scope.data = dataService.data;
+
     $scope.showUserSettingsDialog = false;
-    $scope.userToEdit = null;
 
     $scope.newName = '';
 

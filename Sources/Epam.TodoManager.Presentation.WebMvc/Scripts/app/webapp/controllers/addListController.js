@@ -12,8 +12,9 @@
     }
 
     $scope.addNewList = function (title) {
-        dataService.addList(title);
+        dataService.createList(title);
         $scope.closeAddListDialog();
+        console.log('new list was added', dataService.data);
     }
 
     $scope.showAddListDialog = false;

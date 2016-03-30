@@ -39,7 +39,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
         public override void Update(TodoListCollection entity)
         {
             DB.TodoListCollection updatedListCollection = mapper.Map<DB.TodoListCollection>(entity);
-            DB.TodoListCollection dbListCollection = context.Set<DB.TodoListCollection>().Include(listCollection => listCollection.Lists).FirstOrDefault();
+            DB.TodoListCollection dbListCollection = context.Set<DB.TodoListCollection>().Include(listCollection => listCollection.Lists).Include("Lists.Todos").FirstOrDefault();
 
             IntKeyEntityEqualityComparer<DB.TodoList> comparer = new IntKeyEntityEqualityComparer<Model.TodoList>();
             IEnumerable<DB.TodoList> deletedLists = dbListCollection.Lists.Except(updatedListCollection.Lists, comparer).ToList();

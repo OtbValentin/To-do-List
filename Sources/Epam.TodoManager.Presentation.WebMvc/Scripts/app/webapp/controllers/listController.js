@@ -5,7 +5,7 @@ angular.module('app').controller('listController', function ($scope, $rootScope,
     }
 
     $scope.setActive = function (list) {
-        listService.setActiveList(list);
+        dataService.selectList(list);
     }
 
     $scope.showAddListDialog = function () {
@@ -21,6 +21,6 @@ angular.module('app').controller('listController', function ($scope, $rootScope,
     }
 
     $scope.isCollapsed = false;
-
-    $scope.userName = 'Valentin';
+    $scope.data = dataService.data;
+    $scope.searchTitle = '';
 });

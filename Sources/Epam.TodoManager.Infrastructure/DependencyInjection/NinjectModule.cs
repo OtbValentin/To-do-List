@@ -26,7 +26,7 @@ namespace Epam.TodoManager.Infrastructure.DependencyInjection
             Bind<IUserRepository>().To<EFUserRepository>().InRequestScope();
             Bind<ITodoListCollectionRepository>().To<EFTodoListCollectionRepository>().InRequestScope();
             Bind<IUnitOfWork>().To<EFUnitOfWork>().InRequestScope();
-            Bind<DbContext>().To<ApplicationDbContext>().InSingletonScope();
+            Bind<DbContext>().To<ApplicationDbContext>().InRequestScope();
 
             //Utils
             Bind<IMapper>().ToConstant(EntityMapper.Mapper);
