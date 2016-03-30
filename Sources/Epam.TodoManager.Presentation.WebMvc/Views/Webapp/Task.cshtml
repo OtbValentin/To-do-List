@@ -28,11 +28,11 @@
                 <div tabindex="0" class="title">
                     <span class="title-text">
                         <div class="content-fakable">
-                            <div class="display-view" ng-hide="titleEditing"><span ng-bind="task.Text" ng-click="beginTitleEditing()"></span></div>
+                            <div class="display-view" ng-hide="titleEditing"><span ng-bind="dataService.selectedTask.Text" ng-click="beginTitleEditing()"></span></div>
                             <div class="edit-view" ng-show="titleEditing">
                                 <div class="expandingArea active">
-                                    <pre style="line-height: 24px; font-size: 16px;" ng-bind="task.Text"></pre>
-                                    <textarea focus-title-item tabindex="0" class="" style="line-height: 24px; font-size: 16px;" ng-model="task.Text"></textarea>
+                                    <pre style="line-height: 24px; font-size: 16px;" ng-bind="dataService.selectedTask.Text"></pre>
+                                    <textarea focus-title-item tabindex="0" class="" style="line-height: 24px; font-size: 16px;" ng-model="dataService.selectedTask.Text"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="body">
-            <div tabindex="0" role="button" aria-haspopup="true" class="section section-item detail-date editing" ng-class="{'hasDate': task.DueDate != null, 'overdue': overdue == true}" aria-label="Set due date">
+            <div tabindex="0" role="button" aria-haspopup="true" class="section section-item detail-date editing" ng-class="{'hasDate': dataService.selectedTask.DueDate != null, 'overdue': overdue == true}" aria-label="Set due date">
                 <div class="section-icon">
                     <svg class="date" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g stroke="none" stroke-width="1" fill-rule="evenodd">
@@ -53,9 +53,9 @@
                 </div>
                 <div class="section-content" ng-click="beginDateEditing()">
                     <div class="section-title">
-                        <text rel="placeholder_set_due_date" ng-hide="dateEditing || task.DueDate != null">Set due date</text>
-                        <text rel="label_due_on" ng-bind="'Due date: ' + task.DueDate" ng-show="task.DueDate != null && dateEditing == false"></text>
-                        <input type="text" id="datepicker" focus-date-item placeholder="Set due date" ng-show="dateEditing" ng-model="task.DueDate">
+                        <text rel="placeholder_set_due_date" ng-hide="dateEditing || dataService.selectedTask.DueDate != null">Set due date</text>
+                        <text rel="label_due_on" ng-bind="'Due date: ' + dataService.selectedTask.DueDate" ng-show="dataService.selectedTask.DueDate != null && dateEditing == false"></text>
+                        <input type="text" id="datepicker" focus-date-item placeholder="Set due date" ng-show="dateEditing" ng-model="dataService.selectedTask.DueDate">
                     </div>
                     <div class="section-description"></div>
                 </div>
@@ -70,7 +70,7 @@
                 </a>
             </div>
 
-            <div data-key-aria-label="placeholder_add_note" role="textbox" aria-multiline="true" tabindex="0" class="section section-item note" aria-label="Add a note...Press enter to edit." ng-class="{'hasNote': task.Note != ''}">
+            <div data-key-aria-label="placeholder_add_note" role="textbox" aria-multiline="true" tabindex="0" class="section section-item note" aria-label="Add a note...Press enter to edit." ng-class="{'hasNote': dataService.selectedTask.Note != ''}">
                 <div class="section-icon">
                     <svg class="options rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g stroke="none" stroke-width="1" fill-rule="evenodd">
@@ -81,16 +81,16 @@
                     </svg>
                 </div>
                 <div class="section-content top" ng-click="beginNoteEditing()">
-                    <div class="section-title note-add" ng-hide="noteEditing == true || task.Note != ''">
+                    <div class="section-title note-add" ng-hide="noteEditing == true || dataService.selectedTtask.Note != ''">
                         <text rel="placeholder_add_note">Add a note...</text>
                     </div>
-                    <div class="note-body selectable" ng-show="noteEditing == true || task.Note != ''">
+                    <div class="note-body selectable" ng-show="noteEditing == true || dataService.selectedTask.Note != ''">
                         <div class="content-fakable">
-                            <div class="display-view" ng-hide="noteEditing"><span ng-bind="task.Note"></span></div>
+                            <div class="display-view" ng-hide="noteEditing"><span ng-bind="dataService.selectedTask.Note"></span></div>
                             <div class="edit-view" ng-show="noteEditing">
                                 <div class="expandingArea active">
-                                    <pre style="line-height: 20px; font-size: 15px;" ng-bind="task.Note"></pre><br />
-                                    <textarea focus-note-item tabindex="0" class="" placeholder="Add a note..." style="line-height: 20px; font-size: 15px;" ng-model="task.Note"></textarea>
+                                    <pre style="line-height: 20px; font-size: 15px;" ng-bind="dataService.selectedTask.Note"></pre><br />
+                                    <textarea focus-note-item tabindex="0" class="" placeholder="Add a note..." style="line-height: 20px; font-size: 15px;" ng-model="dataService.selectedTask.Note"></textarea>
                                 </div>
                             </div>
                         </div>

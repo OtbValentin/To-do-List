@@ -1,6 +1,22 @@
-var app = angular.module("app", ['ngRoute', 'ui.sortable', 'ngResource']);
+var app = angular.module("app", ['ngRoute', 'ui.sortable', 'ngResource', 'angular-oauth2'])
+    .config(['OAuthProvider', function (OAuthProvider) {
+        OAuthProvider.configure({
+            baseUrl: "http://localhost:51733/api",
+            grantPath: "/Account/Token",
+            clientId: "WebApp"
+        });
+    }])
+    .config(['OAuthTokenProvider', function (OAuthTokenProvider) {
+        OAuthTokenProvider.configure({
+            name: 'token',
+            options: {
+                secure: false
+            }
+        });
+    }])
 
-app.config(['$routeProvider',
+
+    .config(['$routeProvider',
   function ($routeProvider) {
       $routeProvider.
         when('/lists', {
