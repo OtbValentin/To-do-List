@@ -9,7 +9,6 @@
 
     $scope.closeAddListDialog = function () {
         $scope.showAddListDialog = false;
-        $scope.newListTitle = '';
     }
 
     $scope.addNewList = function (title) {

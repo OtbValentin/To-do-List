@@ -3,6 +3,8 @@
 
     $scope.$on('showUserSettingsDialog', function (event, args) {
         $scope.userToEdit = args;
+        $scope.newName = $scope.userToEdit.Name;
+        $scope.newEmail = $scope.userToEdit.Email;
         $scope.showUserSettingsDialog = true;
     });
 
