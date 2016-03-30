@@ -19,7 +19,7 @@
         vm.register = function () {
             vm.newAccount.$save()
                 .then(function () {
-                    $window.location.href = "/Account/Login";
+                    $window.location.href = "/Login";
                 })
                 .catch(function (response) {
                     var responseData = response.data;
