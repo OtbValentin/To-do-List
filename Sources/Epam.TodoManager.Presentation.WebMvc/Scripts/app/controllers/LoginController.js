@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('todoListApp')
+        .module('app')
         .controller('LoginController', LoginController);
 
     LoginController.$inject = ['$location', '$window', 'OAuth']; 

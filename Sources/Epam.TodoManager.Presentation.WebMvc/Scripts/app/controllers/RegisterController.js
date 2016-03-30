@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('todoListApp')
+        .module('app')
         .controller('RegisterController', RegisterController);
 
     RegisterController.$inject = ['$location', '$window', 'accountService'];

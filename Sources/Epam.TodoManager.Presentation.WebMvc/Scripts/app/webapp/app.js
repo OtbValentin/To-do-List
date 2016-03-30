@@ -1,4 +1,18 @@
-var app = angular.module("app", ['ngRoute', 'ui.sortable', 'ngResource', 'angular-oauth2'])
+(function () {
+    'use strict';
+
+    angular.module('app', [
+        // Angular modules 
+        'ngRoute',
+        'ngResource',
+        'ngCookies',
+
+        // Custom modules 
+
+        // 3rd Party Modules
+        'angular-oauth2',
+        'ui.sortable'
+    ])
     .config(['OAuthProvider', function (OAuthProvider) {
         OAuthProvider.configure({
             baseUrl: "http://localhost:51733/api",
@@ -14,24 +28,24 @@ var app = angular.module("app", ['ngRoute', 'ui.sortable', 'ngResource', 'angula
             }
         });
     }])
-
-
     .config(['$routeProvider',
-  function ($routeProvider) {
-      $routeProvider.
-        when('/lists', {
-            templateUrl: 'Webapp/Lists',
-            controller: 'listsRouteController'
-        }).
-        when('/lists/:listid', {
-            templateUrl: 'Webapp/Tasks',
-            controller: 'tasksRouteController'
-        }).
-        when('/lists/:listid/tasks/:taskid', {
-            templateUrl: 'Webapp/Task',
-            controller: 'detailsRouteController'
-        }).
-        otherwise({
-            redirectTo: 'lists'
-        });
-  }]);
+        function ($routeProvider) {
+            $routeProvider.
+            when('/lists', {
+                templateUrl: 'Webapp/Lists',
+                controller: 'listsRouteController'
+            }).
+            when('/lists/:listid', {
+                templateUrl: 'Webapp/Tasks',
+                controller: 'tasksRouteController'
+            }).
+            when('/lists/:listid/tasks/:taskid', {
+                templateUrl: 'Webapp/Task',
+                controller: 'detailsRouteController'
+            }).
+            otherwise({
+                redirectTo: 'lists'
+            });
+        }
+    ]);
+})();

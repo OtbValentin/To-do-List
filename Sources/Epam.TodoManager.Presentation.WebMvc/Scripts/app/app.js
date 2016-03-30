@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('todoListApp', [
+    angular.module('app', [
         // Angular modules 
         'ngRoute',
         'ngResource',
@@ -11,7 +11,7 @@
 
         // 3rd Party Modules
         'angular-oauth2',
-        'angled-dragndrop'
+        'ui.sortable'
     ])
     .config([ 'OAuthProvider', function (OAuthProvider) {
         OAuthProvider.configure({
@@ -27,5 +27,25 @@
                 secure: false
             }
         });
-    }]);
+    }])
+    .config(['$routeProvider',
+        function ($routeProvider) {
+            $routeProvider.
+            when('/lists', {
+                templateUrl: 'Webapp/Lists',
+                controller: 'listsRouteController'
+            }).
+            when('/lists/:listid', {
+                templateUrl: 'Webapp/Tasks',
+                controller: 'tasksRouteController'
+            }).
+            when('/lists/:listid/tasks/:taskid', {
+                templateUrl: 'Webapp/Task',
+                controller: 'detailsRouteController'
+            }).
+            otherwise({
+                redirectTo: 'lists'
+            });
+        }
+    ]);
 })();
