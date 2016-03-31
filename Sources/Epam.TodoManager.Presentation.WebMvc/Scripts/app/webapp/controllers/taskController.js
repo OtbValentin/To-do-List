@@ -8,7 +8,7 @@ angular.module('app').controller('taskController', function ($scope, dataService
     }
 
     $scope.redirectToTask = function (task) {
-        document.location = '#/lists/' + $scope.activeList.Id + '/tasks/' + task.Id;
+        document.location = '#/lists/' + $scope.data.activeList.Id + '/tasks/' + task.Id;
     }
 
     $scope.addTask = function (title) {

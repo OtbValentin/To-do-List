@@ -13,16 +13,21 @@ angular.module('app').controller('appController', function ($scope, dataService,
     $scope.updateSelection = function () {
         var listId = $routeParams.listid;
         if (!!listId) {
-            dataService.selectList(dataService.data.lists.filter(function (list) { return list.Id == $routeParams.listid })[0]);
+            console.log('update selection', $scope.data);
+            dataService.selectList($scope.data.lists.filter(function (list) { return list.Id == listId })[0]);
 
             var taskId = $routeParams.taskid;
 
             if (!!taskId) {
-                dataService.selectTask(dataService.data.activeList.TodoItems.filter(function (task) { return task.Id == taskId })[0]);
+                dataService.selectTask($scope.data.activeList.TodoItems.filter(function (task) { return task.Id == taskId })[0]);
             }
             else {
                 dataService.selectTask(null);
             }
+
+            console.log('listId', listId);
+            console.log('taskid', taskId);
+            console.log('after selection', $scope.data);
         }
         else {
             dataService.selectList(null);
@@ -31,6 +36,8 @@ angular.module('app').controller('appController', function ($scope, dataService,
     };
 
     $scope.$on('routeChanged', function () { $scope.updateSelection(); });
+
+    $scope.data = dataService.data;
 
     $scope.updateSelection();
 });
