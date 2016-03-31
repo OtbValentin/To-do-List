@@ -37,6 +37,7 @@ angular.module('app').controller('detailsController', function ($scope, dataServ
 
     $scope.stopDateEditing = function () {
         $scope.dateEditing = false;
+        console.log('stop date editing', $scope.data.selectedTask);
         dataService.saveTask($scope.data.activeList, $scope.data.selectedTask);
     }
 

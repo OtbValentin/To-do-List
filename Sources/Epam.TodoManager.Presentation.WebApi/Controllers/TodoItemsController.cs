@@ -130,9 +130,9 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
                     }
                 }
 
-                if (item.DueDate.HasValue && item.DueDate != dbItem.DueDate)
+                if (item.DueDate != dbItem.DueDate)
                 {
-                    itemService.SetTodoDueDate(userId, item.List, id, item.DueDate.Value);
+                    itemService.SetTodoDueDate(userId, item.List, id, item.DueDate);
                 }
             }
             catch (ArgumentException exception)
