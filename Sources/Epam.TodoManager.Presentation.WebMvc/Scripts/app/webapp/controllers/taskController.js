@@ -12,7 +12,8 @@ angular.module('app').controller('taskController', function ($scope, dataService
     }
 
     $scope.addTask = function (title) {
-        dataService.addTask(dataService.activeList, title);
+        dataService.createTask($scope.data.activeList, title);
+        $scope.newTaskTitle = '';
     }
 
     $scope.selectTask = function (task) {
@@ -20,7 +21,7 @@ angular.module('app').controller('taskController', function ($scope, dataService
     }
 
     $scope.toggleCompletedTasks = function () {
-        dataService.showCompleted = !dataService.showCompleted;
+        $scope.data.showCompleted = !$scope.data.showCompleted;
     };
 
     $scope.setCompleted = function ($event, task) {
@@ -30,19 +31,20 @@ angular.module('app').controller('taskController', function ($scope, dataService
         document.getElementById('wl3-complete').play();
         $event.stopPropagation();
 
-        dataService.saveTask(dataService.activeList, task);
+        dataService.saveTask($scope.data.activeList, task);
     };
 
     $scope.setUncompleted = function ($event, task) {
         task.IsCompleted = false;
         $event.stopPropagation();
 
-        dataService.saveTask(dataService.activeList, task);
+        dataService.saveTask($scope.data.activeList, task);
     };
 
     $scope.stopPropagation = function ($event) {
         $event.stopPropagation();
     };
 
-    $scope.updateSelected();
+    $scope.data = dataService.data;
+    $scope.newTaskTitle = '';
 });

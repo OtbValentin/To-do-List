@@ -23,6 +23,7 @@
         ///////////////////////////
 
         function create(title) {
+            console.log('In list service, title:', title);
             return $http.post(service.resourceUrl, title);
         }
 

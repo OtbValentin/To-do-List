@@ -13,20 +13,20 @@ angular.module('app').controller('appController', function ($scope, dataService,
     $scope.updateSelection = function () {
         var listId = $routeParams.listid;
         if (!!listId) {
-            dataService.activeList = listService.todoLists.filter(function (list) { return list.Id == $routeParams.listid })[0];
+            dataService.selectList(dataService.data.lists.filter(function (list) { return list.Id == $routeParams.listid })[0]);
 
             var taskId = $routeParams.taskid;
 
             if (!!taskId) {
-                dataService.selectedTask = dataService.activeList.TodoItems.filter(function (task) { return task.Id == taskId })[0];
+                dataService.selectTask(dataService.data.activeList.TodoItems.filter(function (task) { return task.Id == taskId })[0]);
             }
             else {
-                dataService.selectedTask = null;
+                dataService.selectTask(null);
             }
         }
         else {
-            dataService.activeList = null;
-            dataService.selectedTask = null;
+            dataService.selectList(null);
+            dataService.selectTask(null);
         }
     };
 
