@@ -154,6 +154,8 @@
                     data.selectedTask = !!newSelectedTask ? newSelectedTask : null;
                 }
             });
+
+            console.log('data', service.data);
         }
 
         function updateList(list) {
