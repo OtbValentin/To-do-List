@@ -26,7 +26,7 @@ namespace Epam.TodoManager.Infrastructure.EntityMapping
                 {
                     return new Domain.TodoListCollection(dbCollection.Id, dbCollection.Id, dbCollection.Lists.Select(dbList =>
                     {
-                        return new Domain.TodoList(dbList.Id, dbList.Title, dbList.Todos.OrderBy(todo => (-1) * todo.Index).Select(dbTodo =>
+                        return new Domain.TodoList(dbList.Id, dbList.Title, dbList.Todos.OrderBy(todo => todo.Index).Select(dbTodo =>
                             new Domain.Todo(dbTodo.Id, dbTodo.Text, dbTodo.IsCompleted, dbTodo.Note, dbTodo.DueDate)));
                     }));
                 });

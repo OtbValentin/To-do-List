@@ -68,5 +68,15 @@ namespace Epam.TodoManager.Presentation.WebApi.Models
                 TodoItems = domainList.Select(item => item.Id).ToList()
             };
         }
+
+        public static PopulatedTodoList ToPopulatedApiModel(this Domain.TodoList domainList)
+        {
+            return (domainList == null) ? null : new PopulatedTodoList()
+            {
+                Id = domainList.Id,
+                Title = domainList.Title,
+                TodoItems = domainList.Select(item => item.ToApiModel()).ToList()
+            };
+        }
     }
 }
