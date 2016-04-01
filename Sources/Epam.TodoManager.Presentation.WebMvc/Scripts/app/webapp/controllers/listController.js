@@ -13,7 +13,7 @@ angular.module('app').controller('listController', function ($scope, $rootScope,
     }
 
     $scope.showEditListDialog = function (list) {
-        $rootScope.$broadcast('showEditListDialog');
+        $rootScope.$broadcast('showEditListDialog', list);
     }
 
     $scope.showUserSettingsDialog = function () {

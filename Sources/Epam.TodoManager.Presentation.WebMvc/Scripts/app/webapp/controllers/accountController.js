@@ -12,8 +12,8 @@
     }
 
     $scope.renameUser = function () {
-        $scope.data.user.Name = $scope.newName;
-        dataService.saveUser();
+        //$scope.data.user.Name = $scope.newName;
+        dataService.renameUser($scope.data.user, $scope.newName);
     }
 
     $scope.saveChanges = function () {
@@ -49,7 +49,8 @@
         // return error message if error occured, otherwise return null
         if ($scope.data.user.Email != $scope.newEmail) {
             $scope.data.user.Email = $scope.newEmail;
-            dataService.saveUser();
+
+            dataService.changeEmail($scope.data.user, $scope.data.newEmail, $scope.emailConfirmPassword);
         }
     }
 
@@ -60,7 +61,7 @@
         }
         else
         {
-            dataService.changePassword($scope.currentPassword, $scope.newPassword);
+            dataService.changePassword($scope.data.user, $scope.currentPassword, $scope.newPassword);
         }
     }
 
@@ -82,7 +83,4 @@
     $scope.newPassword = '';
     $scope.repeatedPassword = '';
     $scope.currentPassword = '';
-
-
-
 });

@@ -64,7 +64,7 @@ angular.module('app').controller('detailsController', function ($scope, dataServ
             $event.stopPropagation();
         }
 
-        dataService.saveTask($scope.data.activeList, dataService.selectedTask);
+        dataService.saveTask($scope.data.activeList, $scope.data.selectedTask);
     }
 
     $scope.compareDates = function (a, b) {
