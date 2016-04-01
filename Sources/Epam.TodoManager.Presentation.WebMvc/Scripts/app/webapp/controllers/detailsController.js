@@ -10,7 +10,7 @@ angular.module('app').controller('detailsController', function ($scope, dataServ
 
     $scope.deleteNote = function (task) {
         task.Note = "";
-        dataService.saveTask(dataService.activeList, task);
+        dataService.saveTask($scope.data.activeList, task);
     }
 
     $scope.deleteDueDate = function (task) {
@@ -53,22 +53,22 @@ angular.module('app').controller('detailsController', function ($scope, dataServ
     //});
 
     $scope.toggleCompletion = function ($event) {
-        dataService.selectedTask.IsCompleted = !dataService.selectedTask.IsCompleted;
+        $scope.data.selectedTask.IsCompleted = !$scope.data.selectedTask.IsCompleted;
 
-        if ($scope.task.IsCompleted) {
+        if ($scope.data.selectedTask.IsCompleted) {
             document.getElementById('wl3-complete').load();
             document.getElementById('wl3-complete').play();
             $event.stopPropagation();
         }
 
-        dataService.saveTask(dataService.activeList, dataService.selectedTask);
+        dataService.saveTask($scope.data.activeList, dataService.selectedTask);
     }
 
     $scope.compareDates = function (a, b) {
         return a - b;
     }
 
-    $scope.$watch('task.DueDate', function () {
+    $scope.$watch('data.selectedTask.DueDate', function () {
         if ($scope.task != null && $scope.task.DueDate != null && $scope.compareDates(Date.parse($scope.task.DueDate), Date.now()) < 0) {
             $scope.overdue = true;
         }
@@ -83,4 +83,6 @@ angular.module('app').controller('detailsController', function ($scope, dataServ
     $scope.dateEditing = false;
     $scope.titleEditing = false;
     $scope.overdue = false;
+
+    $scope.data = dataService.data;
 });

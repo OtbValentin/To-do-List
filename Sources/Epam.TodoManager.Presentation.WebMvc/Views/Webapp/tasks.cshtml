@@ -21,7 +21,7 @@
         </div>
         <div class="task-list inbox">
             <ol ui-sortable="sortableOptions" ng-model="data.activeList.TodoItems" class="tasks">
-                <li tabindex="0" class="taskItem" ng-repeat="task in data.activeList.TodoItems | filter:{IsCompleted : false} track by $index" ng-class="{'selected': dataService.selectedTask === task}">
+                <li tabindex="0" class="taskItem" ng-repeat="task in data.activeList.TodoItems | orderBy: task.Index | filter:{IsCompleted : false} track by $index" ng-class="{'selected': dataService.selectedTask === task}">
                     <div class="taskItem-body" ng-dblclick="redirectToTask(task)" ng-click="selectTask(task)">
                         <a class="taskItem-checkboxWrapper checkBox" tabindex="-1" ng-click="setCompleted($event, task)" ng-dblclick="stopPropagation($event)">
                             <span data-key-title="contextual_mark_as_completed" title="Mark as Completed">
@@ -54,7 +54,7 @@
                 </a>
             </h2>
             <ol class="tasks" ng-show="data.showCompleted">
-                <li tabindex="0" class="taskItem done" draggable="true" ng-repeat="task in data.activeList.TodoItems | filter:{IsCompleted: true} track by $index" ng-class="{'selected': selectedTask === task}">
+                <li tabindex="0" class="taskItem done" draggable="true" ng-repeat="task in data.activeList.TodoItems | orderBy: task.Index | filter:{IsCompleted: true} track by $index" ng-class="{'selected': selectedTask === task}">
                     <div class="taskItem-body" ng-click="selectTask(task)" ng-dblclick="redirectToTask(task)">
                         <a class="taskItem-checkboxWrapper checkBox checked" tabindex="-1" ng-click="setUncompleted($event, task)" ng-dblclick="stopPropagation($event)">
                             <span data-key-title="contextual_mark_as_completed" title="Mark as Completed">
@@ -64,7 +64,7 @@
                                             </g> 
                                         </svg>
                             </span>
-                            <span data-key-title="contextual_mark_as_notcompleted" title="Пометить как незавершенную">
+                            <span data-key-title="contextual_mark_as_notcompleted" title="Mark as uncompleted">
                                 <svg class="task-checked" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
                                 <g>
                                 <path d="M9.5,14c-0.132,0 -0.259,-0.052 -0.354,-0.146c-1.485,-1.486 -3.134,-2.808 -4.904,-3.932c-0.232,-0.148 -0.302,-0.457 -0.153,-0.691c0.147,-0.231 0.456,-0.299 0.69,-0.153c1.652,1.049 3.202,2.266 4.618,3.621c2.964,-4.9 5.989,-8.792 9.749,-12.553c0.196,-0.195 0.512,-0.195 0.708,0c0.195,0.196 0.195,0.512 0,0.708c-3.838,3.837 -6.899,7.817 -9.924,12.902c-0.079,0.133 -0.215,0.221 -0.368,0.24c-0.021,0.003 -0.041,0.004 -0.062,0.004"></path>
