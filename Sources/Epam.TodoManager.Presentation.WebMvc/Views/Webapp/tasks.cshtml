@@ -21,7 +21,7 @@
         </div>
         <div class="task-list inbox">
             <ol ui-sortable="sortableOptions" ng-model="data.activeList.TodoItems" class="tasks">
-                <li tabindex="0" class="taskItem" ng-repeat="task in data.activeList.TodoItems | orderBy: task.Index | filter:{IsCompleted : false} track by $index" ng-class="{'selected': dataService.selectedTask === task}">
+                <li tabindex="0" class="taskItem" ng-repeat="task in data.activeList.TodoItems | orderBy: task.Index | filter:{IsCompleted : false} track by $index" ng-class="{'selected': data.selectedTask === task}">
                     <div class="taskItem-body" ng-dblclick="redirectToTask(task)" ng-click="selectTask(task)">
                         <a class="taskItem-checkboxWrapper checkBox" tabindex="-1" ng-click="setCompleted($event, task)" ng-dblclick="stopPropagation($event)">
                             <span data-key-title="contextual_mark_as_completed" title="Mark as Completed">
@@ -54,7 +54,7 @@
                 </a>
             </h2>
             <ol class="tasks" ng-show="data.showCompleted">
-                <li tabindex="0" class="taskItem done" draggable="true" ng-repeat="task in data.activeList.TodoItems | orderBy: task.Index | filter:{IsCompleted: true} track by $index" ng-class="{'selected': selectedTask === task}">
+                <li tabindex="0" class="taskItem done" draggable="true" ng-repeat="task in data.activeList.TodoItems | orderBy: task.Index | filter:{IsCompleted: true} track by $index" ng-class="{'selected': data.selectedTask === task}">
                     <div class="taskItem-body" ng-click="selectTask(task)" ng-dblclick="redirectToTask(task)">
                         <a class="taskItem-checkboxWrapper checkBox checked" tabindex="-1" ng-click="setUncompleted($event, task)" ng-dblclick="stopPropagation($event)">
                             <span data-key-title="contextual_mark_as_completed" title="Mark as Completed">

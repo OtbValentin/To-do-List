@@ -91,5 +91,31 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
 
             return Ok();
         }
+
+        public IHttpActionResult Put(int id, [FromBody] string title)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userId = User.Identity.GetUserId<int>();
+
+            var dbList = service.GetTodoList(userId, id);
+
+            try
+            {
+                if (dbList.Title != title)
+                {
+                    service.RenameList(userId, dbList.Id, title);
+                }
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+
+            return Ok();
+        }
     }
 }

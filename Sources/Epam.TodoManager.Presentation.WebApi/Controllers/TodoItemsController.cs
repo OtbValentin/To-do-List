@@ -104,7 +104,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
 
             var userId = User.Identity.GetUserId<int>();
 
-            var dbItem = listService.GetTodoList(item.List, id).FirstOrDefault(todoItem => todoItem.Id == id);
+            var dbItem = listService.GetTodoList(userId, item.List).FirstOrDefault(todoItem => todoItem.Id == id);
 
             try
             {
