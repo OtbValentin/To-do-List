@@ -37,7 +37,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
                 return BadRequest(exception.Message);
             }
 
-            return Json(lists.Select(list => list.ToPopulatedApiModel()));
+            return Json(lists.Select(list => list.ToApiModel()));
         }
 
         public IHttpActionResult Get(int id)

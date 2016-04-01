@@ -75,12 +75,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Models
             {
                 Id = domainList.Id,
                 Title = domainList.Title,
-                TodoItems = domainList.Select(item =>
-                {
-                    TodoItem todoItem = item.ToApiModel();
-                    todoItem.List = domainList.Id;
-                    return todoItem;
-                }).ToList()
+                TodoItems = domainList.Select(item => item.ToApiModel()).ToList()
             };
         }
     }

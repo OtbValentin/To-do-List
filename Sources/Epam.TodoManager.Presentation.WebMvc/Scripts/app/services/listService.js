@@ -23,7 +23,8 @@
         ///////////////////////////
 
         function create(title) {
-            return $http.post(service.resourceUrl, wrapInQuotes(title));
+            console.log('In list service, title:', title);
+            return $http.post(service.resourceUrl, wrapInQuotes(stringData));
         }
 
         function getAll() {
