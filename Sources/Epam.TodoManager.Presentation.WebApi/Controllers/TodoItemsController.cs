@@ -104,36 +104,24 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
 
             var userId = User.Identity.GetUserId<int>();
 
-            var dbItem = listService.GetTodoList(userId, item.List).FirstOrDefault(i => i.Id == id);
-
             try
             {
-                if (item.Text != dbItem.Text)
-                {
+                if (item.Text != null)
                     itemService.RenameTodo(userId, item.List, id, item.Text);
-                }
 
-                if (item.Note != dbItem.Note)
-                {
+                if (item.Note != null)
                     itemService.EditTodoNote(userId, item.List, id, item.Note);
-                }
 
-                if (item.IsCompleted.HasValue && item.IsCompleted != dbItem.IsCompleted)
+                if (item.IsCompleted.HasValue)
                 {
                     if (item.IsCompleted.Value)
-                    {
                         itemService.CompleteTodo(userId, item.List, id);
-                    }
                     else
-                    {
                         itemService.MarkTodoAsUncompleted(userId, item.List, id);
-                    }
                 }
 
-                if (item.DueDate.HasValue && item.DueDate != dbItem.DueDate)
-                {
+                if (item.DueDate.HasValue)
                     itemService.SetTodoDueDate(userId, item.List, id, item.DueDate.Value);
-                }
             }
             catch (ArgumentException exception)
             {
