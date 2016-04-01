@@ -52,6 +52,8 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             DB.User efEntity = mapper.Map<DB.User>(entity);
             efEntity.ListCollection = new DB.TodoListCollection();
             context.Set<DB.User>().Add(efEntity);
+
+            context.SaveChanges();
         }
 
         public override void Update(User entity)
@@ -65,6 +67,8 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
             dbUser.Email = user.Email;
             dbUser.PasswordHash = user.PasswordHash;
             dbUser.Profile.Name = entity.Profile.Name;
+
+            context.SaveChanges();
         }
     }
 }
