@@ -23,7 +23,8 @@
         ///////////////////////////
 
         function create(title) {
-            return $http.post(service.resourceUrl, wrapInQuotes(title));
+            console.log('In list service, title:', title);
+            return $http.post(service.resourceUrl, title);
         }
 
         function getAll() {
@@ -35,17 +36,11 @@
         }
 
         function rename(id, newTitle) {
-            return $http.put(service.resourceUrl + "/" + id, wrapInQuotes(newTitle));
+            return $http.put(service.resourceUrl + "/" + id, newTitle);
         }
 
         function remove(id) {
             return $http.delete(service.resourceUrl + "/" + id);
-        }
-
-
-
-        function wrapInQuotes(stringData) {
-            return '\"' + stringData + '\"';
         }
     }
 })();
