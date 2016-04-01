@@ -79,7 +79,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Models
                 {
                     TodoItem todoItem = item.ToApiModel();
                     todoItem.List = domainList.Id;
-                    return todo;
+                    return todoItem;
                 }).ToList()
             };
         }
