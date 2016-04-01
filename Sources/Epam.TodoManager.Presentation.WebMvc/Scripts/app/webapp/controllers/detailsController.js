@@ -15,7 +15,7 @@ angular.module('app').controller('detailsController', function ($scope, dataServ
 
     $scope.deleteDueDate = function (task) {
         task.DueDate = null;
-        dataService.saveTask(dataService.activeList, task);
+        dataService.saveTask($scope.data.activeList, task);
     }
 
     $scope.toggleNoteEditing = function () {
@@ -28,6 +28,7 @@ angular.module('app').controller('detailsController', function ($scope, dataServ
 
     $scope.stopNoteEditing = function () {
         $scope.noteEditing = false;
+        dataService.saveTask($scope.data.activeList, $scope.data.selectedTask);
     }
 
     $scope.beginDateEditing = function () {
@@ -36,6 +37,7 @@ angular.module('app').controller('detailsController', function ($scope, dataServ
 
     $scope.stopDateEditing = function () {
         $scope.dateEditing = false;
+        dataService.saveTask($scope.data.activeList, $scope.data.selectedTask);
     }
 
     $scope.beginTitleEditing = function () {
@@ -44,6 +46,7 @@ angular.module('app').controller('detailsController', function ($scope, dataServ
 
     $scope.stopTitleEditing = function () {
         $scope.titleEditing = false;
+        dataService.saveTask($scope.data.activeList, $scope.data.selectedTask);
     }
 
     //$scope.$watch('task', function () {
