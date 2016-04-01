@@ -5,7 +5,7 @@ namespace Epam.TodoManager.DataAccess.EF.Model
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext()
-            : base("DefaultConnection")
+            : base("TodoListDB")
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
@@ -19,6 +19,11 @@ namespace Epam.TodoManager.DataAccess.EF.Model
 
             base.OnModelCreating(modelBuilder);
         }
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    return;
+        //}
 
         public DbSet<UserProfile> Profiles { get; set; }
         public DbSet<User> Users { get; set; }
