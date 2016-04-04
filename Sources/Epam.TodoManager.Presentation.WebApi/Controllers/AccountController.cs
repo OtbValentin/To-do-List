@@ -18,13 +18,13 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
     [Authorize/*, EnableCors("*", "*", "*", SupportsCredentials = true)*/]
     public class AccountController : ApiController
     {
-        private ApplicationUserManager Manager =>
-            Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        private ApplicationUserManager manager;
         private IUserService userService;
 
-        public AccountController(IUserService service)
+        public AccountController(IUserService service, ApplicationUserManager manager)
         {
             this.userService = service;
+            this.manager = manager;
         }
 
         // GET: api/Account
@@ -32,7 +32,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
         {
             try
             {
-                var user = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
+                var user = await manager.FindByIdAsync(User.Identity.GetUserId<int>());
                 return Json(user.ToApiModel());
             }
             catch (Exception e)
@@ -52,7 +52,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
             IdentityResult result;
             try
             {
-                result = await Manager.CreateAsync(newUser, value.Password);
+                result = await manager.CreateAsync(newUser, value.Password);
             }
             catch (ArgumentException exception)
             {
@@ -68,7 +68,7 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
         // PUT: api/Account/5
         public async Task<IHttpActionResult> Put([FromBody] UpdatedUser value)
         {
-            var existingUser = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
+            var existingUser = await manager.FindByIdAsync(User.Identity.GetUserId<int>());
             if (existingUser == null)
                 return InternalServerError();
 
@@ -84,11 +84,11 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
                     userService.ChangeEmail(existingUser.Id, value.Email);
                 if (value.Password != null)
                 {
-                    var validationResult = await Manager.PasswordValidator.ValidateAsync(value.Password);
+                    var validationResult = await manager.PasswordValidator.ValidateAsync(value.Password);
                     if (!validationResult.Succeeded)
                         return BadRequest(AggregateErrors(validationResult.Errors));
 
-                    var passwordHash = Manager.PasswordHasher.HashPassword(value.Password);
+                    var passwordHash = manager.PasswordHasher.HashPassword(value.Password);
                     userService.ChangePassword(existingUser.Id, passwordHash);
                 }
             }
