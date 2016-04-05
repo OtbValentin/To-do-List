@@ -71,7 +71,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
                 UpdateDbList(list, updatedList);
             }
 
-            context.SaveChanges();
+            //context.SaveChanges();
         }
 
         private void UpdateDbList(DB.TodoList dbList, DB.TodoList updatedList)

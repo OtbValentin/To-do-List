@@ -4,8 +4,9 @@ angular.module('app').controller('detailsController', function ($scope, dataServ
         document.location = '#/lists/' + $routeParams.listid;
     }
 
-    $scope.deleteTask = function (task) {
-        dataService.deleteTask($routeParams.listid, $routeParams.taskid);
+    $scope.deleteTask = function () {
+        console.log('controller delete task', $scope.data.activeList, $scope.data.selectedTask);
+        dataService.deleteTask($scope.data.activeList, $scope.data.selectedTask);
     }
 
     $scope.deleteNote = function (task) {
