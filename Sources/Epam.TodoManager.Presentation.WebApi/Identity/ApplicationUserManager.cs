@@ -5,27 +5,35 @@ using System.Linq;
 using System.Web;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
 
 namespace Epam.TodoManager.Presentation.WebApi.Identity
 {
     public class ApplicationUserManager : UserManager<ApplicationUser, int>
     {
-        private ApplicationUserManager(IUserStore<ApplicationUser, int> store)
+        public ApplicationUserManager(IUserStore<ApplicationUser, int> store)
             : base(store)
         {
+            UserValidator = new UserValidator<ApplicationUser, int>(this)
+            {
+                AllowOnlyAlphanumericUserNames = false
+            };
         }
 
         public static ApplicationUserManager Create()
         {
-            var manager = new ApplicationUserManager(new ApplicationUserStore());
+            throw new NotSupportedException();
 
-            //TODO: configure Identity policies
-            manager.UserValidator = new UserValidator<ApplicationUser, int>(manager)
-            {
-                AllowOnlyAlphanumericUserNames = false
-            };
+            //var manager = new ApplicationUserManager(new ApplicationUserStore());
 
-            return manager;
+            ////TODO: configure Identity policies
+            //manager.UserValidator = new UserValidator<ApplicationUser, int>(manager)
+            //{
+            //    AllowOnlyAlphanumericUserNames = false
+            //};
+
+            //return manager;
         }
     }
 }

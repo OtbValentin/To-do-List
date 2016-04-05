@@ -10,6 +10,7 @@ using System.Net.Http;
 using Epam.TodoManager.Presentation.WebApi.Infrastructure;
 using AutoMapper;
 using Epam.TodoManager.Presentation.WebApi.Models;
+using System.Web.Http;
 
 namespace Epam.TodoManager.Presentation.WebApi.Identity
 {
@@ -18,12 +19,9 @@ namespace Epam.TodoManager.Presentation.WebApi.Identity
     {
         private IUserService userService;
 
-        public ApplicationUserStore()
+        public ApplicationUserStore(IUserService userService)
         {
-            using (var resolver = new DependencyResolver())
-            {
-                userService = resolver.GetService(typeof(IUserService)) as IUserService;
-            }
+            this.userService = userService;
         }
 
         public Task CreateAsync(ApplicationUser user)

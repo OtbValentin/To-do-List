@@ -30,7 +30,7 @@ namespace Epam.TodoManager.Presentation.WebApi
             var corsConfiguration = new EnableCorsAttribute("http://localhost:56219", "*", "*");
             config.EnableCors(corsConfiguration);
 
-            config.DependencyResolver = new DependencyResolver();
+            //config.DependencyResolver = new DependencyResolver();
         }
     }
 }
