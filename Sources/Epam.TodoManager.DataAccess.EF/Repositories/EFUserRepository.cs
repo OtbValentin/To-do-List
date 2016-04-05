@@ -70,5 +70,29 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
 
             //context.SaveChanges();
         }
+
+        public byte[] GetAvatar(int userId)
+        {
+            DB.User user = context.Set<DB.User>().Include(u => u.Profile).FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            return user.Profile.Image;
+        }
+
+        public void SetAvatar(int userId, byte[] imageBytes)
+        {
+            DB.User user = context.Set<DB.User>().Include(u => u.Profile).FirstOrDefault(u => u.Id == userId);
+
+            if (user != null)
+            {
+                context.Entry(user).State = EntityState.Modified;
+                context.Entry(user.Profile).State = EntityState.Modified;
+                user.Profile.Image = imageBytes;
+            }
+        }
     }
 }
