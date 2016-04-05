@@ -75,15 +75,11 @@ namespace Epam.TodoManager.BusinessLogic.UserService
             }
 
             userRepository.Create(user);
-
-            unitOfWork.Commit();
         }
 
         public void Delete(int userId)
         {
             userRepository.Delete(userId);
-
-            unitOfWork.Commit();
         }
 
         public User Find(string email)
@@ -94,6 +90,16 @@ namespace Epam.TodoManager.BusinessLogic.UserService
         public User Find(int userId)
         {
             return userRepository.Find(userId);
+        }
+
+        public byte[] GetAvatar(int userId)
+        {
+            return userRepository.GetAvatar(userId);
+        }
+
+        public void SetAvatar(int userId, byte[] imageBytes)
+        {
+            userRepository.SetAvatar(userId, imageBytes);
         }
     }
 }

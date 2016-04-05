@@ -14,5 +14,7 @@ namespace Epam.TodoManager.BusinessLogic.UserService
         void ChangeEmail(int userId, string newEmail);
         void ChangePassword(int userId, string passwordHash);
         void Delete(int userId);
+        void SetAvatar(int userId, byte[] imageBytes);
+        byte[] GetAvatar(int userId);
     }
 }

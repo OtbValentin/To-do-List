@@ -9,5 +9,9 @@ namespace Epam.TodoManager.DataAccess.Interface.Repositories
     public interface IUserRepository : IRepository<User, int>
     {
         User Find(string email);
+
+        byte[] GetAvatar(int userId);
+
+        void SetAvatar(int userId, byte[] imageBytes);
     }
 }
