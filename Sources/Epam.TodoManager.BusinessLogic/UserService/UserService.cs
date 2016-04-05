@@ -96,5 +96,15 @@ namespace Epam.TodoManager.BusinessLogic.UserService
         {
             return userRepository.Find(userId);
         }
+
+        public byte[] GetAvatar(int userId)
+        {
+            return userRepository.GetAvatar(userId);
+        }
+
+        public void SetAvatar(int userId, byte[] imageBytes)
+        {
+            userRepository.SetAvatar(userId, imageBytes);
+        }
     }
 }
