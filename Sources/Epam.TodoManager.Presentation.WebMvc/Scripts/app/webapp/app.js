@@ -11,7 +11,8 @@
 
         // 3rd Party Modules
         'angular-oauth2',
-        'ui.sortable'
+        'ui.sortable',
+        'ngSimpleUpload'
     ])
     .config(['OAuthProvider', function (OAuthProvider) {
         OAuthProvider.configure({

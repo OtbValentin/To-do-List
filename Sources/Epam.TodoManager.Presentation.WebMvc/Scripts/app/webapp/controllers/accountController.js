@@ -65,6 +65,19 @@
         }
     }
 
+    $scope.setAvatar = function(){
+        console.log('set avatar');
+        document.getElementById('uploadAvatar').click();
+    }
+
+    $scope.uploadAvatar = function (data) {
+        dataService.uploadAvatar(data);
+    }
+
+    $scope.successCallback = function (avatar) {
+        console.log('avatar changed', $scope.avatar);
+    }
+
     $scope.data = dataService.data;
 
     $scope.showUserSettingsDialog = false;
@@ -83,4 +96,8 @@
     $scope.newPassword = '';
     $scope.repeatedPassword = '';
     $scope.currentPassword = '';
+
+    $scope.avatar = null;
+
+    $scope.resourceUrl = dataService.data.apiUrl + '/Account/Avatar';
 });

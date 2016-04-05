@@ -5,16 +5,17 @@
         .module('app')
         .factory('dataService', dataService);
 
-    dataService.$inject = ['$http', 'listService', 'taskService', 'accountService'];
+    dataService.$inject = ['$http', 'listService', 'taskService', 'accountService', 'imageService'];
 
-    function dataService($http, listService, taskService, accountService) {
+    function dataService($http, listService, taskService, accountService, imageService) {
         var service = {
             data: {
                 lists: null,
                 activeList: null,
                 selectedTask: null,
                 showCompleted: false,
-                user: null
+                user: null,
+                apiUrl: "http://localhost:51733/api"
             },
 
             //list actions
@@ -36,7 +37,9 @@
 
             updateAll: updateAll,
             updateList: updateList,
-            updateUser: updateUser
+            updateUser: updateUser,
+
+            uploadAvatar: uploadAvatar
         };
 
         updateAll();
@@ -217,6 +220,10 @@
 
         function updateUser() {
             service.data.user = accountService.Account.get();
+        }
+
+        function uploadAvatar(data) {
+            imageService.uploadAvatar(data);
         }
     }
 })();

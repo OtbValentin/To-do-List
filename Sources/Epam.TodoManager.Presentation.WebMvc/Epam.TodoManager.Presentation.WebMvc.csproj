@@ -193,6 +193,7 @@
     <Content Include="Content\images\06.jpg" />
     <Content Include="Content\images\user-icon.png" />
     <Content Include="Scripts\app\services\dataService.js" />
+    <Content Include="Scripts\app\services\imageService.js" />
     <Content Include="Scripts\app\services\listService.js" />
     <Content Include="Scripts\app\services\taskService.js" />
     <Content Include="Scripts\app\webapp\app.js" />
@@ -206,6 +207,7 @@
     <Content Include="Scripts\app\webapp\controllers\taskController.js" />
     <Content Include="Scripts\app\webapp\directives.js" />
     <Content Include="Scripts\app\webapp\listsService.js" />
+    <Content Include="Scripts\app\webapp\ng-simple-upload.js" />
     <Content Include="Scripts\jquery-2.2.1.js" />
     <Content Include="Scripts\jquery-2.2.1.min.js" />
     <Content Include="Scripts\jquery-ui.min.js" />

@@ -44,7 +44,8 @@ namespace Epam.TodoManager.Presentation.WebMvc
                 "~/Scripts/angular.js",
                 "~/Scripts/angular-route.min.js",
                 "~/Scripts/angular-resource.js",
-                "~/Scripts/sortable.js"));
+                "~/Scripts/sortable.js",
+                "~/Scripts/app/webapp/ng-simple-upload.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/webapp-custom").Include(
                     "~/Scripts/app/webapp/app.js",
@@ -52,6 +53,7 @@ namespace Epam.TodoManager.Presentation.WebMvc
                     "~/Scripts/app/services/taskService.js",
                     "~/Scripts/app/services/accountService.js",
                     "~/Scripts/app/services/dataService.js",
+                    "~/Scripts/app/services/imageService.js",
                     //"~/Scripts/app/webapp/controllers/appController.js",
                     //"~/Scripts/app/webapp/controllers/listsController.js",
                     //"~/Scripts/app/webapp/controllers/tasksController.js",

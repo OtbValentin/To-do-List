@@ -100,39 +100,39 @@ namespace Epam.TodoManager.Presentation.WebApi.Controllers
             return Ok();
         }
 
-        //[HttpPost, Route("api/Account/Avatar")]
-        //public async Task<IHttpActionResult> SetAvatar()
-        //{
-        //    var files = HttpContext.Current.Request.Files;
-        //    var images = new List<HttpPostedFile>();
-        //    for (int i = 0; i < files.Count; i++)
-        //    {
-        //        var file = files[i];
-        //        if (file.ContentType.StartsWith("image"))
-        //            images.Add(file);
-        //    }
-        //    if (images.Count <= 0)
-        //        return BadRequest("No image attached.");
-        //    if (images.Count > 1)
-        //        return BadRequest("Multiple images not supported.");
+        [HttpPost, Route("api/Account/Avatar")]
+        public async Task<IHttpActionResult> SetAvatar()
+        {
+            var files = HttpContext.Current.Request.Files;
+            var images = new List<HttpPostedFile>();
+            for (int i = 0; i < files.Count; i++)
+            {
+                var file = files[i];
+                if (file.ContentType.StartsWith("image"))
+                    images.Add(file);
+            }
+            if (images.Count <= 0)
+                return BadRequest("No image attached.");
+            if (images.Count > 1)
+                return BadRequest("Multiple images not supported.");
 
-        //    var existingUser = await Manager.FindByIdAsync(User.Identity.GetUserId<int>());
-        //    if (existingUser == null)
-        //        return InternalServerError();
+            var existingUser = await manager.FindByIdAsync(User.Identity.GetUserId<int>());
+            if (existingUser == null)
+                return InternalServerError();
 
-        //    var imageDataStream = images[0].InputStream;
-        //    var imageData = (new BinaryReader(imageDataStream)).ReadBytes((int)imageDataStream.Length);
-        //    try
-        //    {
-        //        //call BL
-        //    }
-        //    catch (ArgumentException exception)
-        //    {
-        //        return BadRequest(exception.Message);
-        //    }
+            var imageDataStream = images[0].InputStream;
+            var imageData = (new BinaryReader(imageDataStream)).ReadBytes((int)imageDataStream.Length);
+            try
+            {
+                //call BL
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
+            }
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
         //[HttpGet, Route("/api/Account/Avatar")]
         //public async Task<IHttpActionResult> GetAvatar()

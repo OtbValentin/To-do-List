@@ -93,17 +93,18 @@
                                         <div class="cols">
                                             <div class="col-32">
                                                 <div class="avatar-frame">
-                                                    <div class="avatar large hover choose">
+                                                    <input id="uploadAvatar" type="file" multiple ng-simple-upload web-api-url="{{resourceUrl}}" upload-fn="uploadAvatar" callback-fn="successCallback" style="display: none;" />
+                                                    <div class="avatar large hover choose" ng-click="setAvatar()">
                                                         <span class="icon options" style="display: block;"></span>
                                                         <img src="~/Content/images/user-icon.png" class="opaque">
-                                                        <div class="drop-message">
+                                                        @*<div class="drop-message">
                                                             <span>
                                                                 <text rel="settings_account_drop_image">Перетащите фото сюда</text>
                                                             </span>
-                                                        </div>
+                                                        </div>*@
                                                         <div class="message error hidden">
                                                             <span>
-                                                                <text rel="file_uploaded_failed">Не удалось добавить файл. Попробуйте еще раз.</text>
+                                                                <text rel="file_uploaded_failed">Could not load a file. Please, try again.</text>
                                                             </span>
                                                         </div>
                                                         <div class="state loading spinner">
