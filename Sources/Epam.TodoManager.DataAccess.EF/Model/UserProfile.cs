@@ -17,5 +17,7 @@ namespace Epam.TodoManager.DataAccess.EF.Model
         public string Name { get; set; }
 
         public DateTime RegisterDate { get; set; }
+
+        public User User { get; set; } 
     }
 }

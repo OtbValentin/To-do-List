@@ -67,19 +67,24 @@ namespace Epam.TodoManager.BusinessLogic.UserService
 
         public void Create(string email, string name, string passwordHash)
         {
-            User user = userRepository.Find(email);
-
-            if (user == null)
+            User existingUser = userRepository.Find(email);
+            if (existingUser != null)
             {
                 throw new ArgumentException("User with this email already exists", nameof(email));
             }
 
-            userRepository.Create(user);
+            var newUser = new User(0, 0, email, passwordHash, new UserProfile(0, name, DateTime.Now));
+
+            userRepository.Create(newUser);
+
+            unitOfWork.Commit();
         }
 
         public void Delete(int userId)
         {
             userRepository.Delete(userId);
+
+            unitOfWork.Commit();
         }
 
         public User Find(string email)
@@ -90,16 +95,6 @@ namespace Epam.TodoManager.BusinessLogic.UserService
         public User Find(int userId)
         {
             return userRepository.Find(userId);
-        }
-
-        public byte[] GetAvatar(int userId)
-        {
-            return userRepository.GetAvatar(userId);
-        }
-
-        public void SetAvatar(int userId, byte[] imageBytes)
-        {
-            userRepository.SetAvatar(userId, imageBytes);
         }
     }
 }

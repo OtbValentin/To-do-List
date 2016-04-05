@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EFUnitOfWork.cs" />
+    <Compile Include="EntityEqualityComparer.cs" />
     <Compile Include="Model\TodoListCollection.cs" />
     <Compile Include="Model\UserProfile.cs" />
     <Compile Include="Repositories\EFGenericRepository.cs" />

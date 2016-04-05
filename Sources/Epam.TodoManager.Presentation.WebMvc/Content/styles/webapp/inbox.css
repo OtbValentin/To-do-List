@@ -1,0 +1,678 @@
+html body {
+    font-family: "Lato", "Geneva CY", "Lucida Grande", "Arial Unicode MS", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    display: block;
+    /*width: 100%;
+    height: 100%;
+    max-height: 100%;*/
+}
+
+#wunderlist-base {
+    color: #262626;
+    font-size: 14px;
+    font-weight: 500;
+    display: block;
+}
+
+#wunderlist-base *::-webkit-scrollbar {
+    width: 6px !important;
+}
+ 
+#wunderlist-base *::-webkit-scrollbar-track {
+    margin-top: 14px;
+    margin-bottom: 14px;
+    background-color: transparent;
+}
+ 
+#wunderlist-base *::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: rgba(102,137,100,0.7);
+}
+
+    #wunderlist-base:before {
+        content: '';
+        background-image: url("../../images/06.jpg") !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center top;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -100;
+        margin: 0;
+    }
+
+.main-interface {
+    display: flex;
+    height: 100vh;
+    /*height: 100%;
+    width: 100%;*/
+}
+
+#lists {
+    display: block;
+    width: 280px;
+    background-color: #f7f7f7;
+    z-index: 3;
+    height: 100%;
+}
+
+#lists .lists-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+}
+
+* {
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#wunderlist-base #search-toolbar {
+    background: #5b7a59;
+}
+
+#search-toolbar {
+    height: 45px;
+}
+
+#user-toolbar {
+    height: 45px;
+}
+
+#wunderlist-base ul {
+    list-style: none;
+}
+
+#tasks {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex: 1;
+    position: relative;
+    flex-direction: column;
+}
+
+#list-toolbar {
+    background: #668964;
+    position: relative;
+    height: 45px;
+    min-height: 45px;
+    display: flex;
+}
+
+    #list-toolbar h1 {
+        display: block;
+        flex: 1;
+        font-size: 20px;
+        color: #fff;
+        padding: 10px 14px;
+        font-weight: 200;
+        overflow: hidden;
+    }
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.actionBar {
+    opacity: 1;
+    filter: none;
+    box-sizing: border-box;
+    padding: 0 !important;
+    transition: opacity 200ms ease-in;
+    position: relative;
+}
+
+.actionBar-inner {
+    text-align: center;
+    height: 45px;
+}
+
+.actionBar-inner a {
+    color: #fff;
+    display: inline-block;
+    height: 33px;
+    line-height: 33px;
+    min-width: 40px;
+    padding: 6px;
+}
+
+        .actionBar a:hover {
+            background: #5b7a59;
+        }
+
+#wunderlist-base #tasks #task-items {
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-right: 7px;
+    margin-left: 7px;
+    padding-left: 7px;
+    padding-right: 7px;
+    display: block;
+    flex: 1;
+
+    /*height: calc(100% - 45px);
+    max-height: calc(100% - 45px);*/
+}
+
+.collapsed{
+    flex-basis: 42px;
+}
+
+.collapsed .user-name,
+.collapsed .user-arrow,
+.collapsed .lists-collection,
+.collapsed .sidebarActions-label,
+.collapsed .search-icon-wrapper{
+    display: none;
+}
+
+#wunderlist-base :focus {
+    outline: none;
+}
+
+#search-toolbar {
+    height: 45px;
+    display: flex;
+}
+
+#search-toolbar .search-input-wrapper {
+    display: block;
+    flex: 1;
+}
+
+#search-toolbar .search-icon-wrapper, #search-toolbar .list-toggle {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    padding: 13px 11px 12px 11px;
+    flex-shrink: 0;
+}
+
+#search-toolbar .search-input[type=text] {
+    font-size: 18px;
+    color: #fff;
+    height: 45px;
+    -webkit-app-region: no-drag;
+    width: 100%;
+}
+
+.chromeless {
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0;
+    line-height: 20px;
+}
+
+input, textarea, keygen, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 13.3333px Arial;
+}
+
+/*#wunderlist-base *::-webkit-scrollbar {
+    width: 6px !important;
+}*/
+
+/*#wunderlist-base *::-webkit-scrollbar-corner {
+    background-color: transparent;
+}*/
+
+#user-toolbar {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    padding-top: 2px;
+    padding-bottom: 4px;
+}
+
+#user-toolbar .user {
+    height: 45px;
+    align-items: center;
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+#user-toolbar .user-avatar {
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
+    flex-shrink: 0;
+}
+
+.avatar.medium {
+    width: 32px;
+    height: 32px;
+}
+
+.avatar {
+    display: block;
+    position: relative;
+    width: 25px;
+    height: 25px;
+}
+
+.avatar.medium img {
+    height: 32px !important;
+    width: 32px !important;
+}
+
+.avatar img {
+    height: 25px;
+    width: 25px;
+    position: relative;
+
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#user-toolbar .user-name {
+    padding-left: 5px;
+    padding-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    font-size: 15px;
+    line-height: 32px;
+    color: #262626;
+}
+
+#user-toolbar .user-arrow {
+    height: 20px;
+    width: 20px;
+}
+
+#user-toolbar svg {
+    fill: #737272;
+}
+
+#lists .lists-scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.lists-collection{
+    flex-shrink: 0;
+}
+
+sidebarItem {
+    overflow: hidden;
+    height: 38px;
+    z-index: 15;
+    position: relative;
+}
+
+.sidebarItem a {
+    box-sizing: border-box;
+    height: 38px;
+    color: #1c1c1c;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.sidebarItem.active a {
+    background: #e0eefa;
+    color: #262626;
+    text-shadow: 0 1px 1px rgba(0,0,0,0);
+}
+
+.sidebarItem .list-icon {
+    height: 20px;
+    width: 20px;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-align: center;
+}
+
+.sidebarItem a .title {
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #262626;
+    flex: 1;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.sidebarItem.active a .count {
+     color: rgba(38,38,38,0.75);
+}
+
+.sidebarItem a .count {
+    color: #bdbcbb;
+    font-size: 12px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.sidebarItem a .overdue-count {
+    font-size: 12px;
+    display: none;
+    color: #d74e48;
+    font-weight: bold;
+    background: rgba(215,78,72,0.1);
+    padding: 2px 6px;
+    margin-left: 4px;
+    margin-right: 4px;
+    border-radius: 12px;
+}
+
+.sidebarItem .list-icon svg.list, .sidebarItem .list-icon svg.shared {
+    fill: #b9b9b9;
+}
+
+.sidebarItem.active.list a .list-options {
+    display: block;
+}
+
+.sidebarItem a .list-options {
+    cursor: pointer;
+    display: none;
+    opacity: .6;
+    filter: alpha(opacity=60);
+    z-index: 25;
+    height: 20px;
+    width: 20px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#lists.collapsed .moreButton {
+    display: block;
+}
+
+#lists .moreButton {
+    display: none;
+    box-sizing: border-box;
+    height: 38px;
+    padding-top: 9px;
+    fill: #328ad6;
+    user-select: none;
+    text-align: center;
+}
+
+.new-list-dropzone {
+    flex: 1;
+}
+
+.sidebarActions {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    background: #f7f7f7;
+}
+
+.sidebarActions-addList {
+    display: flex;
+    height: 42px;
+    align-items: center;
+    font-size: 15px;
+    color: #328ad6;
+    fill: #328ad6;
+}
+
+.sidebarActions-icon {
+    height: 20px;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+.sidebarActions-label {
+    flex: 1;
+}
+
+#wunderlist-base .addTask {
+    background: rgba(102,137,100,0.75);
+    overflow: hidden;
+    position: relative;
+    margin: 14px 0;
+    padding: 0 12px;
+    border-radius: 3px;
+}
+
+#wunderlist-base .addTask .plus-wrapper {
+    left: 10px;
+    top: 14px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 13px;
+    opacity: .7;
+    filter: alpha(opacity=70);
+}
+
+#wunderlist-base .addTask .plus-wrapper svg {
+    fill: #fff;
+}
+
+#wunderlist-base .addTask .addTask-input, #wunderlist-base .addTask .nlp-feedback {
+    transition: none;
+    font-size: 16px;
+    padding: 13px 8px 14px 28px;
+}
+
+#wunderlist-base .addTask .addTask-input {
+    color: #fff;
+}
+
+#wunderlist-base [type=text], #wunderlist-base [type=email], #wunderlist-base [type=password], #wunderlist-base .input-fake {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    font-family: $wlFonts;
+    font-weight: 500;
+    font-size: 15px;
+    color: #262626;
+    border: none;
+    background: #fff;
+    transition: all 0.15s ease-in-out;
+    box-shadow: inset 0 0 0 1px #d6d6d6;
+    border-radius: 3px;
+}
+
+#wunderlist-base .addTask .nlp-feedback {
+    position: absolute;
+    top: 0;
+    color: rgba(255,255,255,0);
+    pointer-events: none;
+    white-space: pre;
+}
+
+.positionHelper {
+    position: absolute;
+    visibility: hidden;
+    width: auto;
+    white-space: nowrap;
+    font-size: 16px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    margin-left: 25px;
+}
+
+.end-positionHelper-target {
+    position: absolute;
+    visibility: hidden;
+    width: 5px;
+    right: 120px;
+    height: 20px;
+}
+
+#wunderlist-base #tasks #task-items .task-list {
+    padding-bottom: 72px;
+}
+
+.taskItem {
+    height: 47px;
+    list-style: none;
+}
+
+.taskItem-body {
+    background: #fff;
+    list-style: none;
+    height: 46px;
+    border-radius: 3px;
+    display: flex;
+    padding-left: 4px;
+    padding-right: 4px;
+    align-items: center;
+    position: relative;
+}
+
+.taskItem-body .taskItem-checkboxWrapper {
+    padding-left: 8px;
+    padding-right: 8px;
+    height: 20px;
+}
+
+.taskItem-titleWrapper {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 15px;
+    font-weight: 500;
+    color: #262626;
+    cursor: default;
+    position: relative;
+    top: -1px;
+    flex: 1;
+}
+
+#wunderlist-base .hidden {
+    display: none !important;
+}
+
+.taskItem-duedate, .taskItem-assign {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.taskItem-duedate {
+    font-size: 12px;
+    color: #328ad6;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#wunderlist-base .transparent {
+    opacity: 0 !important;
+    filter: alpha(opacity=0) !important;
+    pointer-events: none;
+}
+
+.taskItem-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+    transition: opacity 225ms ease;
+    pointer-events: none;
+}
+
+#wunderlist-base #tasks .heading {
+    margin-top: 20px !important;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    word-break: break-word;
+    font-size: 11px;
+    color: #fff;
+    position: relative;
+}
+
+#wunderlist-base #tasks .heading a {
+    background: rgba(102,137,100,0.75);
+}
+
+#wunderlist-base #tasks .heading a {
+    color: #fff;
+    padding: 3px 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    display: inline-block;
+    box-sizing: border-box;
+    line-height: 16px;
+    border-radius: 3px;
+}
+
+#tasks .tasks-404, #tasks .tasks-404 {
+    border-radius: 10px;
+    margin: 0 25%;
+    background: rgba(0,0,0,0.25);
+}
+
+#wunderlist-base .main-interface #detail {
+    width: 0;
+}
+
+.checkBox .detail-check, .checkBox .task-check {
+    stroke: rgba(0,0,0,0.35);
+}
+
+
+/*content*/
+
+#wunderlist-base .main-interface #detail.animated {
+    -webkit-transition: 100ms width ease;
+    -moz-transition: 100ms width ease;
+    -o-transition: 100ms width ease;
+    -ms-transition: 100ms width ease;
+    transition: 100ms width ease;
+}
+
+#wunderlist-base .main-interface.detail-visible #detail {
+    width: 367px;
+}
+
+#wunderlist-base .main-interface #lists, #wunderlist-base .main-interface #tasks, #wunderlist-base .main-interface #detail {
+    overflow: hidden;
+}
+
+#wunderlist-base .main-interface #detail {
+    width: 0;
+}
+
+@media (max-width: 1000px)
+<style>…</style>
+#wunderlist-base #detail {
+    position: absolute;
+    z-index: 1;
+}

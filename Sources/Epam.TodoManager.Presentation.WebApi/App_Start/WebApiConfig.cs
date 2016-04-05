@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Epam.TodoManager.Presentation.WebApi.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Epam.TodoManager.Presentation.WebApi
 {
@@ -24,6 +26,11 @@ namespace Epam.TodoManager.Presentation.WebApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            
+            var corsConfiguration = new EnableCorsAttribute("http://localhost:56219", "*", "*");
+            config.EnableCors(corsConfiguration);
+
+            //config.DependencyResolver = new DependencyResolver();
         }
     }
 }

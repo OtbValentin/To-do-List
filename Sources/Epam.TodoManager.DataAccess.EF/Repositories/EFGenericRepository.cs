@@ -15,15 +15,22 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
         where TEFModel : class, IEntity<int>
     {
         protected readonly DbContext context;
+        protected readonly IMapper mapper;
 
-        public EFIntKeyGenericRepository(DbContext context)
+        public EFIntKeyGenericRepository(DbContext context, IMapper mapper)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            if (mapper == null)
+            {
+                throw new ArgumentNullException(nameof(mapper));
+            }
+
             this.context = context;
+            this.mapper = mapper;
         }
 
         public virtual void Create(TModel entity)
@@ -33,7 +40,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            TEFModel efEntity = Mapper.Map<TEFModel>(entity);
+            TEFModel efEntity = mapper.Map<TEFModel>(entity);
 
             context.Set<TEFModel>().Add(efEntity);
         }
@@ -50,7 +57,7 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
 
         public virtual IEnumerable<TModel> GetAll()
         {
-            return context.Set<TEFModel>().Select(efModel => Mapper.Map<TModel>(efModel));
+            return context.Set<TEFModel>().Select(efModel => mapper.Map<TModel>(efModel));
         }
 
         public virtual TModel Find(int key)
@@ -62,14 +69,14 @@ namespace Epam.TodoManager.DataAccess.EF.Repositories
                 return default(TModel);
             }
 
-            return Mapper.Map<TModel>(entity);
+            return mapper.Map<TModel>(entity);
         }
 
         public virtual void Update(TModel entity)
         {
             if (entity != null)
             {
-                context.Entry(Mapper.Map<TEFModel>(entity)).State = EntityState.Modified;
+                context.Entry(mapper.Map<TEFModel>(entity)).State = EntityState.Modified;
             }
         }
     }

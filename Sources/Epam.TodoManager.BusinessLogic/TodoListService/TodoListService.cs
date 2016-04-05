@@ -70,6 +70,25 @@ namespace Epam.TodoManager.BusinessLogic.TodoListService
             return listCollection;
         }
 
+        public TodoList GetTodoList(int userId, int listId)
+        {
+            TodoListCollection listCollection = listRepository.GetUserLists(userId);
+
+            if (listCollection == null)
+            {
+                throw new ArgumentException("A specified user doesn't exist", nameof(userId));
+            }
+
+            TodoList todoList = listCollection.FirstOrDefault(list => list.Id == listId);
+
+            if (todoList == null)
+            {
+                throw new ArgumentException("A specified user doesn't have a list with the specified id", nameof(listId));
+            }
+
+            return todoList;
+        }
+
         public void RemoveTodo(int userId, int listId, int todoId)
         {
             TodoListCollection listCollection = listRepository.GetUserLists(userId);
@@ -155,10 +174,6 @@ namespace Epam.TodoManager.BusinessLogic.TodoListService
                 throw new ArgumentException("A specified user doesn't exist", nameof(userId));
             }
 
-            if (index < 0 || index >= listCollection.Count)
-            {
-                throw new ArgumentOutOfRangeException(nameof(index));
-            }
 
             TodoList todoList = listCollection.FirstOrDefault(list => list.Id == listId);
 

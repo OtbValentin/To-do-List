@@ -13,6 +13,8 @@ namespace Epam.TodoManager.DomainModel.Entities
 
         public int Id { get; private set; }
 
+        public int UserId { get; private set; }
+
         public int Count
         {
             get
@@ -21,20 +23,26 @@ namespace Epam.TodoManager.DomainModel.Entities
             }
         }
 
-        public TodoListCollection(int id, IEnumerable<TodoList> lists)
+        public TodoListCollection(int id, int userId)
+            :this(id, userId, new List<TodoList>())
+        {
+
+        }
+
+        public TodoListCollection(int id, int userId, IEnumerable<TodoList> lists)
         {
             Id = id;
+            UserId = userId;
             todoLists = lists.ToList();
         }
 
         public void AddTodoList(string title)
         {
-            todoLists.Add(new TodoList(0, this, title, new List<Todo>()));
+            todoLists.Add(new TodoList(0, title, new List<Todo>()));
         }
 
         public void RemoveTodoList(int listId)
         {
-            // Fix removing with id
             TodoList list = todoLists.FirstOrDefault(item => item.Id == listId);
             todoLists.Remove(list);
         }

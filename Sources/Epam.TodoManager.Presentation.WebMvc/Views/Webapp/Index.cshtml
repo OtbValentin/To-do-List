@@ -1,0 +1,361 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/css/webapp")
+    @Scripts.Render("~/bundles/webapp")
+    @Scripts.Render("~/bundles/angular-oauth")
+</head>
+<body id="wunderlist-base" ng-app="app" ng-controller="appController" ng-keyup="closeAllDialogs($event)">
+    <div class="main-interface">
+        <div id="modals">
+            <div class="dialog-wrapper hidden" ng-controller="addListController" ng-class="{'hidden': showAddListDialog == false}">
+                <div id="" class="dialog listOptions shown">
+                    <div class="content">
+                        <div class="content-header" tabindex="0">
+                            <h3 class="center">
+                                <text rel="label_new_list">Create a list</text>
+                            </h3>
+                            <div class="separator noline">
+                                <input class="big listOptions-title" type="text" data-key-placeholder="placeholder_list_name" data-key-aria-label="placeholder_list_name" maxlength="255" value="" placeholder="List title" ng-bind="newLisTitle" ng-model="newListTitle">
+                            </div>
+                        </div>
+
+                        <div class="content-footer">
+                            <div class="cols">
+                                <div class="col-40">
+                                </div>
+                                <div class="col-30">
+                                    <button class="cancel full close" ng-click="closeAddListDialog()">
+                                        <text rel="button_cancel">Cancel</text>
+                                    </button>
+                                </div>
+                                <div class="col-30">
+                                    <button class="submit full blue disabled" aria-disabled="true" tabindex="-1" ng-click="addNewList(newListTitle)">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dialog-wrapper hidden" ng-controller="editListController" ng-class="{'hidden': showEditListDialog == false}">
+                <div id="" class="dialog listOptions shown">
+                    <div class="content">
+                        <div class="content-header" tabindex="0">
+                            <h3 class="center">
+                                <text rel="label_new_list">Edit list</text>
+                            </h3>
+                            <div class="separator noline">
+                                <input class="big listOptions-title" type="text" data-key-placeholder="placeholder_list_name" data-key-aria-label="placeholder_list_name" maxlength="255" value="" placeholder="List title" ng-model="newListTitle">
+                            </div>
+                        </div>
+
+                        <div class="content-footer">
+                            <div class="cols">
+                                <div class="col-40">
+                                    <a tabindex="0" role="button" class="delete-list" data-key-aria-label="label_delete_list" data-key-title="label_delete_list" title="Delete List" ng-click="deleteList()">
+                                        <svg class="trash" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                                                <g id="trash">
+                                                    <path d="M12,3.5 C12,2.4 11.1,1.5 10,1.5 C8.9,1.5 8,2.4 8,3.5 L5.5,3.5 C4.68,3.5 4,4.18 4,5 L4,7 C4,7.28 4.22,7.5 4.5,7.5 L15.5,7.5 C15.78,7.5 16,7.28 16,7 L16,5 C16,4.18 15.32,3.5 14.5,3.5 L12,3.5 Z M10,2.5 C10.56,2.5 11,2.94 11,3.5 L9,3.5 C9,2.94 9.44,2.5 10,2.5 L10,2.5 Z M15,6.5 L5,6.5 L5,5 C5,4.72 5.22,4.5 5.5,4.5 L14.5,4.5 C14.78,4.5 15,4.72 15,5 L15,6.5 Z M14.5,8.5 C14.22,8.5 14,8.72 14,9 L14,16 C14,16.28 13.78,16.5 13.5,16.5 L6.5,16.5 C6.22,16.5 6,16.28 6,16 L6,9 C6,8.72 5.78,8.5 5.5,8.5 C5.22,8.5 5,8.72 5,9 L5,16 C5,16.82 5.68,17.5 6.5,17.5 L13.5,17.5 C14.32,17.5 15,16.82 15,16 L15,9 C15,8.72 14.78,8.5 14.5,8.5 L14.5,8.5 Z M9,9 C9,8.72 8.78,8.5 8.5,8.5 C8.22,8.5 8,8.72 8,9 L8,15 C8,15.28 8.22,15.5 8.5,15.5 C8.78,15.5 9,15.28 9,15 L9,9 Z M12,9 C12,8.72 11.78,8.5 11.5,8.5 C11.22,8.5 11,8.72 11,9 L11,15 C11,15.28 11.22,15.5 11.5,15.5 C11.78,15.5 12,15.28 12,15 L12,9 Z" id="j"></path>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="col-30">
+                                    <button class="cancel full close" ng-click="closeEditListDialog()">
+                                        <text rel="button_cancel">Cancel</text>
+                                    </button>
+                                </div>
+                                <div class="col-30">
+                                    <button class="submit full blue" aria-disabled="false" tabindex="0" ng-click="saveChanges()">Done</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dialog-wrapper hidden" ng-controller="accountController" ng-class="{'hidden': showUserSettingsDialog == false}">
+                <div id="settings" class="dialog preferences shown">
+                    <div class="content">
+                        <div class="settings-content-inner-wrapper">
+                            <div class="settings-content-inner account">
+                                <div class="settings">
+                                    <!-- Picture -->
+                                    <div class="separator">
+                                        <div class="cols">
+                                            <div class="col-32">
+                                                <div class="avatar-frame">
+                                                    <input id="uploadAvatar" type="file" multiple ng-simple-upload web-api-url="{{resourceUrl}}" upload-fn="uploadAvatar" callback-fn="successCallback" style="display: none;" />
+                                                    <div class="avatar large hover choose" ng-click="setAvatar()">
+                                                        <span class="icon options" style="display: block;"></span>
+                                                        <img src="~/Content/images/user-icon.png" class="opaque">
+                                                        @*<div class="drop-message">
+                                                            <span>
+                                                                <text rel="settings_account_drop_image">Перетащите фото сюда</text>
+                                                            </span>
+                                                        </div>*@
+                                                        <div class="message error hidden">
+                                                            <span>
+                                                                <text rel="file_uploaded_failed">Could not load a file. Please, try again.</text>
+                                                            </span>
+                                                        </div>
+                                                        <div class="state loading spinner">
+                                                            <span class="dark"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="avatar-upload">
+                                                        <div class="drop-zone"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-68">
+                                                <div class="pro-status-wrapper">
+                                                    <div tabindex="0" class="pro-status pro-section-style tabStart">
+                                                        <h3>
+                                                            <text rel="settings_account_header_account_$" data="$settings_account_header_free">User profile</text>
+                                                        </h3>
+                                                        <p>
+                                                            <text rel="settings_account_pro_description">Account settings</text>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="separator basic-account-settings">
+                                        <!-- Full Name -->
+                                        <div class="cols">
+                                            <div class="col-32 text-right">
+                                                <text rel="label_name">Name</text>
+                                            </div>
+                                            <div class="col-68">
+                                                <input type="text" id="edit-full-name" data-key-aria-label="label_name" data-key-placeholder="label_name" tabindex="0" placeholder="Name" ng-bind="newName" ng-model="newName">
+                                            </div>
+                                        </div> <!-- Email -->
+                                        <div class="cols">
+                                            <div class="col-32 text-right">
+                                                <text rel="label_email">Email</text>
+                                            </div>
+                                            <div class="col-40">
+                                                <input type="text" id="edit-email" initial-value="" disabled="" tabindex="0" placeholder="Email address" ng-disabled="emailEditing == false" ng-bind="newEmail" ng-model="newEmail">
+                                            </div> <div class="col-28">
+                                                <button id="change-email" class="full" ng-class="{'hidden': emailEditing == true}" ng-click="beginEmailEditing()" tabindex="0">
+                                                    <text rel="settings_account_change_email">Change email address</text>
+                                                </button>
+                                            </div>
+                                        </div> <!-- Password for email confirm -->
+                                        <div class="cols password-confirm hidden" ng-class="{'hidden': emailEditing == false}">
+                                            <div class="col-32 text-right">
+                                                <text rel="label_password">Password</text>
+                                            </div>
+                                            <div class="col-40">
+                                                <input type="password" id="edit-email-pw-confirm" disabled="" ng-disabled="emailEditing == false" tabindex="0" ng-bind="emailConfirmPassword" ng-model="emailConfirmPassword">
+                                            </div>
+                                            <div class="col-28"></div>
+                                        </div> <!-- Change Email -->
+                                        <div class="cols change-email-buttons hidden" ng-class="{'hidden': emailEditing == false}">
+                                            <div class="col-32 text-right"></div>
+                                            <div class="col-40">
+                                                <div class="cols email-error error-message" ng-style="emailError == true? {display: 'block'} : {display: 'none'}">
+                                                    <div class="col-100"><text rel="api_error_incorrect_password" ng-bind="emailErrorText"></text></div>
+                                                </div>
+                                                <div class="cols">
+                                                    <div class="col-50">
+                                                        <button class="full" id="cancel-email" tabindex="0" ng-click="stopEmailEditing()"> <text rel="button_cancel">Cancel</text> </button>
+                                                    </div>
+                                                    <div class="col-50">
+                                                        <button class="full blue" id="save-email" tabindex="0" ng-click="saveEmail()"><text rel="button_save">Save</text> </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-28"></div>
+                                        </div>
+                                        <!-- Change Password -->
+                                        <div class="cols show-password-buttons">
+                                            <div class="col-32 text-right">
+                                                <text rel="label_password">Password</text>
+                                            </div>
+                                            <div class="col-40">
+                                                <input type="password" class="old-password" tabindex="0" placeholder="Current password" ng-style="passwordEditing == true ? { 'display': 'inline-block' } : { 'display': 'none' }" ng-model="currentPassword" ng-bind="currentPassword">
+                                                <button id="change-password" class="full" tabindex="0" ng-style="passwordEditing == false ? { 'display': 'inline-block' } : { 'display': 'none' }" ng-click="beginPasswordEditing()"> <text rel="settings_account_change_password">Change password</text> </button>
+                                            </div>
+                                            <div class="col-28"></div>
+                                        </div>
+                                        <div class="cols change-password-buttons hidden" ng-class="{'hidden': passwordEditing == false}">
+                                            <div class="col-32"></div>
+                                            <div class="col-40">
+                                                <div class="cols">
+                                                    <div class="col-100">
+                                                        <input type="password" class="new-password" tabindex="0" placeholder="New password" ng-bind="newPassword" ng-model="newPassword">
+                                                    </div>
+                                                </div>
+                                                <div class="cols">
+                                                    <div class="col-100">
+                                                        <input id="confirm-password" type="password" class="confirm-password" tabindex="0" placeholder="Repeat the new password" ng-bind="repeatedPassword" ng-model="repeatedPassword">
+                                                    </div>
+                                                </div>
+                                                <div class="cols change-password-error error-message" ng-style="passwordError == true? {display: 'block'} : {display: 'none'}">
+                                                    <div class="col-100">
+                                                        <text rel="settings_account_change_password_error" ng-bind="passwordErrorText"></text>
+                                                    </div>
+                                                </div>
+                                                <div class="cols">
+                                                    <div class="col-50">
+                                                        <button class="full" id="cancel-password" data-key-aria-label="button_cancel" tabindex="0" ng-click="stopPasswordEditing()"> <text rel="button_cancel">Cancel</text> </button>
+                                                    </div>
+                                                    <div class="col-50">
+                                                        <button class="full blue" id="save-password" data-key-aria-label="button_save" tabindex="0" ng-click="savePassword()"> <text rel="button_save">Save</text> </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-28"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-footer">
+                        <div class="cols">
+                            <div class="col-40"></div>
+                            <div class="col-20"></div>
+                            <div class="col-20">
+                                <button class="full blue close" ng-click="closeUserSettingsDialog()">
+                                    <text rel="button_cancel">Cancel</text>
+                                </button>
+                            </div>
+                            <div class="col-20">
+                                <button class="full blue close" ng-click="closeUserSettingsDialog()">
+                                    <text rel="button_done">Done</text>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lists" ng-class="{collapsed: isCollapsed}" ng-controller="listController">
+            <div tabindex="0" class="lists-inner">
+                <div id="search-toolbar">
+                    <a ng-click="toggle()" id="list-toggle-item" class="toggle-icon">
+                        <svg class="list-toggle" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+                        <g>
+                        <path d="M0.5,3.5l19,0" style="fill:none;stroke-width:1px;stroke:white;"></path>
+                        <path d="M0.5,9.53l19,0" style="fill:none;stroke-width:1px;stroke:white;"></path> 
+                        <path d="M0.5,15.5l19,0" style="fill:none;stroke-width:1px;stroke:white;"></path>
+                            </g>
+                        </svg>
+                    </a>
+                    <div class="search-input-wrapper">
+                        <input class="chromeless search-input" type="text" ng-bind="searchTitle" ng-model="searchTitle">
+                    </div>
+
+                    <span class="search-icon-wrapper">
+                        <a class="search-icon" role="button" tabindex="0" title="Search">
+                            <svg class="search rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                                    <g>
+                                        <path d="M8.5025,15 C4.9225,15 2.0025,12.08 2.0025,8.5 C2.0025,4.92 4.9225,2 8.5025,2 C12.0825,2 15.0025,4.92 15.0025,8.5 C15.0025,12.08 12.0825,15 8.5025,15 L8.5025,15 Z M8.5025,3 C5.4625,3 3.0025,5.46 3.0025,8.5 C3.0025,11.54 5.4625,14 8.5025,14 C11.5425,14 14.0025,11.54 14.0025,8.5 C14.0025,5.46 11.5425,3 8.5025,3 L8.5025,3 Z M17.5025,18 C17.3825,18 17.2425,17.96 17.1425,17.86 L13.6425,14.36 C13.4625,14.16 13.4625,13.84 13.6425,13.64 C13.8425,13.46 14.1625,13.46 14.3625,13.64 L17.8625,17.14 C18.0425,17.34 18.0425,17.66 17.8625,17.86 C17.7625,17.96 17.6225,18 17.5025,18 L17.5025,18 Z" id="z"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                    </span>
+                </div>
+                <div id="user-toolbar">
+                    <a class="user" data-path="me" role="button" tabindex="0" ng-click="showUserSettingsDialog()">
+                        <div class="user-avatar">
+                            <div class="avatar medium" title="data.user.Name">
+                                <img src="~/Content/images/user-icon.png">
+                            </div>
+                        </div>
+                        <span class="user-name" ng-bind="data.user.Name"></span>
+                        <span class="user-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+                            <g>
+                            <path d="M10.502,13c-0.132,0 -0.26,-0.053 -0.354,-0.146l-4.002,-4c-0.195,-0.195 -0.195,-0.512 0,-0.708c0.195,-0.195 0.512,-0.195 0.707,0l3.649,3.647l3.644,-3.647c0.195,-0.195 0.512,-0.195 0.707,0c0.195,0.195 0.195,0.512 0,0.708l-3.997,4c-0.094,0.093 -0.221,0.146 -0.354,0.146">
+                                    </path> 
+                                </g> 
+                            </svg>
+                        </span>
+                        <!-- sync -->
+                    </a>
+                    <!-- Stream counts -->
+                </div>
+                <div class="lists-scroll">
+                    <ul class="lists-collection">
+                        <li role="menuitem" tabindex="0" class="sidebarItem owner list draggable" draggable="true" ng-repeat="list in data.lists | filter: {Title: searchTitle} track by $index" ng-class="{'active': data.activeList === list}">
+                            <a href="#/lists/{{list.Id}}">
+                                <span class="list-icon">
+                                    <svg class="list rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <g id="Web-svgs" stroke="none" stroke-width="1" fill-rule="evenodd">
+                                            <g id="list">
+                                                <path d="M3,7 C2.44,7 2,6.56 2,6 L2,5 C2,4.44 2.44,4 3,4 L4,4 C4.56,4 5,4.44 5,5 L5,6 C5,6.56 4.56,7 4,7 L3,7 Z M4,5 L3,5 L3,6 L4,6 L4,5 Z M7.5,6 C7.22,6 7,5.78 7,5.5 C7,5.22 7.22,5 7.5,5 L17.5,5 C17.78,5 18,5.22 18,5.5 C18,5.78 17.78,6 17.5,6 L7.5,6 Z M3,12 C2.44,12 2,11.56 2,11 L2,10 C2,9.44 2.44,9 3,9 L4,9 C4.56,9 5,9.44 5,10 L5,11 C5,11.56 4.56,12 4,12 L3,12 Z M4,10 L3,10 L3,11 L4,11 L4,10 Z M7.5,11 C7.22,11 7,10.78 7,10.5 C7,10.22 7.22,10 7.5,10 L17.5,10 C17.78,10 18,10.22 18,10.5 C18,10.78 17.78,11 17.5,11 L7.5,11 Z M3,17 C2.44,17 2,16.56 2,16 L2,15 C2,14.44 2.44,14 3,14 L4,14 C4.56,14 5,14.44 5,15 L5,16 C5,16.56 4.56,17 4,17 L3,17 Z M4,15 L3,15 L3,16 L4,16 L4,15 Z M7.5,16 C7.22,16 7,15.78 7,15.5 C7,15.22 7.22,15 7.5,15 L17.5,15 C17.78,15 18,15.22 18,15.5 C18,15.78 17.78,16 17.5,16 L7.5,16 Z" id="K"> </path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <span class="title" ng-bind="list.Title"></span>
+                                <span class="count" ng-bind="list.TodoItems.length"></span>
+                                <span class="list-options" title="List parameters" ng-click="showEditListDialog(list)">
+                                    <svg class="options rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                                            <g id="options">
+                                                <path d="M17.1330617,2.8594383 C15.9930617,1.7194383 14.0130617,1.7194383 12.8930617,2.8594383 L5.5130617,10.2394383 C5.3330617,10.4394383 5.3330617,10.7594383 5.5130617,10.9594383 C5.7130617,11.1394383 6.0330617,11.1394383 6.2330617,10.9594383 L13.5930617,3.5594383 C14.3530617,2.7994383 15.6730617,2.7994383 16.4130617,3.5594383 C17.1730617,4.3194383 17.1930617,5.5594383 16.4130617,6.3394383 L9.0330617,13.7594383 C8.7130617,14.0794383 8.9330617,14.6194383 9.3730617,14.6194383 C9.5130617,14.6194383 9.6330617,14.5594383 9.7330617,14.4594383 L17.1330617,7.0394383 C18.2930617,5.8794383 18.2930617,4.0194383 17.1330617,2.8594383 L17.1330617,2.8594383 Z M8.4930617,15.3594383 C8.0330617,13.4594383 6.5130617,11.9394383 4.6130617,11.4794383 C4.3530617,11.4194383 4.0930617,11.5794383 4.0130617,11.8194383 L2.0330617,17.3194383 C1.8730617,17.7194383 2.2730617,18.1194383 2.6730617,17.9594383 C8.6730617,15.7794383 8.2530617,15.9594383 8.3730617,15.8194383 C8.4930617,15.6994383 8.5330617,15.5194383 8.4930617,15.3594383 L8.4930617,15.3594383 Z M3.3330617,16.6594383 L4.8130617,12.5794383 C6.0130617,12.9994383 6.9730617,13.9794383 7.3930617,15.1794383 L3.3330617,16.6594383 Z" id="N"></path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <a ng-click="toggle()" class="moreButton">
+                        <svg class="more-vertical" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+                        <g>
+                        <path d="M8,15.5c0,-0.828 0.672,-1.5 1.5,-1.5c0.828,0 1.5,0.672 1.5,1.5c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,0 -1.5,-0.672 -1.5,-1.5Z"></path>
+                        <path d="M8,9.5c0,-0.828 0.672,-1.5 1.5,-1.5c0.828,0 1.5,0.672 1.5,1.5c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,0 -1.5,-0.672 -1.5,-1.5Z"></path>
+                        <path d="M8,3.5c0,-0.828 0.672,-1.5 1.5,-1.5c0.828,0 1.5,0.672 1.5,1.5c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,0 -1.5,-0.672 -1.5,-1.5Z"></path>
+                            </g>
+                        </svg>
+                    </a>
+                    <ul class="new-list-dropzone"></ul>
+                </div>
+                <div class="sidebarActions">
+                    <a class="sidebarActions-addList" ng-click="showAddListDialog()">
+                        <span class="sidebarActions-icon">
+                            <svg class="plus-small" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+                            <g>
+                            <path d="M10,10l0,6.5c-0.003,0.053 -0.008,0.103 -0.024,0.155c-0.038,0.116 -0.12,0.217 -0.226,0.278c-0.047,0.027 -0.094,0.042 -0.146,0.056c-0.052,0.008 -0.051,0.008 -0.104,0.011c-0.053,-0.003 -0.103,-0.008 -0.155,-0.024c-0.15,-0.05 -0.271,-0.171 -0.321,-0.321c-0.016,-0.052 -0.021,-0.102 -0.024,-0.155l0,-6.5l-6.5,0c-0.046,-0.002 -0.058,-0.001 -0.104,-0.011c-0.103,-0.022 -0.197,-0.076 -0.268,-0.154c-0.169,-0.188 -0.169,-0.482 0,-0.67c0.035,-0.038 0.077,-0.072 0.122,-0.098c0.078,-0.045 0.161,-0.062 0.25,-0.067l6.5,0l0,-6.5c0.005,-0.089 0.022,-0.172 0.067,-0.25c0.126,-0.219 0.406,-0.31 0.636,-0.207c0.048,0.022 0.093,0.05 0.132,0.085c0.078,0.071 0.132,0.165 0.154,0.268c0.01,0.046 0.009,0.058 0.011,0.104l0,6.5l6.5,0c0.046,0.002 0.058,0.001 0.104,0.011c0.103,0.022 0.197,0.076 0.268,0.154c0.169,0.188 0.169,0.482 0,0.67c-0.035,0.038 -0.077,0.072 -0.122,0.098c-0.078,0.045 -0.161,0.062 -0.25,0.067l-6.5,0Z"></path>
+                                </g>
+                            </svg>
+                        </span>
+                        <span class="sidebarActions-label">
+                            <text rel="placeholder_create_list">Create a new list</text>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="placeholder" ng-view>
+
+        </div>
+
+        <div id="audio-player">
+            <audio id="wl3-complete" class="hidden">
+                <source class="ogg" src="~/Content/sounds/wl3-complete.ogg" type="audio/ogg">
+            </audio>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/webapp-custom")
+</body>
+</html>

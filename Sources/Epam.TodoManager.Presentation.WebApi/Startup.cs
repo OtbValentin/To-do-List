@@ -1,4 +1,10 @@
-﻿using Owin;
+﻿using Epam.TodoManager.Infrastructure.DependencyInjection;
+using Microsoft.Owin;
+using Microsoft.Owin.Cors;
+using Ninject;
+using Ninject.Web.Common.OwinHost;
+using Ninject.Web.WebApi.OwinHost;
+using Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +17,18 @@ namespace Epam.TodoManager.Presentation.WebApi
     {
         public void Configuration(IAppBuilder app)
         {
-            IdentityConfig.Configure(app);
+            app.UseCors(CorsOptions.AllowAll);
+
+            var kernel = new StandardKernel(new Infrastructure.NinjectModule(), new NinjectModule());
+
+            IdentityConfig.Configure(app, kernel);
             AuthConfig.Configure(app);
 
-            HttpConfiguration config = new HttpConfiguration();
+            var config = new HttpConfiguration();
             WebApiConfig.Register(config);
-            app.UseWebApi(config);
+
+            app.UseNinjectMiddleware(() => kernel);
+            app.UseNinjectWebApi(config);
         }
     }
 }
